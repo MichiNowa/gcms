@@ -1,0 +1,1 @@
+<div class="tw-rounded-md tw-border-4 tw-border-t-4 tw-border-blue-500 tw-animate-spin tw-absolute tw-w-full tw-h-full tw-max-w-12 tw-max-h-12 aspect-square"></div>

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react",
+    "moduleResolution": "Bundler",
+    "outDir": "assets/public/js/react",
+    "sourceMap": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "./assets/public/react/ts",
+    "paths": {
+      "/js/react/*": ["./*"]
+    }
+  },
+  "include": ["assets/public/js/react/ts/**/*.ts", "assets/public/js/react/ts/**/*.tsx"],                // Include all TS/TSX files in the src folder
+  "exclude": ["node_modules", "vendor"]
+}

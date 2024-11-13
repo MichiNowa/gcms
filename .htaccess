@@ -1,0 +1,38 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect all requests to index.php except for existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
+
+# Set caching for static files
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Cache images for 1 year
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+
+    # Cache CSS and JavaScript for 1 month
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+
+    # Cache fonts for 1 year
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Set cache control for static files (optional, modern browsers usually respect expires headers)
+<IfModule mod_headers.c>
+    # Cache images, CSS, and JS for 1 year
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|css|js|woff|woff2|eot|ttf|svg|ico)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
