@@ -3,7 +3,7 @@
         'name' => 'smcc/gcms',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '64d499d195fb57c2e93cafdb8342522691a74a15',
+        'reference' => '222f147d05c70a481cdf8133a231e8bd7a9f59b5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -40,7 +40,7 @@
         'smcc/gcms' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '64d499d195fb57c2e93cafdb8342522691a74a15',
+            'reference' => '222f147d05c70a481cdf8133a231e8bd7a9f59b5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
