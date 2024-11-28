@@ -56,7 +56,7 @@ if ($user->role !== 'student') {
 </style>
 
 <?php
-if (is_null($submittedProfile)):
+if ($submittedProfile === null):
 ?>
 <div class="tw-min-h-[calc(100vh-200px)] tw-flex tw-justify-center tw-items-center">
   <h2 class="tw-uppercase tw-italic tw-gray-200 tw-px-8 tw-py-4 tw-rounded-2xl tw-border tw-shadow tw-bg-gray-100">still closed</h2>
@@ -133,12 +133,12 @@ else:
               <div class="select-wrapper">
                 <select name="grade_level" id="formGradeLevel" class="form-control" required>
                   <option value="" selected disabled>Select Level</option>
-                  <option value="7">Grade 7</option>
+                  <!-- <option value="7">Grade 7</option>
                   <option value="8">Grade 8</option>
                   <option value="9">Grade 9</option>
                   <option value="10">Grade 10</option>
                   <option value="11">Grade 11</option>
-                  <option value="12">Grade 12</option>
+                  <option value="12">Grade 12</option> -->
                 </select>
               </div>
             </td>
@@ -150,8 +150,12 @@ else:
           </tr>
           <tr>
             <td>
-              <div>
-                <input type="text" id="formSection" name="section" class="form-control" required />
+              <div class="select-wrapper">
+                <!-- <input type="text" id="formSection" name="section" class="form-control" required /> -->
+                <select id="formSection" name="section" class="form-control" required>
+                  <option value="" selected disabled>Select Section</option>
+                  <!-- other Section Options in javascript -->
+                </select>
               </div>
             </td>
           </tr>
@@ -1086,6 +1090,7 @@ else:
 
 <script>
   var DEPARTMENTSANDCOURSES = JSON.parse(`<?= json_encode(getDepartmentsAndCourses()) ?>`);
+  var GRADELEVELANDSECTIONS = JSON.parse(`<?= json_encode(getGradeLevelAndSections()) ?>`);
   var PREVFORMDATA = JSON.parse(`<?= isset($_SESSION['formdata']) ? json_encode([...$_SESSION['formdata']] + (!empty($submittedProfile) ? ["profile_pic" => $submittedProfile["student_profile"]["profile_pic"]] : [])) : ((!empty($submittedProfile) && end($submittedProfile["profile_statuses"])['status'] === 'rejected') ? json_encode([...($submittedProfile["student_profile"]), "education" => $submittedProfile['education'], ...($submittedProfile["student_education"]), "grade_level" => $submittedProfile["student_education"]["gradelevel"] ?? "", "year_level" => $submittedProfile["student_education"]["yearlevel"] ?? ""]) : "[]") ?>`);
   (function(){
     const testing = JSON.parse(`<?= json_encode($submittedProfile, JSON_PRETTY_PRINT) ?>`);

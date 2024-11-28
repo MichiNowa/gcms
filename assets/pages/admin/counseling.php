@@ -63,6 +63,10 @@ if ($user->role !== 'admin') {
             <textarea name="behavioral_observation" rows="4" class="form-control"></textarea>
           </div>
         </div>
+        <div class="tw-my-4">
+          <div class="tw-font-bold tw-ml-4">Optional Upload (1) one photo:</div>
+          <div id="case-upload-photo-root"></div>
+        </div>
       </div>
     </div>
     <div class="tw-mt-4 tw-flex tw-justify-end tw-gap-x-4">
@@ -153,7 +157,7 @@ if ($user->role !== 'admin') {
           This serve as a documentation of the counseling session.
         </p>
         <div class="tw-my-4">
-          <div class="tw-font-bold tw-ml-4">Upload two (2) photos:</div>
+          <div class="tw-font-bold tw-ml-4">Upload (1) one or (2) two photos:</div>
           <div id="referral-upload-photo-root"></div>
         </div>
       </div>
@@ -273,6 +277,13 @@ if ($user->role !== 'admin') {
             <p class="tw-text-justify" id="view-observation"></p>
           </div>
         </div>
+        <div class="tw-my-4">
+          <div class="tw-font-bold tw-ml-4">Case Note/ Referral Image (optional):</div>
+          <div class="tw-border tw-border-black tw-rounded-xl tw-p-3 tw-min-h-[100px] tw-bg-white">
+          <img src="" alt="" class="tw-rounded-2xl tw-w-[120px] tw-h-[120px] tw-object-contain tw-border" id="view-img" />
+          </div>
+        </div>
+        
       </div>
     </div>
     <div class="tw-mt-4 tw-flex tw-justify-end tw-gap-x-4">
@@ -285,16 +296,16 @@ if ($user->role !== 'admin') {
 
 <?= getModalDisplay(
   'create-case-note-walkin-modal',
-  "Create Walked-in Case Note",
+  "Create Case Note",
   function() {
 ?>
   <form id="form-create-case-note" method="post" class="tw-p-3">
     <div class="tw-shadow tw-rounded tw-border">
       <div class="tw-min-h-[150px] tw-p-2">
-        <div class="tw-flex tw-flex-start tw-items-center tw-gap-4">
+        <div class="tw-flex tw-flex-start tw-items-start tw-gap-4">
           <img src="" alt="" class="tw-rounded-2xl tw-w-[120px] tw-h-[120px] tw-object-contain tw-border" id="create-photo" />
           <div>
-            <div class="tw-font-bold">Student ID:&nbsp;<span id="create-student-id"></span></div>
+            <div class="tw-font-bold tw-block">Student ID:&nbsp;<div class="tw-inline-block" id="create-student-id"></div></div>
             <div class="tw-font-bold" id="create-full-name"></div>
             <div class="tw-text-sm" id="create-department-level"></div>
             <div class="tw-text-sm" id="create-year-grade-level"></div>
@@ -310,7 +321,7 @@ if ($user->role !== 'admin') {
         <div class="tw-my-4 tw-bg-gray-50 tw-p-2 tw-rounded tw-flex tw-flex-wrap tw-gap-y-4 tw-gap-x-8 tw-justify-center">
           <?php foreach(getInteractionTypes() as $n => $it): ?>
             <div class="form-check">
-              <input class="form-check-input tw-cursor-pointer" type="radio" group="interaction_type" name="interaction_type" id="it-<?= $n ?>" value="<?= $it ?>" <?= $it !== "Walked-in" ? "disabled" : "checked" ?>>
+              <input class="form-check-input tw-cursor-pointer" type="radio" group="interaction_type" name="interaction_type" id="it-<?= $n ?>" value="<?= $it ?>" <?= $it !== "Walked-in" ? "" : "checked" ?>>
               <label class="form-check-label tw-cursor-pointer" for="it-<?= $n?>"><?= $it ?></label>
             </div>
           <?php endforeach ?>
@@ -338,6 +349,10 @@ if ($user->role !== 'admin') {
           <div>
             <textarea name="behavioral_observation" rows="4" class="form-control"></textarea>
           </div>
+        </div>
+        <div class="tw-my-4">
+          <div class="tw-font-bold tw-ml-4">Optional Upload (1) one photo:</div>
+          <div id="case-upload-photo-root"></div>
         </div>
       </div>
     </div>

@@ -84,7 +84,10 @@ class Users extends Model
     $parts = explode(" ", $this->updated_at);
     return new DateTime($parts[0]."T".$parts[1].".000+08:00");
   }
-
+  public function getFullName(): string
+  {
+    return $this->getFirstName() . " " . (!$this->getMiddleInitial() ? "" : $this->getMiddleInitial() . ". ") . $this->getLastName();
+  }
   public function getCreateTable(): array
   {
     return [

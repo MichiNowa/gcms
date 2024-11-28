@@ -11,7 +11,7 @@ class ReferralForm extends Model {
   public ?int $case_note_id;
   public ?int $called_slip_id;
   public string $referral_a;
-  public string $referral_b;
+  public ?string $referral_b;
   public ?string $created_at;
   public ?string $updated_at;
 
@@ -43,7 +43,7 @@ class ReferralForm extends Model {
   {
     return $this->referral_a;
   }
-  public function getReferralB(): string
+  public function getReferralB(): ?string
   {
     return $this->referral_b;
   }
@@ -65,7 +65,7 @@ class ReferralForm extends Model {
       "case_note_id BIGINT",
       "called_slip_id BIGINT",
       "referral_a TEXT NOT NULL",
-      "referral_b TEXT NOT NULL",
+      "referral_b TEXT",
       "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
       "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
     ];

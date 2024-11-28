@@ -118,8 +118,6 @@ interface DataValue {
   called_slip?: number;
   referral_forms?: number;
   agreement_forms?: number;
-  feedback_forms?: number;
-  remarks?: string;
 }
 
 type DataValueType = DataValue[] | undefined;
@@ -138,10 +136,10 @@ function displayNominal(num: number) {
   return num.toString().endsWith("1")
     ? num + "st"
     : num.toString().endsWith("2")
-    ? num + "nd"
-    : num.toString().endsWith("3")
-    ? num + "rd"
-    : num + "th";
+      ? num + "nd"
+      : num.toString().endsWith("3")
+        ? num + "rd"
+        : num + "th";
 }
 
 enum Education {
@@ -236,23 +234,23 @@ function ViewAssessmentComponent({
       </div>
       <h3
         className={clsx(
-          assessmentScore < 25
-            ? "tw-text-green-600"
-            : assessmentScore < 50
-            ? "tw-text-yellow-600"
-            : assessmentScore < 75
-            ? "tw-text-orange-600"
-            : "tw-text-red-600"
+          assessmentScore > 75
+            ? "tw-text-red-600"
+            : assessmentScore > 50
+              ? "tw-text-orange-600"
+              : assessmentScore > 25
+                ? "tw-text-yellow-600"
+                : "tw-text-green-600"
         )}
       >
         Assessment Result:{" "}
         {assessmentScore < 25
           ? "Strongly Positive"
           : assessmentScore < 50
-          ? "Somewhat Negative"
-          : assessmentScore < 75
-          ? "Strongly Negative"
-          : "Urgent Attention Needed"}
+            ? "Somewhat Neutral"
+            : assessmentScore < 75
+              ? "Strongly Negative"
+              : "Urgent Attention Needed"}
       </h3>
       <div className="tw-flex tw-gap-3 tw-items-start tw-flex-wrap tw-justify-center">
         {assessmentForms?.map((forms) => (
@@ -315,8 +313,7 @@ function ViewAssessmentComponent({
             window.open(
               new URL(
                 pathname(
-                  `/print?form=student_assessment&id=${
-                    student.student_id
+                  `/print?form=student_assessment&id=${student.student_id
                   }&assessments=${assessmentForms
                     .map((v: AssessmentForm) => v.id)
                     .join("-")}`
@@ -435,9 +432,8 @@ function sendReminderNotification(
       subject: `Reminder on Student Self-Assessment Form | Guidance Office (SMCC)`,
       body: bodyHTMLString.replaceAll("\n", "").trim(),
       title: "Reminder on Student Self-Assessment Form Submission",
-      message: `Reminding you to submit your <a href="${
-        homepage + "assess"
-      }">Student Self-Assessment Form</a> for S.Y. ${sy}. Thank you.`,
+      message: `Reminding you to submit your <a href="${homepage + "assess"
+        }">Student Self-Assessment Form</a> for S.Y. ${sy}. Thank you.`,
       href: "/assess",
     };
     // Broadcast notification to all users
@@ -463,10 +459,11 @@ function sendReminderNotification(
 function ProfilesSubmitted() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const { school_years, all_profiles,  gradeyear } = usePageData(setIsLoading);
+  const { school_years, all_profiles, gradeyear } = usePageData(setIsLoading);
   const [selectedSchoolYear, setSelectedSchoolYear] = React.useState<string>((new Date()).getFullYear().toString());
   const [selectedDepartment, setSelectedDepartment] = React.useState<string>("");
   const [selectedProgramSection, setSelectedProgramSection] = React.useState<string>("");
+  const [selectedAssessScore, setSelectedAssessScore] = React.useState<string>("");
   const { profiles, sy, syid, assessment_open } = React.useMemo(() => {
     const selSy = Array.isArray(school_years) ? school_years.find((yr: any) => yr?.year?.toString() === selectedSchoolYear.toString()) : undefined;
     let profiles = Array.isArray(all_profiles) ? all_profiles.find((prof: AllDataValues) => prof.sy.toString() === selSy?.year?.toString()) : undefined;
@@ -487,32 +484,44 @@ function ProfilesSubmitted() {
       gradeyear > 0 && gradeyear < 5
         ? Education.College
         : gradeyear > 6 && gradeyear < 13
-        ? Education.Basic
-        : Education.None,
+          ? Education.Basic
+          : Education.None,
     [gradeyear]
   );
-  const departmentOptions = React.useMemo<{label: string, value: string}[]>(() => {
-    const result: {label: string, value: string}[] = [];
+  const departmentOptions = React.useMemo<{ label: string, value: string }[]>(() => {
+    const result: { label: string, value: string }[] = [];
     if (education) {
       const departments = data.map((d: DataValue) => (d.student_info?.profile as CollegeStudentInfo)?.department);
       departments.forEach((department: string) => {
         if (!!department) {
           if (!result.some(d => d.label === department)) {
-            result.push({label: department, value: department});
+            result.push({ label: department, value: department });
           }
         }
       })
     }
     return result;
   }, [education, data]);
-  const programSectionOptions = React.useMemo<{label: string, value: string}[]>(() => {
-    const result: {label: string, value: string}[] = [];
+  const assessmentScoreOptions = React.useMemo<{ label: string, value: string }[]>(() => {
+    const result: { label: string, value: string }[] = [];
+    [null, 75, 50, 25, 0].forEach(d => result.push({
+      label: d === null ? 'No Assessment'
+        : d === 75 ? 'Urgent assessment (Red)'
+          : d === 50 ? 'Strongly Negative (Orange)'
+            : d === 25 ? 'Somewhat Neutral (Yellow)'
+              : 'Strongly Positive (Green)',
+      value: d?.toString() || '-1',
+    }))
+    return result;
+  }, []);
+  const programSectionOptions = React.useMemo<{ label: string, value: string }[]>(() => {
+    const result: { label: string, value: string }[] = [];
     if (education === "basic") {
       const sections = data.map((d: DataValue) => (d.student_info?.profile as BasicStudentInfo)?.section);
       sections.forEach((section: string) => {
         if (!!section) {
           if (!result.some(d => d.label === section)) {
-            result.push({label: section, value: section});
+            result.push({ label: section, value: section });
           }
         }
       })
@@ -522,7 +531,7 @@ function ProfilesSubmitted() {
         courses.forEach((course: string) => {
           if (!!course) {
             if (!result.some(d => d.label === course)) {
-              result.push({label: course, value: course});
+              result.push({ label: course, value: course });
             }
           }
         })
@@ -531,7 +540,7 @@ function ProfilesSubmitted() {
         courses.forEach((course: string) => {
           if (!!course) {
             if (!result.some(d => d.label === course)) {
-              result.push({label: course, value: course});
+              result.push({ label: course, value: course });
             }
           }
         })
@@ -544,163 +553,163 @@ function ProfilesSubmitted() {
     () =>
       education === Education.College
         ? [
-            {
-              label: "Photo",
-              key: "profile_pic",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Student ID",
-              key: "username",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Name",
-              key: "name",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Gender",
-              key: "gender",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Year Level",
-              key: "yearlevel",
-              sortable: true,
-              cellType: TableCellType.Number,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Course",
-              key: "course",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Department",
-              key: "department",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Dean",
-              key: "dean",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Assessment",
-              key: "assessment",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "View Profile",
-              key: "profile",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "View Summary",
-              key: "summary",
-              sortable: false,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Submitted Date",
-              key: "created_at",
-              sortable: true,
-              cellType: TableCellType.Date,
-              align: CellAlign.Center,
-            },
-          ]
+          {
+            label: "Photo",
+            key: "profile_pic",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Student ID",
+            key: "username",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Name",
+            key: "name",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Gender",
+            key: "gender",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Year Level",
+            key: "yearlevel",
+            sortable: true,
+            cellType: TableCellType.Number,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Course",
+            key: "course",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Department",
+            key: "department",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Dean",
+            key: "dean",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Assessment",
+            key: "assessment",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "View Profile",
+            key: "profile",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "View Summary",
+            key: "summary",
+            sortable: false,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Submitted Date",
+            key: "created_at",
+            sortable: true,
+            cellType: TableCellType.Date,
+            align: CellAlign.Center,
+          },
+        ]
         : [
-            {
-              label: "Photo",
-              key: "profile_pic",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Student ID",
-              key: "username",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Name",
-              key: "name",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Gender",
-              key: "gender",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Grade Level",
-              key: "gradelevel",
-              sortable: true,
-              cellType: TableCellType.Number,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Adviser",
-              key: "adviser",
-              sortable: true,
-              cellType: TableCellType.String,
-              align: CellAlign.Left,
-            },
-            {
-              label: "Assessment",
-              key: "assessment",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "View Profile",
-              key: "profile",
-              sortable: true,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "View Summary",
-              key: "summary",
-              sortable: false,
-              cellType: TableCellType.Custom,
-              align: CellAlign.Center,
-            },
-            {
-              label: "Submitted Date",
-              key: "created_at",
-              sortable: true,
-              cellType: TableCellType.Date,
-              align: CellAlign.Center,
-            },
-          ],
+          {
+            label: "Photo",
+            key: "profile_pic",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Student ID",
+            key: "username",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Name",
+            key: "name",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Gender",
+            key: "gender",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Grade Level",
+            key: "gradelevel",
+            sortable: true,
+            cellType: TableCellType.Number,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Adviser",
+            key: "adviser",
+            sortable: true,
+            cellType: TableCellType.String,
+            align: CellAlign.Left,
+          },
+          {
+            label: "Assessment",
+            key: "assessment",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "View Profile",
+            key: "profile",
+            sortable: true,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "View Summary",
+            key: "summary",
+            sortable: false,
+            cellType: TableCellType.Custom,
+            align: CellAlign.Center,
+          },
+          {
+            label: "Submitted Date",
+            key: "created_at",
+            sortable: true,
+            cellType: TableCellType.Date,
+            align: CellAlign.Center,
+          },
+        ],
     [education]
   );
 
@@ -777,11 +786,10 @@ function ProfilesSubmitted() {
             student={{
               id: item.profile_status!.id,
               student_id: item.student_info.user!.id,
-              name: `${item.student_info.user.first_name} ${
-                item.student_info.user.middle_initial
-                  ? item.student_info.user.middle_initial + ". "
-                  : ""
-              }${item.student_info.user.last_name}`,
+              name: `${item.student_info.user.first_name} ${item.student_info.user.middle_initial
+                ? item.student_info.user.middle_initial + ". "
+                : ""
+                }${item.student_info.user.last_name}`,
               level:
                 education === Education.Basic
                   ? (item.student_info.profile as BasicStudentInfo).gradelevel
@@ -799,13 +807,6 @@ function ProfilesSubmitted() {
     [education, syid, assessment_open]
   );
 
-  React.useEffect(() => {
-    $("button#view-profile-close-btn").on("click", function () {
-      $("#iframe-container").empty();
-      $("#view-profile-button-container").empty();
-      $("#view-profile-status").empty();
-    });
-  }, []);
 
   const onViewProfile = React.useCallback(
     (item: DataValue) => {
@@ -964,7 +965,7 @@ function ProfilesSubmitted() {
           .empty()
           .text(
             "Completed: " +
-              new Date(item.profile_status!.updated_at!).toLocaleDateString()
+            new Date(item.profile_status!.updated_at!).toLocaleDateString()
           );
         $("#view-profile-status")
           .removeClass("tw-text-red-500")
@@ -978,8 +979,7 @@ function ProfilesSubmitted() {
       $iframe.attr(
         "src",
         pathname(
-          `/print?form=student_profile&id=${
-            item.profile_status?.id || ""
+          `/print?form=student_profile&id=${item.profile_status?.id || ""
           }&education=${education}`
         )
       );
@@ -990,6 +990,9 @@ function ProfilesSubmitted() {
 
   const resetSummary = React.useCallback(() => {
     const $summaryModal = $("#view-student-summary-modal");
+    $summaryModal
+      .find("#view-records")
+      .off("click");
     $summaryModal.find("#view-photo").attr("src", "");
     $summaryModal.find("#view-full-name").text("");
     $summaryModal.find("#view-department-gradelevel").text("");
@@ -999,6 +1002,16 @@ function ProfilesSubmitted() {
   const onViewSummary = React.useCallback((item: DataValue) => {
     const $summaryModal = $("#view-student-summary-modal");
     $summaryModal
+      .find("#view-records")
+      .on("click", function () {
+        const url = new URL(pathname('/print'), window.location.origin);
+        url.searchParams.append('form', "summary_records");
+        url.searchParams.append('sy', syid)
+        url.searchParams.append('year', sy)
+        url.searchParams.append('uid', item?.student_info?.user?.id?.toString() || "")
+        window.open(url.toString(), "_blank")
+      });
+    $summaryModal
       .find("#view-photo")
       .attr(
         "src",
@@ -1007,33 +1020,30 @@ function ProfilesSubmitted() {
     $summaryModal
       .find("#view-full-name")
       .text(
-        `${item.student_info.user.last_name}, ${
-          item.student_info.user.first_name
-        } ${
-          item.student_info.user.middle_initial
-            ? item.student_info.user.middle_initial + "."
-            : ""
+        `${item.student_info.user.last_name}, ${item.student_info.user.first_name
+        } ${item.student_info.user.middle_initial
+          ? item.student_info.user.middle_initial + "."
+          : ""
         }`
       );
     $summaryModal
       .find("#view-department-gradelevel")
       .text(
         (item.student_info.profile as CollegeStudentInfo)?.department ||
-          (!!(item.student_info.profile as BasicStudentInfo)?.gradelevel
-            ? `Grade ${
-                (item.student_info.profile as BasicStudentInfo)?.gradelevel
-              }`
-            : "")
+        (!!(item.student_info.profile as BasicStudentInfo)?.gradelevel
+          ? `Grade ${(item.student_info.profile as BasicStudentInfo)?.gradelevel
+          }`
+          : "")
       );
     $summaryModal
       .find("#view-year-course")
       .text(
         !!(item.student_info.profile as CollegeStudentInfo).yearlevel
           ? displayNominal(
-              (item.student_info.profile as CollegeStudentInfo).yearlevel
-            ) +
-              " " +
-              (item.student_info.profile as CollegeStudentInfo).course
+            (item.student_info.profile as CollegeStudentInfo).yearlevel
+          ) +
+          " " +
+          (item.student_info.profile as CollegeStudentInfo).course
           : ""
       );
     $summaryModal
@@ -1050,17 +1060,13 @@ function ProfilesSubmitted() {
       .text(
         item.assessment.assessment_score === false ? "Pending" : "Completed"
       );
-    $summaryModal
-      .find("#view-referral-forms")
-      .text(item.referral_forms?.toString() || "0");
+    // $summaryModal
+    //   .find("#view-referral-forms")
+    //   .text(item.referral_forms?.toString() || "0");
     $summaryModal
       .find("#view-agreement-forms")
       .text(item.agreement_forms?.toString() || "0");
-    $summaryModal
-      .find("#view-feedback-forms")
-      .text(item.feedback_forms?.toString() || "0");
-    $summaryModal.find("#view-remarks").text(item.remarks || "");
-  }, []);
+  }, [syid, sy]);
 
   const items = React.useMemo(
     () => {
@@ -1070,13 +1076,28 @@ function ProfilesSubmitted() {
           (item.student_info.profile as CollegeStudentInfo)?.department?.toString() === selectedDepartment.toString()
         );
       }
+      if (!!selectedAssessScore) {
+        console.log(selectedAssessScore, d);
+        d = d.filter((item: DataValue) =>
+          (selectedAssessScore === "-1" && item.assessment.assessment_score === false) || (
+            selectedAssessScore === "75" && item.assessment.assessment_score as number >= 75
+          ) || (
+            selectedAssessScore === "50" && item.assessment.assessment_score as number >= 50 && item.assessment.assessment_score as number < 75
+          ) || (
+            selectedAssessScore === "25" && item.assessment.assessment_score as number >= 25 && item.assessment.assessment_score as number < 50
+          ) || (
+            selectedAssessScore === "0" && item.assessment.assessment_score !== false && item.assessment.assessment_score >= 0 && item.assessment.assessment_score as number < 25
+          )
+        );
+      }
       if (!!selectedProgramSection) {
         d = d.filter((item: DataValue) =>
           education === "basic"
-          ? (item.student_info.profile as BasicStudentInfo)?.section === selectedProgramSection
-          : (item.student_info.profile as CollegeStudentInfo)?.course === selectedProgramSection
+            ? (item.student_info.profile as BasicStudentInfo)?.section === selectedProgramSection
+            : (item.student_info.profile as CollegeStudentInfo)?.course === selectedProgramSection
         );
       }
+      console.log('score:', d);
       return d?.map((item: DataValue) => ({
         id: item.profile_status?.id,
         profile_pic: {
@@ -1096,11 +1117,10 @@ function ProfilesSubmitted() {
           ),
         },
         username: item.student_info.user.username,
-        name: `${item.student_info.user.first_name} ${
-          item.student_info.user.middle_initial
-            ? item.student_info.user.middle_initial + ". "
-            : ""
-        }${item.student_info.user.last_name}`,
+        name: `${item.student_info.user.first_name} ${item.student_info.user.middle_initial
+          ? item.student_info.user.middle_initial + ". "
+          : ""
+          }${item.student_info.user.last_name}`,
         gender: item.student_info.user.gender,
         yearlevel: (item.student_info.profile as CollegeStudentInfo).yearlevel,
         course: (item.student_info.profile as CollegeStudentInfo).course,
@@ -1123,13 +1143,13 @@ function ProfilesSubmitted() {
                   "tw-border-2 tw-rounded-full tw-w-[25px] tw-h-[25px]",
                   item.assessment.assessment_score === false
                     ? "tw-bg-gray-500"
-                    : item.assessment.assessment_score < 25
-                    ? "tw-bg-green-500"
-                    : item.assessment.assessment_score < 50
-                    ? "tw-bg-yellow-500"
-                    : item.assessment.assessment_score < 75
-                    ? "tw-bg-orange-500"
-                    : "tw-bg-red-500"
+                    : item.assessment.assessment_score > 75
+                      ? "tw-bg-red-500"
+                      : item.assessment.assessment_score > 50
+                        ? "tw-bg-orange-500"
+                        : item.assessment.assessment_score > 25
+                          ? "tw-bg-yellow-500"
+                          : "tw-bg-green-500"
                 )}
               >
                 &nbsp;
@@ -1150,10 +1170,10 @@ function ProfilesSubmitted() {
                 item.profile_status?.status === "pending"
                   ? "tw-bg-yellow-300 hover:tw-bg-yellow-200"
                   : item.profile_status?.status === "rejected"
-                  ? "tw-bg-red-300 hover:tw-bg-red-200"
-                  : item.profile_status?.status === "completed"
-                  ? "tw-bg-green-400 hover:tw-bg-green-200"
-                  : "tw-bg-gray-300 hover:tw-bg-gray-200"
+                    ? "tw-bg-red-300 hover:tw-bg-red-200"
+                    : item.profile_status?.status === "completed"
+                      ? "tw-bg-green-400 hover:tw-bg-green-200"
+                      : "tw-bg-gray-300 hover:tw-bg-gray-200"
               )}
             >
               <i
@@ -1162,10 +1182,10 @@ function ProfilesSubmitted() {
                   item.profile_status?.status === "pending"
                     ? "bx-time-five"
                     : item.profile_status?.status === "rejected"
-                    ? "bx-x"
-                    : item.profile_status?.status === "completed"
-                    ? "bx-check"
-                    : "bx-question-mark"
+                      ? "bx-x"
+                      : item.profile_status?.status === "completed"
+                        ? "bx-check"
+                        : "bx-question-mark"
                 )}
               ></i>
               &nbsp;<span>View Submitted</span>
@@ -1187,7 +1207,7 @@ function ProfilesSubmitted() {
           ? displayDate(item.profile_status.created_at)
           : displayDate(item.student_info.profile.created_at),
       })) || []
-    }, [data, selectedDepartment, selectedProgramSection]
+    }, [data, selectedDepartment, selectedProgramSection, selectedAssessScore]
   );
 
   const displayTitle = React.useCallback(
@@ -1196,10 +1216,10 @@ function ProfilesSubmitted() {
         ? gradeyear == 1
           ? "1st Year Student Profiles"
           : gradeyear == 2
-          ? "2nd Year Student Profiles"
-          : gradeyear == 3
-          ? "3rd Year Student Profiles"
-          : "4th Year Student Profiles"
+            ? "2nd Year Student Profiles"
+            : gradeyear == 3
+              ? "3rd Year Student Profiles"
+              : "4th Year Student Profiles"
         : "Grade " + gradeyear + " Student Profiles",
     [gradeyear, education]
   );
@@ -1210,6 +1230,11 @@ function ProfilesSubmitted() {
       .click(function () {
         resetSummary();
       });
+    $("button#view-profile-close-btn").on("click", function () {
+      $("#iframe-container").empty();
+      $("#view-profile-button-container").empty();
+      $("#view-profile-status").empty();
+    });
   }, []);
 
   if (isLoading) {
@@ -1259,6 +1284,20 @@ function ProfilesSubmitted() {
                 {education === "college" ? "Program/Course" : "Section"}
               </option>
               {programSectionOptions.map((opt: { label: string, value: string }) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {(
+          <div className="select-wrapper">
+            <select className="form-select" value={selectedAssessScore} onChange={(e) => setSelectedAssessScore(e.target.value)}>
+              <option value="">
+                Assessment Score
+              </option>
+              {assessmentScoreOptions.map((opt: { label: string, value: string }) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>

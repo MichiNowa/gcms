@@ -50,6 +50,12 @@ function FeedbackPage() {
             sy,
             " - ",
             Number.parseInt(sy) + 1),
+        React.createElement("div", { className: "tw-max-w-64" },
+            React.createElement("select", { className: "tw-w-full tw-border tw-border-gray-300 tw-py-2 tw-px-4 tw-rounded-md tw-text-gray-700 tw-bg-white tw-text-sm", value: selectedSchoolYear, onChange: (e) => setSelectedSchoolYear(e.target.value) }, school_years?.map((yr) => (React.createElement("option", { key: yr.year, value: yr.year },
+                "A.Y ",
+                yr.year,
+                " - ",
+                Number.parseInt(yr.year) + 1))))),
         React.createElement(Table, { columns: columns, items: data })));
 }
 const root = ReactDOM.createRoot($pageRoot.get(0));

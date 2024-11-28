@@ -127,8 +127,8 @@ function AddFeedbackPage({ user, sy, setPage, pageProps }: any) {
 
   return (<div>
     <div className="tw-bg-gray-200 tw-rounded-lg tw-px-4 tw-py-2">
-      <div className="tw-uppercase tw-tracking-wide tw-text-indigo-500 tw-font-semibold">Appointment Date: {displayDate(pageProps?.schedule)}</div>
-      <p className="tw-block tw-mt-1 tw-leading-tight tw-font-medium tw-text-black">Time: {displayTime(pageProps?.schedule)}</p>
+      <div className="tw-uppercase tw-tracking-wide tw-text-indigo-500 tw-font-semibold">Appointment Date: {displayDate(pageProps?.schedule, "Walked-In")}</div>
+      <p className="tw-block tw-mt-1 tw-leading-tight tw-font-medium tw-text-black">Time: {displayTime(pageProps?.schedule, displayDate(pageProps?.case_note?.created_at))}</p>
       <p className="tw-mt-2 tw-text-gray-500">Guidance Counselor: {pageProps?.guidance?.first_name} {pageProps?.guidance?.middle_initial ? pageProps?.guidance?.middle_initial + ". " : ""}{pageProps?.guidance?.last_name}</p>
     </div>
     <div className="row text-center">
@@ -276,8 +276,8 @@ function Schedules({ user, sy, setPage, setPageProps }: any) {
     url.searchParams.append("id", user?.id);
     url.searchParams.append("sy", sy);
     $.get(url.toString())
-      .done(function ({ data }) {
-        setData(data);
+      .done(function ({ data: d }) {
+        setData(d);
         setIsLoading(false);
       })
       .fail(function (_, statusText) {
@@ -294,7 +294,6 @@ function Schedules({ user, sy, setPage, setPageProps }: any) {
     setPageProps({...item});
     setPage(1);
   }, [setPageProps, setPage]);
-
   return (
     <div className="tw-p-4">
       <h2>Your Counseling Appointments</h2>
@@ -306,8 +305,8 @@ function Schedules({ user, sy, setPage, setPageProps }: any) {
           <div key={`appointment_${index}`} className={clsx(!dateIsBeforeNow(ap?.schedule) ? "tw-bg-white" : (!ap.case_note ? "tw-bg-red-200" : "tw-bg-green-200"), "tw-max-w-md tw-mx-auto tw-rounded-xl tw-shadow-md tw-overflow-hidden md:tw-max-w-2xl tw-m-3")}>
             <div className="md:tw-flex">
               <div className="tw-p-8">
-                <div className="tw-uppercase tw-tracking-wide tw-text-indigo-500 tw-font-semibold">Appointment Date: {displayDate(ap?.schedule)}</div>
-                <p className="tw-block tw-mt-1 tw-leading-tight tw-font-medium tw-text-black">Time: {displayTime(ap?.schedule)}</p>
+                <div className="tw-uppercase tw-tracking-wide tw-text-indigo-500 tw-font-semibold">Appointment Date: {displayDate(ap?.schedule, "Walked-In")}</div>
+                <p className="tw-block tw-mt-1 tw-leading-tight tw-font-medium tw-text-black">Time: {displayTime(ap?.schedule, displayDate(ap?.case_note?.created_at))}</p>
                 <p className="tw-mt-2 tw-text-gray-500">Guidance Counselor: {ap?.guidance?.first_name} {ap?.guidance?.middle_initial ? ap?.guidance?.middle_initial + ". " : ""}{ap?.guidance?.last_name}</p>
                 <button onClick={() => onGiveFeedback(ap)} disabled={!ap.case_note || !!ap.feedback} className="tw-mt-5 tw-ml-3 tw-px-4 tw-py-2 tw-border tw-border-transparent tw-text-sm tw-font-medium tw-rounded-md tw-bg-blue-700 tw-text-white bg-red-600 hover:tw-bg-blue-500 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-red-500 disabled:tw-bg-blue-300">
                     Give Feedback

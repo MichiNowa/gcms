@@ -14,6 +14,7 @@ class CaseNote extends Model {
   public string $information_by_counselor;
   public string $client_decision;
   public string $behavioral_observation;
+  public string $case_note_img;
   public ?string $created_at;
   public ?string $updated_at;
 
@@ -57,6 +58,17 @@ class CaseNote extends Model {
   {
     return $this->behavioral_observation;
   }
+
+  public function getCaseNoteImg(): string {
+    return $this->case_note_img;
+  }
+  public function getCaseNoteImgItems(): array {
+    return json_decode($this->case_note_img,true);
+  }
+
+  public function setCaseNoteImg(array $items): void{
+    $this->case_note_img = json_encode($items);
+  }
   public function getCreatedAt(): DateTime {
     $parts = explode(" ", $this->created_at);
     return new DateTime($parts[0]."T".$parts[1].".000+08:00");
@@ -78,6 +90,7 @@ class CaseNote extends Model {
       "information_by_counselor TEXT DEFAULT '' NOT NULL",
       "client_decision TEXT DEFAULT '' NOT NULL",
       "behavioral_observation TEXT DEFAULT '' NOT NULL",
+      "case_note_img TEXT DEFAULT '[]'",
       "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
       "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
     ];

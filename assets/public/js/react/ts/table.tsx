@@ -147,7 +147,11 @@ export function Table({ columns, items, search, children, defaultSortOrder, defa
     }
     return sortedItems;
   }, [items, searchString, sortColumn, sortOrder, columns, page, showEntries])
-  const totalPages = React.useMemo(() => finalItems?.length > 0 ? Math.ceil(finalItems?.length / showEntries) : 0, [finalItems, showEntries]);
+
+  const totalPages = React.useMemo(
+    () => showEntries > 0 ? Math.ceil((items?.length || 0) / showEntries) : 0,
+    [items, showEntries]
+  );
 
   React.useEffect(() => {
     onShowEntries && onShowEntries(showEntries);

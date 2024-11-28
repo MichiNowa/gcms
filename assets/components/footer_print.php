@@ -5,6 +5,10 @@
 
 <script>
   window.URI_PREFIX = "<?= URI_PREFIX ?>";
+  function pathname(path) {
+    return new URL(URI_PREFIX + path, window.location.origin).toString();
+  }
+  window.pathname = pathname;
   <?php
     if (isset($_SESSION['backed'])) {
       unset($_SESSION['backed']);

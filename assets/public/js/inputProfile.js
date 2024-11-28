@@ -84,8 +84,8 @@ $(function () {
         $("select#formGradeLevel").prop('disabled', false);
         $("select#formGradeLevel").attr("required", true);
 
-        $("input#formSection").prop('disabled', false);
-        $("input#formSection").attr("required", true);
+        $("select#formSection").prop('disabled', false);
+        $("select#formSection").attr("required", true);
 
         $("input#formAdviser").prop('disabled', false);
         $("input#formAdviser").attr("required", true);
@@ -101,9 +101,9 @@ $(function () {
         $("select#formGradeLevel").prop('disabled', true);
         $("select#formGradeLevel").attr("required", false);
 
-        $("input#formSection").val("");
-        $("input#formSection").prop('disabled', true);
-        $("input#formSection").attr("required", false);
+        $("select#formSection").val("");
+        $("select#formSection").prop('disabled', true);
+        $("select#formSection").attr("required", false);
 
         $("input#formAdviser").val("");
         $("input#formAdviser").prop('disabled', true);
@@ -135,9 +135,9 @@ $(function () {
         $("select#formGradeLevel").prop('disabled', true);
         $("select#formGradeLevel").attr("required", false);
 
-        $("input#formSection").val("");
-        $("input#formSection").prop('disabled', true);
-        $("input#formSection").attr("required", false);
+        $("select#formSection").val("");
+        $("select#formSection").prop('disabled', true);
+        $("select#formSection").attr("required", false);
 
         $("select#formSchoolYear").val("");
         $("select#formSchoolYear").prop('disabled', true);
@@ -193,6 +193,23 @@ $(function () {
     ).append(
       DEPARTMENTSANDCOURSES?.[$("select#formDepartment").val()]?.map((course) =>
         $("<option>").val(course).text(course)
+      )
+    );
+  });
+  // Grade Level JHS or SHS
+  $("select#formGradeLevel").append(
+    Object.keys(GRADELEVELANDSECTIONS).map((gradelevel) => (
+      $("<option>").val(Number.parseInt(gradelevel.substring(gradelevel.length - 2).trim()).toString()).text(gradelevel)
+    ))
+  );
+  $("select#formGradeLevel").on("change", function () {
+    const gradelevelValue = $(this).val();
+    const gradelevelLabel = $(this).find("option[value=" + gradelevelValue + "]").text();
+    $("select#formSection").empty().append(
+      $("<option>").val("").prop("disabled", true).prop("selected", true).text("Select Section")
+    ).append(
+      GRADELEVELANDSECTIONS?.[gradelevelLabel]?.map((section) =>
+        $("<option>").val(section).text(section)
       )
     );
   });

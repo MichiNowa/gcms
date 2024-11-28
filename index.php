@@ -79,7 +79,7 @@ try {
     '/assessment/manage' => showPage('admin/assessment_manage', 'Manage Assessment Form', ['user' => AUTHUSER, "data" => getAssessmentFormManagementData(), 'scripts' => [pathname('js/react/assessment_manage.mjs')]], 'auth', ['auth']),
     '/assessment/make/calledslip' => showPage('admin/assessment_make_calledslip', 'Schedule Called Slip', ['user' => AUTHUSER, "data" => getGuidanceAndStudentData(), 'scripts' => [pathname('js/react/assessment_make_calledslip.mjs')]], 'auth', ['auth']),
     '/feedbacks' => showPage('admin/feedbacks', 'Counseling Feedbacks', ['user' => AUTHUSER, "data" => getFeedbacks(), 'scripts' => [pathname( 'js/react/feedbacks.mjs')]], 'auth', ['auth']),
-    '/print' => showPage('admin/print', 'Print', ['user' => AUTHUSER], 'print', ['auth']),
+    '/print' => showPage('admin/print', 'Print', ['user' => AUTHUSER, 'scripts' => [pathname('js/react/report.mjs'), pathname('js/react/print_records.mjs')]], 'print', ['auth']),
     // Student routes
     '/home' => showPage('student/home', 'Home', ['user' => AUTHUSER, 'scripts' => [pathname('js/print.js')]], 'auth', ['auth']),
     '/profile' => showPage('student/profile', 'Profile', ['user' => AUTHUSER, 'submittedProfile' => getStudentProfileData(AUTHUSER), 'scripts' => [pathname('js/inputProfile.js')]], 'auth', ['auth']),
@@ -93,7 +93,7 @@ try {
     '/settings' => showPage('settings', 'Settings', ["user" => AUTHUSER, "data" => ["user" => AUTHUSER?->toArray()], "scripts" => [pathname("js/react/settings.mjs")]], 'auth', ['auth']),
     '/forgot_password' => showPage('forgot_password', 'Forgot Password', ["scripts" => [pathname('js/react/forgot_password.mjs')]], 'guest', ['guest']),
     /* API Routes */
-    // POST
+    // POST actions
     '/api/post/login' => showAPI('actions', 'POST'),
     '/api/post/signup' => showAPI('actions', 'POST'),
     '/api/post/logout' => showAPI('actions', 'POST'),
@@ -128,10 +128,14 @@ try {
     // GET
     '/api/get/pagedata' => showAPI( 'get'),
     '/api/get/student/check' => showAPI('get'),
+    // student
     '/api/get/myappointments' => showAPI('student'),
     '/api/get/notifications' => showAPI('student'),
+    // admin
     '/api/get/sendmail/test' => showAPI('admin'),
     '/api/get/dashboard' => showAPI('admin'),
+    '/api/get/casenotelist' => showAPI('admin'),
+    '/api/get/summaryrecords' => showAPI('admin'),
     default => showPublicFolder('assets'),
   };
 } catch (\Throwable $e) {

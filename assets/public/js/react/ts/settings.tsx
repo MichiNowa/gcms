@@ -132,7 +132,7 @@ function SettingsPage() {
         <div>Middle Initial:</div>
         <div>{user?.role === "student" ? user?.middle_initial : <input type="text" className="form-control" value={inputDataA?.middle_initial} onChange={(e) => handleChangeA("first_initial", e.target.value)} maxLength={1} />}</div>
         <div>Last Name:</div>
-        <div>{user?.role === "student" ? user?.last_name : <input type="text" className="form-control" value={inputDataA?.first_name} onChange={(e) => handleChangeA("first_name", e.target.value)} required />}</div>
+        <div>{user?.role === "student" ? user?.last_name : <input type="text" className="form-control" value={inputDataA?.last_name} onChange={(e) => handleChangeA("last_name", e.target.value)} required />}</div>
         <div>Email Address:</div>
         <div>{user?.role === "student" ? user?.email : <input type="text" className="form-control" value={inputDataA?.email} onChange={(e) => handleChangeA("email", e.target.value)} required />}</div>
         <div>Gender:</div>

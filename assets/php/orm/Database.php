@@ -80,7 +80,7 @@ class Database {
         $user->last_name = "Office";
         $user->gender = "Male";
         $user->email = "edp@smccnasipit.edu.ph";
-        $user->profile_pic = "images/default-user.png";
+        $user->profile_pic = "/images/default-user.png";
         $user->role = "superadmin";
         $user->status = true;
         $user->save();

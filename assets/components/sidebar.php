@@ -1,5 +1,5 @@
 <!--========== SIDEBARNAV ==========-->
-<div class="nav" id="navbar">
+<div class="nav" id="navbar" style="background-color: #e8bbfc;">
   <nav class="nav__container">
     <div>
       <span class="nav__logo">

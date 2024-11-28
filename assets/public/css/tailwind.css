@@ -603,6 +603,12 @@ video {
 .tw-col-span-4 {
   grid-column: span 4 / span 4;
 }
+.tw-float-start {
+  float: inline-start;
+}
+.tw-float-end {
+  float: inline-end;
+}
 .tw-m-3 {
   margin: 0.75rem;
 }
@@ -711,9 +717,6 @@ video {
 .tw-size-6 {
   width: 1.5rem;
   height: 1.5rem;
-}
-.tw-h-1 {
-  height: 0.25rem;
 }
 .tw-h-32 {
   height: 8rem;
@@ -902,6 +905,9 @@ video {
 }
 .tw-max-w-32 {
   max-width: 8rem;
+}
+.tw-max-w-64 {
+  max-width: 16rem;
 }
 .tw-max-w-72 {
   max-width: 18rem;

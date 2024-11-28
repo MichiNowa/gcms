@@ -118,7 +118,7 @@ function SettingsPage() {
             React.createElement("div", null, "Middle Initial:"),
             React.createElement("div", null, user?.role === "student" ? user?.middle_initial : React.createElement("input", { type: "text", className: "form-control", value: inputDataA?.middle_initial, onChange: (e) => handleChangeA("first_initial", e.target.value), maxLength: 1 })),
             React.createElement("div", null, "Last Name:"),
-            React.createElement("div", null, user?.role === "student" ? user?.last_name : React.createElement("input", { type: "text", className: "form-control", value: inputDataA?.first_name, onChange: (e) => handleChangeA("first_name", e.target.value), required: true })),
+            React.createElement("div", null, user?.role === "student" ? user?.last_name : React.createElement("input", { type: "text", className: "form-control", value: inputDataA?.last_name, onChange: (e) => handleChangeA("last_name", e.target.value), required: true })),
             React.createElement("div", null, "Email Address:"),
             React.createElement("div", null, user?.role === "student" ? user?.email : React.createElement("input", { type: "text", className: "form-control", value: inputDataA?.email, onChange: (e) => handleChangeA("email", e.target.value), required: true })),
             React.createElement("div", null, "Gender:"),

@@ -17,7 +17,7 @@ async function main() {
   await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for second
 
   // Start the PHP server
-  runCommand('php', ['-S', 'localhost:8080', 'index.php']);
+  runCommand('php', ['-S', 'localhost:8000', 'index.php']);
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   runCommand('node', ['https.js']);

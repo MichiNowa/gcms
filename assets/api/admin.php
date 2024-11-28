@@ -383,3 +383,19 @@ if (is_current_path('/api/get/dashboard')) {
   $response = getDashboardData();
   responseJSON(['data' => $response]);
 }
+
+if (is_current_path('/api/get/casenotelist')) {
+  if (!isset($_SESSION['userdata']) ||!getUser($_SESSION['userdata']['id']) || AUTHUSER->getRole()!== 'admin') {
+    responseJSON(['error'=>'Invalid Access'], 403);
+  }
+  $response = getCaseNoteListData();
+  responseJSON(['data' => $response]);
+}
+
+if (is_current_path('/api/get/summaryrecords')) {
+  if (!isset($_SESSION['userdata']) ||!getUser($_SESSION['userdata']['id']) || AUTHUSER->getRole()!== 'admin') {
+    responseJSON(['error'=>'Invalid Access'], 403);
+  }
+  $response = getSummaryRecords($_GET);
+  responseJSON(['data' => $response]);
+}

@@ -1,138 +1,2056 @@
-[2024-11-13 09:55:16] - GET 404 - /gcms/
-[2024-11-13 09:55:57] - GET 404 - /gcms/
-[2024-11-13 09:56:03] - GET 404 - /gcms/login
-[2024-11-13 09:56:28] - GET 200 - /login
-[2024-11-13 09:58:01] - GET 200 - /dashboard
-[2024-11-13 09:59:23] - GET 200 - /counseling
-[2024-11-13 09:59:34] - GET 404 - //images/profile/019a36132fb654da26162f07887e1f78.jpg
-[2024-11-13 09:59:34] - GET 404 - //images/profile/10ef51734549a9921f48b78fe283c8ca.jpg
-[2024-11-13 09:59:53] - GET 200 - /login
-[2024-11-13 10:00:15] - GET 200 - /login
-[2024-11-13 10:04:08] - GET 200 - /login
-[2024-11-13 10:04:19] - GET 200 - /schoolyear
-[2024-11-13 10:04:28] - GET 200 - /login
-[2024-11-13 10:04:55] - GET 200 - /schoolyear
-[2024-11-13 10:05:03] - GET 200 - /login
-[2024-11-13 10:05:22] - POST 500 - /api/post/login
-[2024-11-13 10:05:24] - GET 500 - /css/tailwind.css
-[2024-11-13 10:05:27] - GET 500 - /vendor/sweetalert2/sweetalert2.min.js
-[2024-11-13 10:05:29] - GET 500 - /vendor/sweetalert2/sweetalert2.min.css
-[2024-11-13 10:05:31] - GET 500 - /css/custom.css
-[2024-11-13 10:05:33] - GET 500 - /vendor/bootstrap/icons/bootstrap-icons.css
-[2024-11-13 10:05:36] - GET 500 - /vendor/bootstrap/css/bootstrap.min.css
-[2024-11-13 10:05:38] - GET 500 - /images/guidance-logo-loader.png
-[2024-11-13 10:05:40] - GET 500 - /vendor/jquery/jquery-3.7.1.min.js
-[2024-11-13 10:05:42] - GET 500 - /vendor/bootstrap/js/bootstrap.bundle.min.js
-[2024-11-13 10:05:45] - GET 500 - /images/logo.jpg
-[2024-11-13 10:19:06] - GET 200 - /schoolyear
-[2024-11-13 10:20:07] - GET 200 - /login
-[2024-11-13 10:25:42] - GET 200 - /login
-[2024-11-13 10:26:07] - GET 200 - /login
-[2024-11-13 10:26:36] - GET 200 - /login
-[2024-11-13 10:28:02] - GET 200 - /login
-[2024-11-13 10:46:36] - GET 500 - /login
-[2024-11-13 10:46:37] - GET 500 - /css/tailwind.css
-[2024-11-13 10:46:37] - GET 500 - /vendor/bootstrap/css/bootstrap.min.css
-[2024-11-13 10:46:37] - GET 500 - /css/custom.css
-[2024-11-13 10:46:37] - GET 500 - /vendor/sweetalert2/sweetalert2.min.js
-[2024-11-13 10:46:37] - GET 500 - /vendor/bootstrap/icons/bootstrap-icons.css
-[2024-11-13 10:46:37] - GET 500 - /vendor/sweetalert2/sweetalert2.min.css
-[2024-11-13 10:46:38] - GET 500 - /vendor/jquery/jquery-3.7.1.min.js
-[2024-11-13 10:46:38] - GET 500 - /images/guidance-logo-loader.png
-[2024-11-13 10:46:38] - GET 500 - /vendor/bootstrap/js/bootstrap.bundle.min.js
-[2024-11-13 10:46:39] - GET 500 - /images/logo.jpg
-[2024-11-13 14:35:32] - GET 200 - /login
-[2024-11-13 14:35:42] - GET 200 - /schoolyear
-[2024-11-13 14:35:50] - GET 200 - /accounts/admin
-[2024-11-13 14:36:03] - GET 200 - /schoolyear
-[2024-11-13 14:42:47] - GET 200 - /dashboard
-[2024-11-13 14:42:58] - GET 200 - /counseling
-[2024-11-13 14:43:09] - GET 200 - /login
-[2024-11-13 14:47:33] - GET 200 - /login
-[2024-11-13 14:47:40] - GET 200 - /login
-[2024-11-13 14:47:58] - GET 200 - /dashboard
-[2024-11-13 14:48:15] - GET 200 - /profile/grade12
-[2024-11-13 14:48:36] - GET 200 - /profile/college4
-[2024-11-13 14:49:24] - GET 200 - /login
-[2024-11-13 14:49:58] - GET 200 - /login
-[2024-11-13 14:50:18] - GET 200 - /schoolyear
-[2024-11-13 14:50:32] - GET 200 - /schoolyear
-[2024-11-13 14:50:40] - GET 200 - /accounts/admin
-[2024-11-13 14:51:06] - GET 200 - /dashboard
-[2024-11-13 14:51:12] - GET 500 - /api/get/dashboard
-[2024-11-13 14:51:24] - GET 200 - /profile/college4
-[2024-11-13 14:52:12] - GET 200 - /login
-[2024-11-13 14:52:59] - GET 200 - /signup
-[2024-11-13 14:53:41] - Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-[2024-11-13 14:53:41] - ERROR: Failed to send notification
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(3139): sendNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\api\actions.php(202): createUser(Array)
-#2 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#3 D:\Program Files\Xampp\htdocs\gcms\index.php(98): showAPI('actions', 'POST')
-#4 {main}
-[2024-11-13 14:53:41] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Failed to send notification"}
-[2024-11-13 14:53:41] - GET 200 - /signup
-[2024-11-13 14:53:46] - GET 200 - /login
-[2024-11-13 14:54:05] - GET 200 - /home
-[2024-11-13 14:54:23] - GET 200 - /profile
-[2024-11-13 14:57:16] - Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-[2024-11-13 14:57:16] - ERROR: Failed to send notification
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(15): sendNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#2 D:\Program Files\Xampp\htdocs\gcms\index.php(116): showAPI('student', 'POST')
+[2024-11-10 17:21:33] - GET 200 - /profile/college4
+[2024-11-10 17:21:43] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$x6mngMYpJPb3TlMb05gT.uxD\/GM1Z9biXTUDI0t16xBsKAdU9PLxW",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/b1788b73491d7f9ccf4d5d2097f85fc9.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-10 22:28:55",
+    "updated_at": "2024-11-10 23:24:24"
+}
+[2024-11-10 17:21:43] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    }
+]
+[2024-11-10 17:21:43] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}]
+[2024-11-10 17:21:43] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:21:43] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:21:43] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:21:43] - GET 200 - /print
+[2024-11-10 17:23:03] - GET 200 - /profile/college4
+[2024-11-10 17:23:15] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$x6mngMYpJPb3TlMb05gT.uxD\/GM1Z9biXTUDI0t16xBsKAdU9PLxW",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/b1788b73491d7f9ccf4d5d2097f85fc9.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-10 22:28:55",
+    "updated_at": "2024-11-10 23:24:24"
+}
+[2024-11-10 17:23:15] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    }
+]
+[2024-11-10 17:23:15] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}]
+[2024-11-10 17:23:15] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:23:15] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:23:15] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:23:15] - GET 200 - /print
+[2024-11-10 17:23:31] - GET 200 - /print
+[2024-11-10 17:23:48] - GET 200 - /print
+[2024-11-10 17:23:51] - GET 200 - /assessment/make/calledslip
+[2024-11-10 17:24:08] - ID: 3
+[2024-11-10 17:24:12] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-10 17:24:14] - GET 200 - /assessment/make/calledslip
+[2024-11-10 17:24:22] - GET 200 - /notifications
+[2024-11-10 17:28:30] - student {
+    "id": 1,
+    "username": "superadmin",
+    "password": "$2y$10$CFR0CFZingiOOp52ZkbtXe3zj\/Hy5M7poLLw9WGD9uWsaatk2oMoK",
+    "first_name": "EDP",
+    "middle_initial": "",
+    "last_name": "Office",
+    "gender": "Male",
+    "email": "edp@smccnasipit.edu.ph",
+    "profile_pic": "images\/default-user.png",
+    "role": "superadmin",
+    "status": true,
+    "created_at": "2024-11-10 22:27:01",
+    "updated_at": "2024-11-10 22:27:01"
+}
+[2024-11-10 17:28:30] - ALL ASSESSMENTS: []
+[2024-11-10 17:28:30] - ARESPONSE: []
+[2024-11-10 17:28:30] - ARESPONSE: []
+[2024-11-10 17:28:30] - ARESPONSE: []
+[2024-11-10 17:28:30] - ARESPONSE: []
+[2024-11-10 17:28:30] - GET 500 - /print
+[2024-11-10 17:28:51] - GET 200 - /print
+[2024-11-10 17:29:04] - GET 200 - /profile/college4
+[2024-11-10 17:29:13] - GET 200 - /print
+[2024-11-10 17:29:29] - GET 200 - /profile/college4
+[2024-11-10 17:29:46] - GET 200 - /profile/college4
+[2024-11-10 17:29:56] - GET 200 - /print
+[2024-11-10 17:30:09] - GET 200 - /print
+[2024-11-10 17:31:08] - GET 200 - /profile/college4
+[2024-11-10 17:31:19] - GET 200 - /print
+[2024-11-10 17:32:01] - GET 200 - /profile/college4
+[2024-11-10 17:32:46] - GET 200 - /home
+[2024-11-10 17:32:52] - GET 200 - /login
+[2024-11-10 17:33:14] - GET 200 - /dashboard
+[2024-11-10 17:33:29] - GET 200 - /counseling
+[2024-11-10 17:33:41] - GET 200 - /profile/college4
+[2024-11-10 17:33:53] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$x6mngMYpJPb3TlMb05gT.uxD\/GM1Z9biXTUDI0t16xBsKAdU9PLxW",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/b1788b73491d7f9ccf4d5d2097f85fc9.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-10 22:28:55",
+    "updated_at": "2024-11-10 23:24:24"
+}
+[2024-11-10 17:33:53] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    }
+]
+[2024-11-10 17:33:53] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}]
+[2024-11-10 17:33:53] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:33:53] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:33:53] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-10 17:33:53] - GET 200 - /print
+[2024-11-10 17:34:45] - GET 200 - /print
+[2024-11-10 17:35:05] - GET 200 - /counseling
+[2024-11-10 17:35:37] - GET 200 - /counseling
+[2024-11-10 17:35:44] - GET 200 - /print
+[2024-11-10 17:36:19] - GET 200 - /profile/college4
+[2024-11-10 17:36:27] - GET 200 - /print
+[2024-11-10 17:36:55] - GET 200 - /print
+[2024-11-11 03:40:23] - GET 200 - /login
+[2024-11-11 03:42:04] - GET 200 - /dashboard
+[2024-11-11 03:42:19] - GET 200 - /assessment/manage
+[2024-11-11 03:42:40] - GET 200 - /counseling
+[2024-11-11 03:42:52] - GET 200 - /print
+[2024-11-11 03:43:09] - GET 200 - /profile/college4
+[2024-11-11 03:43:19] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$x6mngMYpJPb3TlMb05gT.uxD\/GM1Z9biXTUDI0t16xBsKAdU9PLxW",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/b1788b73491d7f9ccf4d5d2097f85fc9.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-10 22:28:55",
+    "updated_at": "2024-11-10 23:24:24"
+}
+[2024-11-11 03:43:19] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    }
+]
+[2024-11-11 03:43:19] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}]
+[2024-11-11 03:43:19] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-11 03:43:19] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-11 03:43:19] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-11 03:43:19] - GET 200 - /print
+[2024-11-11 03:49:00] - GET 200 - /assessment/make/calledslip
+[2024-11-11 03:49:25] - GET 200 - /print
+[2024-11-11 03:49:49] - GET 200 - /assessment/manage
+[2024-11-11 03:50:03] - GET 200 - /profile/no-profiles
+[2024-11-11 03:52:19] - GET 200 - /profile/grade7
+[2024-11-11 03:52:28] - GET 200 - /profile/college2
+[2024-11-11 03:52:40] - GET 200 - /profile/grade11
+[2024-11-11 03:52:49] - GET 200 - /profile/no-profiles
+[2024-11-11 03:53:03] - GET 200 - /profile/college4
+[2024-11-11 14:34:27] - GET 200 - /login
+[2024-11-11 14:34:34] - GET 200 - /forgot_password
+[2024-11-11 14:34:55] - 202150179 : BATALUNA
+[2024-11-11 14:34:59] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-11 14:35:19] - GET 200 - /login
+[2024-11-11 14:35:29] - GET 200 - /forgot_password
+[2024-11-11 14:35:37] - GET 200 - /forgot_password
+[2024-11-11 14:35:48] - GET 200 - /forgot_password
+[2024-11-11 14:35:52] - GET 200 - /login
+[2024-11-11 14:41:39] - GET 200 - /forgot_password
+[2024-11-11 14:41:49] - GET 200 - /forgot_password
+[2024-11-11 14:41:58] - GET 200 - /forgot_password
+[2024-11-11 14:42:03] - GET 200 - /forgot_password
+[2024-11-11 14:42:12] - GET 200 - /forgot_password
+[2024-11-11 14:42:18] - GET 200 - /forgot_password
+[2024-11-11 14:42:28] - GET 200 - /forgot_password
+[2024-11-12 02:41:55] - GET 200 - /login
+[2024-11-12 02:42:07] - GET 200 - /dashboard
+[2024-11-12 02:42:29] - GET 200 - /counseling
+[2024-11-12 02:43:27] - GET 200 - /assessment/manage
+[2024-11-12 02:45:01] - GET 200 - /counseling
+[2024-11-12 03:53:35] - GET 200 - /profile/no-profiles
+[2024-11-12 03:57:17] - GET 200 - /login
+[2024-11-12 04:00:00] - GET 200 - /login
+[2024-11-12 04:00:07] - GET 200 - /schoolyear
+[2024-11-12 04:00:26] - GET 200 - /login
+[2024-11-12 04:00:52] - GET 200 - /dashboard
+[2024-11-12 04:01:03] - GET 200 - /profile/college4
+[2024-11-12 04:01:18] - GET 200 - /profile/no-profiles
+[2024-11-12 04:05:32] - GET 200 - /profile/no-profiles
+[2024-11-12 04:21:09] - GET 200 - /profile/college4
+[2024-11-12 04:21:23] - GET 200 - /counseling
+[2024-11-12 04:21:43] - GET 200 - /profile/college4
+[2024-11-12 04:22:07] - GET 200 - /counseling
+[2024-11-12 04:23:09] - GET 200 - /counseling
+[2024-11-12 04:23:35] - GET 200 - /counseling
+[2024-11-12 04:24:14] - GET 200 - /profile/college4
+[2024-11-12 04:24:53] - GET 200 - /profile/college4
+[2024-11-12 04:25:57] - GET 200 - /profile/college4
+[2024-11-12 04:26:14] - GET 200 - /profile/college4
+[2024-11-12 04:26:47] - GET 200 - /profile/college4
+[2024-11-12 04:32:43] - GET 200 - /profile/college4
+[2024-11-12 04:32:57] - GET 500 - /counseling
+[2024-11-12 04:33:55] - GET 200 - /counseling
+[2024-11-12 05:01:36] - GET 200 - /profile/no-profiles
+[2024-11-12 05:01:49] - GET 200 - /counseling
+[2024-11-12 05:03:14] - GET 200 - /counseling
+[2024-11-12 05:03:29] - GET 200 - /counseling
+[2024-11-12 05:05:37] - GET 200 - /counseling
+[2024-11-12 05:55:21] - GET 200 - /counseling
+[2024-11-12 05:57:29] - GET 200 - /counseling
+[2024-11-12 05:58:10] - GET 200 - /counseling
+[2024-11-12 06:00:26] - GET 200 - /counseling
+[2024-11-12 06:00:37] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$G4rXyqSrjW0gEnvZH\/q0Wu90PmR89aCpNKWUC0MOdJgAZ4fT.blI2",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/b1788b73491d7f9ccf4d5d2097f85fc9.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-10 22:28:55",
+    "updated_at": "2024-11-11 21:35:17"
+}
+[2024-11-12 06:00:37] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]",
+        "created_at": "2024-11-10 23:28:08",
+        "updated_at": "2024-11-10 23:28:08",
+        "UNIQUE": null
+    }
+]
+[2024-11-12 06:00:37] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_c48369567b40c9c4bf9948a1\",\"response\":true},{\"id\":\"item_bdacb0edda67be506fc0c5f4\",\"response\":true},{\"id\":\"item_0bd19a8ea4435ac4aa513dce\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}]
+[2024-11-12 06:00:37] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_466de8cf9acc5f8abcf77160\",\"response\":false},{\"id\":\"item_ccde2a3010dee90da21bdce8\",\"response\":true}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-12 06:00:37] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_dcc413c44176e079e140dcdb\",\"response\":false},{\"id\":\"item_6eedd89df4c13798aa266012\",\"response\":false},{\"id\":\"item_caf0ae85c50148306c5c7a75\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-12 06:00:37] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_b38a870e669208cd48987978\",\"response\":true},{\"id\":\"item_f20aef11d28832837c5cea3a\",\"response\":true},{\"id\":\"item_31f4d3b3a8a869287826c999\",\"response\":false},{\"id\":\"item_9fab5154c0472decb94fe5f3\",\"response\":false}]","created_at":"2024-11-10 23:28:08","updated_at":"2024-11-10 23:28:08","UNIQUE":null}}
+[2024-11-12 06:00:37] - GET 200 - /print
+[2024-11-12 06:03:30] - GET 200 - /counseling
+[2024-11-12 06:06:02] - GET 200 - /login
+[2024-11-12 06:07:14] - GET 200 - /forgot_password
+[2024-11-12 06:07:25] - GET 200 - /signup
+[2024-11-12 06:07:28] - GET 200 - /forgot_password
+[2024-11-12 06:07:37] - GET 200 - /login
+[2024-11-12 06:07:38] - GET 200 - /login
+[2024-11-12 06:07:56] - GET 200 - /forgot_password
+[2024-11-12 06:08:29] - 202151383 : CANETE
+[2024-11-12 06:08:29] - ERROR: Cannot verify student. If you have concerns, please contact the Guidance Office.
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\actions.php(112): forgotPassword(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(106): showAPI('actions', 'POST')
 #3 {main}
-[2024-11-13 14:57:16] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Failed to send notification"}
-[2024-11-13 14:57:16] - GET 200 - /profile
-[2024-11-13 14:57:39] - GET 200 - /assessment/manage
-[2024-11-13 14:59:04] - GET 200 - /assessment/manage
-[2024-11-13 14:59:14] - GET 200 - /profile/college1
-[2024-11-13 14:59:26] - GET 200 - /print
-[2024-11-13 14:59:33] - Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-[2024-11-13 14:59:33] - ERROR: Failed to send notification
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\admin.php(98): sendNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#2 D:\Program Files\Xampp\htdocs\gcms\index.php(122): showAPI('admin', 'POST')
+[2024-11-12 06:08:37] - 202151383 : CAÑETE
+[2024-11-12 06:08:41] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 06:17:36] - GET 200 - /login
+[2024-11-12 06:25:41] - GET 200 - /dashboard
+[2024-11-12 07:05:56] - GET 200 - /counseling
+[2024-11-12 07:06:23] - GET 200 - /counseling
+[2024-11-12 07:06:54] - GET 200 - /counseling
+[2024-11-12 07:10:48] - GET 200 - /counseling
+[2024-11-12 07:11:32] - GET 200 - /counseling
+[2024-11-12 07:18:12] - GET 200 - /counseling
+[2024-11-12 07:18:23] - GET 200 - /profile/college1
+[2024-11-12 07:19:45] - GET 200 - /profile/college1
+[2024-11-12 07:20:26] - GET 200 - /profile/college1
+[2024-11-12 07:21:01] - GET 200 - /profile/college1
+[2024-11-12 07:21:22] - GET 200 - /profile/college1
+[2024-11-12 07:21:59] - GET 200 - /profile/college1
+[2024-11-12 07:22:45] - GET 200 - /profile/college1
+[2024-11-12 07:23:18] - GET 200 - /profile/college1
+[2024-11-12 07:23:39] - GET 200 - /profile/college1
+[2024-11-12 07:26:30] - GET 200 - /profile/college1
+[2024-11-12 07:26:52] - GET 200 - /profile/college1
+[2024-11-12 07:28:55] - GET 200 - /dashboard
+[2024-11-12 07:29:08] - GET 200 - /counseling
+[2024-11-12 07:29:29] - GET 200 - /profile/college4
+[2024-11-12 07:31:07] - GET 200 - /profile/college4
+[2024-11-12 07:32:11] - GET 200 - /profile/college4
+[2024-11-12 07:33:02] - GET 200 - /profile/college4
+[2024-11-12 07:33:31] - GET 200 - /profile/college4
+[2024-11-12 07:37:47] - GET 200 - /profile/college4
+[2024-11-12 07:38:43] - GET 200 - /profile/college4
+[2024-11-12 07:39:41] - GET 200 - /profile/college4
+[2024-11-12 07:40:20] - GET 200 - /profile/college4
+[2024-11-12 07:41:31] - GET 200 - /profile/college4
+[2024-11-12 07:42:36] - GET 200 - /profile/college4
+[2024-11-12 07:43:26] - GET 200 - /profile/college4
+[2024-11-12 07:44:01] - GET 200 - /profile/college4
+[2024-11-12 07:45:06] - GET 200 - /profile/college4
+[2024-11-12 07:45:54] - GET 200 - /profile/college4
+[2024-11-12 07:46:50] - GET 200 - /profile/college4
+[2024-11-12 07:47:44] - GET 200 - /profile/college4
+[2024-11-12 07:49:19] - GET 200 - /profile/college4
+[2024-11-12 07:50:43] - GET 200 - /profile/college4
+[2024-11-12 07:51:17] - GET 200 - /profile/college4
+[2024-11-12 07:52:06] - GET 200 - /profile/college4
+[2024-11-12 07:52:27] - GET 200 - /profile/college4
+[2024-11-12 07:54:01] - GET 200 - /profile/college4
+[2024-11-12 07:54:37] - GET 200 - /profile/college4
+[2024-11-12 07:55:22] - GET 200 - /profile/college4
+[2024-11-12 07:55:36] - GET 200 - /profile/college4
+[2024-11-12 08:23:55] - GET 200 - /profile/college4
+[2024-11-12 08:24:33] - GET 200 - /profile/college4
+[2024-11-12 08:25:25] - GET 200 - /profile/college4
+[2024-11-12 08:28:08] - GET 200 - /profile/college4
+[2024-11-12 08:28:45] - GET 200 - /profile/college4
+[2024-11-12 08:29:52] - GET 200 - /profile/college4
+[2024-11-12 10:02:30] - GET 200 - /profile/grade7
+[2024-11-12 10:02:52] - GET 200 - /profile/no-profiles
+[2024-11-12 10:03:07] - GET 200 - /counseling
+[2024-11-12 10:45:23] - GET 200 - /assessment/manage
+[2024-11-12 10:45:35] - GET 200 - /feedbacks
+[2024-11-12 10:46:07] - GET 200 - /profile/no-profiles
+[2024-11-12 10:46:21] - GET 200 - /counseling
+[2024-11-12 10:46:40] - GET 200 - /print
+[2024-11-12 10:48:34] - GET 200 - /login
+[2024-11-12 11:49:07] - GET 200 - /schoolyear
+[2024-11-12 11:52:57] - GET 200 - /schoolyear
+[2024-11-12 11:54:40] - GET 200 - /schoolyear
+[2024-11-12 11:56:35] - GET 200 - /schoolyear
+[2024-11-12 12:14:40] - GET 200 - /accounts/admin
+[2024-11-12 12:14:49] - GET 200 - /accounts/student
+[2024-11-12 12:15:00] - GET 200 - /accounts/admin
+[2024-11-12 12:27:19] - GET 200 - /accounts/admin
+[2024-11-12 12:28:17] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:28:36] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:28:40] - GET 200 - /accounts/admin
+[2024-11-12 12:29:25] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:30:13] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:30:18] - GET 200 - /login
+[2024-11-12 12:30:29] - GET 200 - /schoolyear
+[2024-11-12 12:31:02] - GET 200 - /accounts/admin
+[2024-11-12 12:31:21] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:32:22] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:32:36] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:33:19] - GET 200 - /schoolyear
+[2024-11-12 12:33:30] - GET 200 - /accounts/admin
+[2024-11-12 12:33:46] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:34:17] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:42:39] - GET 200 - /login
+[2024-11-12 12:42:51] - GET 200 - /schoolyear
+[2024-11-12 12:42:59] - GET 200 - /accounts/admin
+[2024-11-12 12:43:20] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:49:29] - Insert failed error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'edp@smccnasipit.edu.ph' for key 'email'
+[2024-11-12 12:51:22] - GET 200 - /accounts/admin
+[2024-11-12 12:51:53] - GET 200 - /accounts/admin
+[2024-11-12 12:52:02] - GET 200 - /schoolyear
+[2024-11-12 12:52:14] - GET 200 - /schoolyear
+[2024-11-12 12:57:45] - GET 200 - /login
+[2024-11-12 12:57:54] - GET 200 - /login
+[2024-11-12 12:58:04] - GET 200 - /login
+[2024-11-12 12:58:14] - GET 200 - /dashboard
+[2024-11-12 12:58:22] - GET 500 - /api/get/dashboard
+[2024-11-12 12:59:06] - GET 200 - /assessment/manage
+[2024-11-12 13:04:27] - GET 200 - /assessment/manage
+[2024-11-12 13:04:49] - GET 200 - /assessment/manage
+[2024-11-12 13:11:25] - GET 200 - /login
+[2024-11-12 13:11:55] - GET 200 - /signup
+[2024-11-12 13:12:22] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 13:12:22] - GET 200 - /signup
+[2024-11-12 13:12:27] - GET 200 - /login
+[2024-11-12 13:17:10] - GET 200 - /signup
+[2024-11-12 13:17:39] - GET 200 - /signup
+[2024-11-12 13:18:23] - GET 200 - /signup
+[2024-11-12 13:18:47] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 13:18:47] - GET 200 - /signup
+[2024-11-12 13:18:52] - GET 200 - /login
+[2024-11-12 13:19:02] - GET 200 - /signup
+[2024-11-12 13:20:35] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 13:20:36] - GET 200 - /signup
+[2024-11-12 13:20:40] - GET 200 - /login
+[2024-11-12 13:20:52] - GET 200 - /dashboard
+[2024-11-12 13:21:17] - GET 200 - /profile/no-profiles
+[2024-11-12 13:29:33] - GET 200 - /login
+[2024-11-12 13:29:48] - GET 200 - /home
+[2024-11-12 13:29:58] - GET 200 - /notifications
+[2024-11-12 13:30:51] - GET 200 - /home
+[2024-11-12 13:31:06] - GET 200 - /notifications
+[2024-11-12 13:31:18] - GET 200 - /profile
+[2024-11-12 13:31:18] - GET 200 - /profile
+[2024-11-12 13:37:18] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 13:37:18] - GET 200 - /profile
+[2024-11-12 13:37:26] - GET 200 - /print
+[2024-11-12 13:55:40] - GET 200 - /login
+[2024-11-12 13:56:35] - GET 200 - /dashboard
+[2024-11-12 13:57:07] - GET 200 - /profile/no-profiles
+[2024-11-12 13:57:23] - GET 200 - /profile/college4
+[2024-11-12 13:57:49] - GET 200 - /print
+[2024-11-12 13:58:07] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 13:58:09] - GET 200 - /profile/college4
+[2024-11-12 13:59:53] - GET 200 - /login
+[2024-11-12 14:00:19] - GET 200 - /home
+[2024-11-12 14:03:32] - GET 200 - /assess
+[2024-11-12 14:08:14] - ERROR: Invalid data
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(75): sendNotification(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
 #3 {main}
-[2024-11-13 14:59:33] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Failed to send notification"}
-[2024-11-13 14:59:35] - GET 200 - /profile/college1
-[2024-11-13 14:59:53] - GET 200 - /assess
-[2024-11-13 15:00:02] - GET 200 - /assess
-[2024-11-13 15:00:19] - GET 200 - /assess
-[2024-11-13 15:00:36] - GET 200 - /assessment/manage
-[2024-11-13 15:00:55] - Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-[2024-11-13 15:00:55] - ERROR: Failed to send notification
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\admin.php(35): broadcastNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#2 D:\Program Files\Xampp\htdocs\gcms\index.php(121): showAPI('admin', 'POST')
+[2024-11-12 14:08:14] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Invalid data"}
+[2024-11-12 14:08:15] - GET 200 - /assess
+[2024-11-12 14:08:52] - GET 200 - /schoolyear
+[2024-11-12 14:09:16] - GET 200 - /login
+[2024-11-12 14:09:26] - GET 200 - /dashboard
+[2024-11-12 14:09:44] - GET 200 - /profile/college4
+[2024-11-12 14:22:52] - GET 200 - /profile/college4
+[2024-11-12 14:30:03] - GET 200 - /profile/college4
+[2024-11-12 14:39:39] - GET 200 - /login
+[2024-11-12 14:42:31] - GET 200 - /profile/college4
+[2024-11-12 14:44:32] - GET 200 - /profile/college4
+[2024-11-12 14:46:50] - GET 200 - /login
+[2024-11-12 14:47:01] - GET 200 - /signup
+[2024-11-12 14:47:39] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 14:47:39] - GET 200 - /signup
+[2024-11-12 14:47:44] - GET 200 - /login
+[2024-11-12 14:48:07] - GET 200 - /home
+[2024-11-12 14:50:05] - GET 200 - /profile
+[2024-11-12 14:53:54] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 14:53:55] - GET 200 - /profile
+[2024-11-12 14:54:01] - GET 200 - /profile/college4
+[2024-11-12 14:54:01] - GET 200 - /print
+[2024-11-12 14:54:12] - GET 200 - /print
+[2024-11-12 14:54:15] - GET 200 - /print
+[2024-11-12 14:54:22] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 14:54:26] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 14:54:27] - GET 200 - /profile/college4
+[2024-11-12 14:56:50] - GET 200 - /assess
+[2024-11-12 14:58:28] - GET 200 - /profile/college4
+[2024-11-12 14:58:29] - ERROR: Student has already submitted assessment for this form
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(69): submitAssessment(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
 #3 {main}
-[2024-11-13 15:00:58] - GET 200 - /assessment/manage
-[2024-11-13 15:01:09] - GET 200 - /assess
-[2024-11-13 15:01:25] - ERROR: Invalid data
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(75): sendNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#2 D:\Program Files\Xampp\htdocs\gcms\index.php(117): showAPI('student', 'POST')
+[2024-11-12 14:58:30] - GET 200 - /assess
+[2024-11-12 14:58:45] - GET 200 - /profile/college4
+[2024-11-12 14:58:58] - GET 200 - /profile/college4
+[2024-11-12 15:00:13] - GET 200 - /profile/college4
+[2024-11-12 15:00:54] - ERROR: Student has already submitted assessment for this form
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(69): submitAssessment(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
 #3 {main}
-[2024-11-13 15:01:25] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Invalid data"}
-[2024-11-13 15:01:26] - GET 200 - /assess
-[2024-11-13 15:01:38] - GET 200 - /home
-[2024-11-13 15:01:49] - GET 200 - /dashboard
-[2024-11-13 15:02:15] - GET 200 - /assessment/manage
-[2024-11-13 15:02:31] - GET 200 - /feedbacks
-[2024-11-13 15:02:48] - GET 200 - /profile/college1
-[2024-11-13 15:03:07] - GET 200 - /assessment/make/calledslip
-[2024-11-13 15:03:51] - ID: 3
-[2024-11-13 15:03:53] - Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-[2024-11-13 15:03:53] - ERROR: Failed to send notification
-#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\admin.php(234): sendNotification(Array)
-#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
-#2 D:\Program Files\Xampp\htdocs\gcms\index.php(124): showAPI('admin', 'POST')
+[2024-11-12 15:00:54] - GET 200 - /assess
+[2024-11-12 15:01:13] - GET 200 - /assess
+[2024-11-12 15:01:28] - ERROR: Student has already submitted assessment for this form
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(69): submitAssessment(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
 #3 {main}
-[2024-11-13 15:03:53] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Failed to send notification"}
-[2024-11-13 15:03:56] - GET 200 - /assessment/make/calledslip
-[2024-11-13 15:04:25] - GET 200 - /home
-[2024-11-13 15:04:32] - GET 200 - /profile/college1
-[2024-11-13 15:04:37] - GET 200 - /notifications
-[2024-11-13 15:05:05] - GET 200 - /feedbacks
-[2024-11-13 15:05:22] - GET 200 - /dashboard
-[2024-11-13 15:05:50] - GET 200 - /dashboard
-[2024-11-13 15:06:09] - GET 200 - /profile/no-profiles
+[2024-11-12 15:01:28] - GET 200 - /assess
+[2024-11-12 15:02:31] - GET 200 - /assess
+[2024-11-12 15:03:50] - ERROR: Student has already submitted assessment for this form
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(69): submitAssessment(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
+#3 {main}
+[2024-11-12 15:03:51] - GET 200 - /assess
+[2024-11-12 15:06:42] - GET 200 - /assess
+[2024-11-12 15:07:12] - GET 200 - /profile/college4
+[2024-11-12 15:09:09] - GET 200 - /login
+[2024-11-12 15:09:31] - GET 200 - /home
+[2024-11-12 15:09:49] - GET 200 - /profile
+[2024-11-12 15:13:37] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 15:13:38] - GET 200 - /profile
+[2024-11-12 15:13:50] - GET 200 - /assess
+[2024-11-12 15:14:11] - GET 200 - /profile
+[2024-11-12 15:14:19] - GET 200 - /profile
+[2024-11-12 15:14:28] - GET 200 - /assess
+[2024-11-12 15:14:39] - GET 200 - /profile
+[2024-11-12 15:14:50] - GET 200 - /assess
+[2024-11-12 15:15:57] - GET 200 - /profile
+[2024-11-12 15:16:34] - GET 200 - /profile/college4
+[2024-11-12 15:16:47] - GET 200 - /print
+[2024-11-12 15:16:54] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 15:16:56] - GET 200 - /profile/college4
+[2024-11-12 15:17:28] - GET 200 - /print
+[2024-11-12 15:18:02] - GET 200 - /profile
+[2024-11-12 15:18:12] - GET 200 - /assess
+[2024-11-12 15:18:28] - ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'assessment_form_id' in 'where clause'
+#0 D:\Program Files\Xampp\htdocs\cap\assets\php\orm\Database.php(133): PDO->prepare('SELECT * FROM a...')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\orm\models\Model.php(119): Smcc\Gcms\orm\Database->query('SELECT * FROM a...', Array)
+#2 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(2196): Smcc\Gcms\orm\models\Model::findOne('assessment_form...', '1')
+#3 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(69): submitAssessment(Array)
+#4 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#5 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
+#6 {main}
+[2024-11-12 15:18:28] - GET 200 - /assess
+[2024-11-12 15:20:41] - GET 200 - /assess
+[2024-11-12 15:20:57] - ERROR: Invalid data
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(75): sendNotification(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
+#3 {main}
+[2024-11-12 15:20:57] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Invalid data"}
+[2024-11-12 15:20:58] - GET 200 - /assess
+[2024-11-12 15:21:27] - GET 200 - /profile/college4
+[2024-11-12 15:22:23] - GET 200 - /login
+[2024-11-12 15:22:35] - GET 200 - /home
+[2024-11-12 15:22:44] - GET 200 - /assess
+[2024-11-12 15:23:01] - ERROR: Invalid data
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(75): sendNotification(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
+#3 {main}
+[2024-11-12 15:23:01] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Invalid data"}
+[2024-11-12 15:23:01] - GET 200 - /assess
+[2024-11-12 15:23:23] - GET 200 - /profile/college4
+[2024-11-12 15:23:57] - GET 200 - /profile/college4
+[2024-11-12 15:24:39] - GET 200 - /profile/college4
+[2024-11-12 15:25:05] - GET 200 - /assess
+[2024-11-12 15:27:04] - GET 200 - /login
+[2024-11-12 15:29:03] - GET 200 - /profile/college4
+[2024-11-12 15:29:46] - GET 200 - /profile/college4
+[2024-11-12 15:31:15] - GET 200 - /profile/college4
+[2024-11-12 15:31:37] - GET 200 - /dashboard
+[2024-11-12 15:33:26] - GET 200 - /profile/college4
+[2024-11-12 15:33:54] - GET 200 - /profile/college4
+[2024-11-12 15:40:18] - GET 200 - /assessment/make/calledslip
+[2024-11-12 15:41:08] - ID: 5
+[2024-11-12 15:41:11] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-12 15:41:14] - GET 200 - /assessment/make/calledslip
+[2024-11-12 15:44:22] - GET 200 - /counseling
+[2024-11-12 15:44:36] - GET 200 - /print
+[2024-11-13 05:56:36] - GET 200 - /login
+[2024-11-13 05:56:43] - GET 200 - /login
+[2024-11-13 05:56:51] - GET 200 - /dashboard
+[2024-11-13 05:57:06] - GET 200 - /profile/no-profiles
+[2024-11-13 05:57:17] - GET 200 - /profile/college4
+[2024-11-13 06:02:10] - GET 200 - /login
+[2024-11-13 06:02:20] - GET 200 - /signup
+[2024-11-13 06:02:51] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 06:02:52] - GET 200 - /signup
+[2024-11-13 06:02:56] - GET 200 - /login
+[2024-11-13 06:03:28] - GET 200 - /home
+[2024-11-13 06:03:43] - GET 200 - /profile
+[2024-11-13 07:07:55] - GET 200 - /login
+[2024-11-13 07:08:10] - GET 200 - /home
+[2024-11-13 07:08:19] - GET 200 - /profile
+[2024-11-13 07:08:32] - GET 200 - /home
+[2024-11-13 07:08:41] - GET 200 - /profile
+[2024-11-13 07:11:25] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 07:11:25] - GET 200 - /profile
+[2024-11-13 07:11:39] - GET 200 - /login
+[2024-11-13 07:11:52] - GET 200 - /dashboard
+[2024-11-13 07:12:02] - GET 200 - /profile/college4
+[2024-11-13 07:12:15] - GET 200 - /print
+[2024-11-13 07:12:29] - GET 200 - /print
+[2024-11-13 07:12:36] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 07:12:39] - GET 200 - /profile/college4
+[2024-11-13 07:13:37] - GET 200 - /assessment/manage
+[2024-11-13 07:15:23] - GET 200 - /login
+[2024-11-13 07:45:33] - GET 200 - /login
+[2024-11-13 07:46:05] - GET 200 - /dashboard
+[2024-11-13 07:46:26] - GET 200 - /profile/college4
+[2024-11-13 07:46:38] - GET 200 - /print
+[2024-11-13 07:46:51] - GET 200 - /print
+[2024-11-13 07:48:25] - GET 200 - /assessment/make/calledslip
+[2024-11-13 07:49:43] - ID: 8
+[2024-11-13 07:49:47] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 07:49:50] - GET 200 - /assessment/make/calledslip
+[2024-11-13 07:50:11] - GET 200 - /counseling
+[2024-11-13 07:50:55] - GET 200 - /counseling
+[2024-11-13 07:52:19] - GET 200 - /counseling
+[2024-11-13 07:52:52] - GET 200 - /assessment/manage
+[2024-11-13 07:54:59] - GET 200 - /counseling
+[2024-11-13 07:56:00] - student {
+    "id": 5,
+    "username": "202150179",
+    "password": "$2y$10$ydVT6ZVgniMk2H8ISV44JuMfVFKzsO\/YPGaY6p6GQOnptrrw19D2.",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/10ef51734549a9921f48b78fe283c8ca.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-12 20:12:18",
+    "updated_at": "2024-11-12 20:37:14"
+}
+[2024-11-13 07:56:00] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 5,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_ebf72bb71b63d0cb4312d5f2\",\"response\":false},{\"id\":\"item_26c7ea4b1429054d5c7d0d5c\",\"response\":false},{\"id\":\"item_949ec7cc0e13f18b82fa66e3\",\"response\":false},{\"id\":\"item_0d2e14711df78c35cacd448b\",\"response\":false}]",
+        "created_at": "2024-11-12 21:08:14",
+        "updated_at": "2024-11-12 21:08:14",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 5,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_fb2fc81185d296ea30b83042\",\"response\":false},{\"id\":\"item_5502df677e45e70c2c98b7f4\",\"response\":false},{\"id\":\"item_7f633fbfff746e4837e48b6a\",\"response\":false},{\"id\":\"item_abb79266b973a062af7c5997\",\"response\":false}]",
+        "created_at": "2024-11-12 21:08:14",
+        "updated_at": "2024-11-12 21:08:14",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 5,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_9528ffb102cac4da4f6963f3\",\"response\":false},{\"id\":\"item_9e45bf54057b0647b4e1f8f5\",\"response\":false},{\"id\":\"item_e4d06babb374e9a65bf1d2a0\",\"response\":false},{\"id\":\"item_479c47383638369daa36ddbd\",\"response\":true}]",
+        "created_at": "2024-11-12 21:08:14",
+        "updated_at": "2024-11-12 21:08:14",
+        "UNIQUE": null
+    }
+]
+[2024-11-13 07:56:00] - ARESPONSE: [{"id":1,"user_id":5,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_ebf72bb71b63d0cb4312d5f2\",\"response\":false},{\"id\":\"item_26c7ea4b1429054d5c7d0d5c\",\"response\":false},{\"id\":\"item_949ec7cc0e13f18b82fa66e3\",\"response\":false},{\"id\":\"item_0d2e14711df78c35cacd448b\",\"response\":false}]","created_at":"2024-11-12 21:08:14","updated_at":"2024-11-12 21:08:14","UNIQUE":null}]
+[2024-11-13 07:56:00] - ARESPONSE: {"1":{"id":2,"user_id":5,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_fb2fc81185d296ea30b83042\",\"response\":false},{\"id\":\"item_5502df677e45e70c2c98b7f4\",\"response\":false},{\"id\":\"item_7f633fbfff746e4837e48b6a\",\"response\":false},{\"id\":\"item_abb79266b973a062af7c5997\",\"response\":false}]","created_at":"2024-11-12 21:08:14","updated_at":"2024-11-12 21:08:14","UNIQUE":null}}
+[2024-11-13 07:56:00] - ARESPONSE: {"2":{"id":3,"user_id":5,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_9528ffb102cac4da4f6963f3\",\"response\":false},{\"id\":\"item_9e45bf54057b0647b4e1f8f5\",\"response\":false},{\"id\":\"item_e4d06babb374e9a65bf1d2a0\",\"response\":false},{\"id\":\"item_479c47383638369daa36ddbd\",\"response\":true}]","created_at":"2024-11-12 21:08:14","updated_at":"2024-11-12 21:08:14","UNIQUE":null}}
+[2024-11-13 07:56:00] - GET 200 - /print
+[2024-11-13 07:56:13] - GET 200 - /print
+[2024-11-13 07:56:28] - GET 200 - /print
+[2024-11-13 08:26:03] - GET 200 - /login
+[2024-11-13 08:26:19] - GET 200 - /dashboard
+[2024-11-13 08:26:30] - GET 200 - /profile/college4
+[2024-11-13 08:27:26] - GET 200 - /counseling
+[2024-11-13 08:27:40] - GET 200 - /profile/college4
+[2024-11-13 08:28:53] - GET 200 - /login
+[2024-11-13 08:29:25] - GET 200 - /signup
+[2024-11-13 08:29:58] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 08:29:58] - GET 200 - /signup
+[2024-11-13 08:30:04] - GET 200 - /login
+[2024-11-13 08:30:51] - GET 200 - /home
+[2024-11-13 08:31:02] - GET 200 - /profile
+[2024-11-13 08:33:12] - GET 200 - /login
+[2024-11-13 08:33:27] - GET 200 - /login
+[2024-11-13 08:33:36] - GET 200 - /schoolyear
+[2024-11-13 08:33:57] - GET 200 - /accounts/admin
+[2024-11-13 08:35:05] - GET 200 - /login
+[2024-11-13 08:35:19] - GET 200 - /dashboard
+[2024-11-13 08:35:32] - GET 200 - /counseling
+[2024-11-13 08:36:16] - GET 200 - /profile/college4
+[2024-11-13 08:36:30] - GET 200 - /print
+[2024-11-13 08:36:38] - GET 200 - /assessment/make/calledslip
+[2024-11-13 08:37:03] - ID: 5
+[2024-11-13 08:37:07] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-13 08:37:09] - GET 200 - /assessment/make/calledslip
+[2024-11-13 08:37:19] - GET 200 - /counseling
+[2024-11-13 08:39:04] - GET 200 - /counseling
+[2024-11-13 08:40:06] - GET 200 - /counseling
+[2024-11-13 09:43:30] - GET 200 - /home
+[2024-11-13 09:55:38] - GET 200 - /home
+[2024-11-13 09:55:52] - GET 200 - /login
+[2024-11-13 09:59:59] - GET 200 - /login
+[2024-11-13 10:39:56] - GET 200 - /schoolyear
+[2024-11-13 14:36:47] - GET 200 - /schoolyear
+[2024-11-13 14:36:54] - GET 200 - /accounts/admin
+[2024-11-13 14:37:02] - GET 200 - /login
+[2024-11-13 14:37:10] - GET 200 - /login
+[2024-11-13 14:37:22] - GET 200 - /schoolyear
+[2024-11-13 14:37:30] - GET 200 - /accounts/admin
+[2024-11-13 14:37:51] - GET 200 - /accounts/admin
+[2024-11-13 14:38:01] - GET 200 - /login
+[2024-11-13 14:38:10] - GET 200 - /dashboard
+[2024-11-14 05:10:04] - GET 200 - /login
+[2024-11-14 05:10:45] - GET 200 - /login
+[2024-11-15 08:35:46] - GET 200 - /login
+[2024-11-15 08:35:56] - GET 200 - /login
+[2024-11-15 08:36:21] - GET 200 - /dashboard
+[2024-11-15 08:36:35] - GET 200 - /counseling
+[2024-11-15 08:36:41] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:36:42] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:36:49] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:37:20] - GET 500 - /counseling
+[2024-11-15 08:37:52] - GET 200 - /counseling
+[2024-11-15 08:37:59] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:37:59] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:38:07] - GET 200 - /feedbacks
+[2024-11-15 08:38:21] - GET 200 - /login
+[2024-11-15 08:38:29] - GET 200 - /home
+[2024-11-15 08:38:33] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:38:37] - GET 200 - /appointments
+[2024-11-15 08:38:41] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:38:47] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(131): showAPI('student')
+#3 {main}
+[2024-11-15 08:39:01] - GET 200 - /profile/college4
+[2024-11-15 08:39:08] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:39:08] - GET 404 - /images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:39:19] - GET 200 - /assessment/make/calledslip
+[2024-11-15 08:39:34] - ID: 4
+[2024-11-15 08:39:38] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 08:39:40] - GET 200 - /assessment/make/calledslip
+[2024-11-15 08:39:51] - GET 200 - /counseling
+[2024-11-15 08:39:56] - GET 200 - /appointments
+[2024-11-15 08:40:01] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:01] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:40:02] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:05] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(131): showAPI('student')
+#3 {main}
+[2024-11-15 08:40:19] - GET 200 - /counseling
+[2024-11-15 08:40:26] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:27] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:40:27] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:27] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:40:30] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:37] - GET 200 - /counseling
+[2024-11-15 08:40:41] - GET 200 - /appointments
+[2024-11-15 08:40:47] - GET 404 - //images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:48] - GET 404 - //images/profile/ee65572e52f7788b7a701cadd3ffad29.jpg
+[2024-11-15 08:40:48] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:40:50] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(131): showAPI('student')
+#3 {main}
+[2024-11-15 08:40:57] - GET 200 - /home
+[2024-11-15 08:41:01] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:41:04] - GET 200 - /appointments
+[2024-11-15 08:41:08] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:41:10] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(131): showAPI('student')
+#3 {main}
+[2024-11-15 08:41:15] - GET 200 - /login
+[2024-11-15 08:41:23] - GET 200 - /home
+[2024-11-15 08:41:27] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:41:30] - GET 200 - /appointments
+[2024-11-15 08:41:34] - GET 404 - /images/profile/4437727c2033c3d25dc4b5213a4d2b18.jpg
+[2024-11-15 08:41:37] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(131): showAPI('student')
+#3 {main}
+[2024-11-15 08:41:48] - GET 200 - /login
+[2024-11-15 08:41:52] - GET 200 - /login
+[2024-11-15 08:43:19] - GET 200 - /schoolyear
+[2024-11-15 08:43:30] - GET 200 - /schoolyear
+[2024-11-15 08:43:40] - GET 200 - /accounts/admin
+[2024-11-15 08:44:15] - GET 200 - /accounts/admin
+[2024-11-15 08:44:27] - GET 200 - /login
+[2024-11-15 08:44:35] - GET 200 - /dashboard
+[2024-11-15 08:44:39] - GET 200 - /signup
+[2024-11-15 08:44:41] - GET 500 - /api/get/dashboard
+[2024-11-15 08:45:00] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 08:45:01] - GET 200 - /signup
+[2024-11-15 08:45:05] - GET 200 - /login
+[2024-11-15 08:45:06] - GET 200 - /assessment/manage
+[2024-11-15 08:45:06] - GET 200 - /profile/no-profiles
+[2024-11-15 08:45:20] - GET 200 - /profile/no-profiles
+[2024-11-15 08:45:28] - GET 200 - /home
+[2024-11-15 08:45:31] - GET 200 - /profile/no-profiles
+[2024-11-15 08:45:42] - GET 200 - /profile/no-profiles
+[2024-11-15 08:46:07] - GET 200 - /profile/college4
+[2024-11-15 08:46:17] - GET 200 - /profile/no-profiles
+[2024-11-15 08:46:50] - GET 200 - /profile/no-profiles
+[2024-11-15 08:47:23] - GET 200 - /profile
+[2024-11-15 08:48:58] - GET 200 - /profile
+[2024-11-15 08:49:07] - GET 200 - /profile/no-profiles
+[2024-11-15 08:52:57] - GET 200 - /notifications
+[2024-11-15 08:53:21] - GET 200 - /profile/no-profiles
+[2024-11-15 08:53:53] - GET 200 - /login
+[2024-11-15 08:54:24] - GET 200 - /dashboard
+[2024-11-15 08:54:29] - GET 500 - /api/get/dashboard
+[2024-11-15 08:54:34] - GET 200 - /profile/no-profiles
+[2024-11-15 08:55:22] - GET 200 - /profile/no-profiles
+[2024-11-15 08:55:35] - GET 200 - /profile/no-profiles
+[2024-11-15 08:55:44] - GET 200 - /home
+[2024-11-15 08:55:56] - GET 200 - /login
+[2024-11-15 08:56:05] - GET 200 - /dashboard
+[2024-11-15 08:56:11] - GET 500 - /api/get/dashboard
+[2024-11-15 08:56:14] - GET 200 - /profile/no-profiles
+[2024-11-15 08:56:49] - GET 200 - /dashboard
+[2024-11-15 08:56:54] - GET 500 - /api/get/dashboard
+[2024-11-15 08:56:57] - GET 200 - /login
+[2024-11-15 08:57:06] - GET 200 - /home
+[2024-11-15 08:57:13] - GET 200 - /profile
+[2024-11-15 08:57:18] - GET 200 - /profile/no-profiles
+[2024-11-15 08:58:44] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 08:58:44] - GET 200 - /profile
+[2024-11-15 08:58:51] - GET 200 - /profile/no-profiles
+[2024-11-15 08:59:02] - GET 200 - /profile/college4
+[2024-11-15 08:59:12] - GET 200 - /print
+[2024-11-15 08:59:19] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 08:59:22] - GET 200 - /profile/college4
+[2024-11-15 08:59:39] - GET 200 - /counseling
+[2024-11-15 08:59:59] - GET 200 - /counseling
+[2024-11-15 09:00:37] - GET 200 - /profile/college4
+[2024-11-15 09:25:34] - GET 200 - /profile/college4
+[2024-11-15 09:26:01] - GET 200 - /assessment/manage
+[2024-11-15 09:26:11] - GET 200 - /counseling
+[2024-11-15 09:26:35] - GET 200 - /counseling
+[2024-11-15 09:26:48] - GET 200 - /profile/college4
+[2024-11-15 09:27:08] - GET 200 - /assess
+[2024-11-15 09:27:17] - GET 200 - /assessment/manage
+[2024-11-15 09:27:33] - GET 200 - /profile/college4
+[2024-11-15 09:28:16] - GET 200 - /counseling
+[2024-11-15 09:32:48] - GET 200 - /login
+[2024-11-15 09:33:57] - GET 200 - /home
+[2024-11-15 09:34:00] - GET 200 - /login
+[2024-11-15 09:34:11] - GET 200 - /dashboard
+[2024-11-15 09:34:17] - GET 500 - /api/get/dashboard
+[2024-11-15 09:34:22] - GET 200 - /profile/college4
+[2024-11-15 09:34:41] - GET 200 - /assessment/manage
+[2024-11-15 09:35:22] - GET 200 - /login
+[2024-11-15 09:35:25] - GET 200 - /assessment/manage
+[2024-11-15 09:35:47] - GET 200 - /assessment/manage
+[2024-11-15 09:35:50] - GET 200 - /dashboard
+[2024-11-15 09:35:52] - GET 200 - /assess
+[2024-11-15 09:36:06] - ERROR: Invalid data
+#0 D:\Program Files\Xampp\htdocs\cap\assets\api\student.php(75): sendNotification(Array)
+#1 D:\Program Files\Xampp\htdocs\cap\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\cap\index.php(117): showAPI('student', 'POST')
+#3 {main}
+[2024-11-15 09:36:06] - SEND NOTIFICATION RESULT: {"status":false,"msg":"Invalid data"}
+[2024-11-15 09:36:06] - GET 200 - /assess
+[2024-11-15 09:36:18] - GET 200 - /profile/college4
+[2024-11-15 09:36:23] - GET 200 - /counseling
+[2024-11-15 09:36:32] - GET 200 - /profile/college4
+[2024-11-15 09:37:04] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:37:53] - ID: 3
+[2024-11-15 09:37:56] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 09:37:59] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:38:38] - GET 200 - /counseling
+[2024-11-15 09:38:59] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:39:17] - GET 200 - /profile/college4
+[2024-11-15 09:39:31] - GET 200 - /print
+[2024-11-15 09:40:15] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:40:53] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$otREIvESgfjB\/lx5OcsYvebIvqQ5X9lojcDuMBleQQ..Uvhly6l2e",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-15 15:44:57",
+    "updated_at": "2024-11-15 15:58:40"
+}
+[2024-11-15 09:40:53] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    }
+]
+[2024-11-15 09:40:53] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}]
+[2024-11-15 09:40:53] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 09:40:53] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 09:40:53] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 09:40:53] - GET 200 - /print
+[2024-11-15 09:41:12] - GET 200 - /counseling
+[2024-11-15 09:41:44] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:42:43] - GET 200 - /counseling
+[2024-11-15 09:43:15] - GET 200 - /counseling
+[2024-11-15 09:44:32] - GET 200 - /counseling
+[2024-11-15 09:45:23] - GET 200 - /counseling
+[2024-11-15 09:45:52] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:46:28] - GET 200 - /counseling
+[2024-11-15 09:46:45] - GET 200 - /counseling
+[2024-11-15 09:46:58] - GET 200 - /assessment/make/calledslip
+[2024-11-15 09:47:39] - GET 200 - /profile/college4
+[2024-11-15 09:47:49] - GET 200 - /profile/college4
+[2024-11-15 09:53:57] - GET 200 - /profile/college4
+[2024-11-15 09:54:00] - GET 200 - /profile/college4
+[2024-11-15 09:57:07] - GET 200 - /profile/college4
+[2024-11-15 09:59:50] - GET 200 - /profile/college4
+[2024-11-15 10:00:06] - GET 200 - /counseling
+[2024-11-15 10:05:49] - GET 200 - /feedbacks
+[2024-11-15 10:05:57] - GET 200 - /appointments
+[2024-11-15 10:06:30] - GET 200 - /counseling
+[2024-11-15 10:06:36] - GET 200 - /feedbacks
+[2024-11-15 10:06:51] - GET 200 - /print
+[2024-11-15 10:10:55] - GET 200 - /counseling
+[2024-11-15 10:11:19] - No file uploaded.
+[2024-11-15 10:11:19] - No file uploaded.
+[2024-11-15 10:11:20] - GET 200 - /counseling
+[2024-11-15 10:11:43] - GET 200 - /counseling
+[2024-11-15 10:12:26] - GET 200 - /counseling
+[2024-11-15 10:13:48] - No file uploaded.
+[2024-11-15 10:13:52] - GET 200 - /counseling
+[2024-11-15 10:21:39] - GET 200 - /counseling
+[2024-11-15 12:02:35] - GET 200 - /counseling
+[2024-11-15 12:03:04] - GET 200 - /profile/grade7
+[2024-11-15 12:20:19] - GET 200 - /login
+[2024-11-15 12:49:03] - GET 200 - /login
+[2024-11-15 12:49:22] - GET 200 - /dashboard
+[2024-11-15 13:08:28] - GET 200 - /dashboard
+[2024-11-15 13:09:16] - GET 200 - /dashboard
+[2024-11-15 13:10:03] - GET 200 - /dashboard
+[2024-11-15 13:10:53] - GET 200 - /dashboard
+[2024-11-15 13:11:36] - GET 200 - /dashboard
+[2024-11-15 13:12:17] - GET 200 - /dashboard
+[2024-11-15 13:16:08] - GET 200 - /counseling
+[2024-11-15 13:19:08] - GET 200 - /counseling
+[2024-11-15 13:29:06] - GET 200 - /counseling
+[2024-11-15 13:32:57] - GET 200 - /counseling
+[2024-11-15 13:33:58] - GET 200 - /counseling
+[2024-11-15 13:38:34] - GET 200 - /counseling
+[2024-11-15 13:38:56] - GET 200 - /counseling
+[2024-11-15 13:39:39] - GET 200 - /counseling
+[2024-11-15 13:40:23] - GET 200 - /counseling
+[2024-11-15 13:46:33] - GET 200 - /counseling
+[2024-11-15 13:48:56] - GET 200 - /profile/college4
+[2024-11-15 13:50:09] - GET 200 - /assessment/manage
+[2024-11-15 13:50:18] - GET 200 - /feedbacks
+[2024-11-15 14:23:27] - GET 200 - /profile/college4
+[2024-11-15 14:23:42] - GET 200 - /profile/no-profiles
+[2024-11-15 14:23:50] - GET 200 - /counseling
+[2024-11-15 14:24:35] - GET 200 - /login
+[2024-11-15 14:24:43] - GET 200 - /login
+[2024-11-15 14:24:43] - GET 200 - /schoolyear
+[2024-11-15 14:24:52] - GET 200 - /signup
+[2024-11-15 14:24:57] - GET 200 - /accounts/admin
+[2024-11-15 14:25:20] - GET 200 - /login
+[2024-11-15 14:25:30] - GET 200 - /home
+[2024-11-15 14:25:36] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 14:25:37] - GET 200 - /signup
+[2024-11-15 14:25:38] - GET 200 - /profile
+[2024-11-15 14:25:45] - GET 200 - /login
+[2024-11-15 14:25:57] - GET 200 - /print
+[2024-11-15 14:26:24] - GET 200 - /assess
+[2024-11-15 14:26:40] - GET 200 - /appointments
+[2024-11-15 14:26:40] - GET 200 - /login
+[2024-11-15 14:27:09] - GET 200 - /home
+[2024-11-15 14:27:29] - GET 200 - /profile
+[2024-11-15 14:27:36] - GET 200 - /login
+[2024-11-15 14:28:51] - GET 200 - /profile
+[2024-11-15 14:29:13] - GET 200 - /profile
+[2024-11-15 14:30:37] - WHAT IS SUBMITTED PROFILE: []
+[2024-11-15 14:30:37] - GET 200 - /profile
+[2024-11-15 14:32:49] - GET 200 - /profile
+[2024-11-15 14:32:58] - GET 200 - /profile
+[2024-11-15 14:36:13] - GET 200 - /profile
+[2024-11-15 14:39:26] - GET 200 - /profile
+[2024-11-15 14:44:33] - GET 200 - /profile
+[2024-11-15 14:44:54] - GET 200 - /profile
+[2024-11-15 15:32:40] - GET 200 - /home
+[2024-11-15 15:32:47] - GET 200 - /profile
+[2024-11-15 15:32:56] - GET 200 - /print
+[2024-11-15 15:33:02] - GET 200 - /appointments
+[2024-11-15 15:33:11] - GET 200 - /assess
+[2024-11-15 15:59:34] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$otREIvESgfjB\/lx5OcsYvebIvqQ5X9lojcDuMBleQQ..Uvhly6l2e",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-15 15:44:57",
+    "updated_at": "2024-11-15 15:58:40"
+}
+[2024-11-15 15:59:34] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    }
+]
+[2024-11-15 15:59:34] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}]
+[2024-11-15 15:59:34] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 15:59:34] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 15:59:34] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 15:59:34] - GET 200 - /print
+[2024-11-15 15:59:48] - GET 200 - /print
+[2024-11-15 16:00:39] - GET 200 - /profile/college4
+[2024-11-15 16:00:47] - GET 200 - /print
+[2024-11-15 16:02:42] - GET 200 - /login
+[2024-11-15 16:02:48] - GET 200 - /signup
+[2024-11-15 16:03:05] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 16:03:05] - GET 200 - /signup
+[2024-11-15 16:03:09] - GET 200 - /login
+[2024-11-15 16:04:18] - GET 200 - /home
+[2024-11-15 16:04:26] - GET 200 - /profile
+[2024-11-15 16:06:22] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 16:06:22] - GET 200 - /profile
+[2024-11-15 16:06:35] - GET 200 - /print
+[2024-11-15 16:08:34] - GET 200 - /profile/grade8
+[2024-11-15 16:08:43] - GET 200 - /profile/grade7
+[2024-11-15 16:08:52] - GET 200 - /profile/grade9
+[2024-11-15 16:09:02] - GET 200 - /profile/grade10
+[2024-11-15 16:18:25] - GET 200 - /profile
+[2024-11-15 16:26:01] - GET 200 - /profile
+[2024-11-15 16:26:26] - GET 200 - /profile
+[2024-11-15 16:29:37] - GET 200 - /login
+[2024-11-15 16:29:59] - GET 200 - /login
+[2024-11-15 16:30:03] - GET 200 - /profile
+[2024-11-15 16:30:40] - GET 200 - /profile
+[2024-11-15 16:30:42] - GET 200 - /home
+[2024-11-15 16:30:57] - GET 200 - /profile
+[2024-11-15 16:32:59] - GET 200 - /profile
+[2024-11-15 16:34:35] - GET 200 - /profile
+[2024-11-15 16:36:52] - GET 200 - /profile
+[2024-11-15 16:37:15] - GET 200 - /profile
+[2024-11-15 16:37:44] - GET 200 - /profile
+[2024-11-15 16:38:45] - GET 200 - /profile
+[2024-11-15 16:40:13] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-15 16:40:14] - GET 200 - /profile
+[2024-11-15 16:40:36] - GET 200 - /print
+[2024-11-15 16:40:47] - GET 200 - /print
+[2024-11-15 16:40:52] - GET 200 - /profile/grade7
+[2024-11-15 16:46:54] - GET 200 - /counseling
+[2024-11-15 16:47:06] - GET 200 - /profile/grade7
+[2024-11-15 16:58:27] - GET 200 - /login
+[2024-11-15 16:58:46] - GET 200 - /forgot_password
+[2024-11-15 16:58:58] - GET 200 - /signup
+[2024-11-15 16:59:15] - GET 200 - /forgot_password
+[2024-11-15 16:59:29] - GET 200 - /login
+[2024-11-15 16:59:58] - GET 200 - /dashboard
+[2024-11-15 17:00:22] - GET 200 - /print
+[2024-11-15 17:00:55] - GET 200 - /dashboard
+[2024-11-15 17:01:12] - GET 200 - /profile/grade7
+[2024-11-15 17:02:01] - GET 200 - /print
+[2024-11-15 17:02:36] - GET 200 - /profile/college1
+[2024-11-15 17:04:55] - GET 200 - /profile/college1
+[2024-11-15 17:05:20] - GET 200 - /settings
+[2024-11-15 17:06:27] - GET 200 - /profile/grade7
+[2024-11-15 17:06:54] - GET 200 - /dashboard
+[2024-11-15 17:08:25] - GET 200 - /dashboard
+[2024-11-15 17:08:50] - GET 200 - /dashboard
+[2024-11-15 17:24:45] - GET 200 - /dashboard
+[2024-11-15 17:24:45] - GET 200 - /dashboard
+[2024-11-15 17:25:02] - GET 200 - /profile/grade7
+[2024-11-15 17:25:11] - GET 200 - /profile/grade7
+[2024-11-15 17:25:25] - GET 200 - /dashboard
+[2024-11-15 17:25:34] - GET 200 - /counseling
+[2024-11-15 17:26:15] - GET 200 - /profile/grade7
+[2024-11-15 17:26:26] - GET 200 - /profile/college2
+[2024-11-15 17:26:50] - GET 200 - /settings
+[2024-11-15 17:27:23] - GET 200 - /profile/college1
+[2024-11-15 17:28:46] - GET 200 - /profile/grade8
+[2024-11-15 17:29:02] - GET 200 - /profile/grade11
+[2024-11-15 17:29:15] - GET 200 - /profile/college2
+[2024-11-15 17:29:32] - GET 200 - /dashboard
+[2024-11-15 17:32:40] - GET 200 - /profile/grade7
+[2024-11-15 17:33:49] - GET 404 - //schoolyear
+[2024-11-15 17:33:54] - GET 200 - /dashboard
+[2024-11-15 17:34:06] - GET 200 - /counseling
+[2024-11-15 17:35:18] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$otREIvESgfjB\/lx5OcsYvebIvqQ5X9lojcDuMBleQQ..Uvhly6l2e",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-15 15:44:57",
+    "updated_at": "2024-11-15 15:58:40"
+}
+[2024-11-15 17:35:18] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    }
+]
+[2024-11-15 17:35:18] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}]
+[2024-11-15 17:35:18] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:35:18] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:35:18] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:35:18] - GET 200 - /print
+[2024-11-15 17:38:59] - student {
+    "id": 3,
+    "username": "202150179",
+    "password": "$2y$10$otREIvESgfjB\/lx5OcsYvebIvqQ5X9lojcDuMBleQQ..Uvhly6l2e",
+    "first_name": "MICHI NOWA",
+    "middle_initial": "S",
+    "last_name": "BATALUNA",
+    "gender": "Female",
+    "email": "michinowa_bataluna@smccnasipit.edu.ph",
+    "profile_pic": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg",
+    "role": "student",
+    "status": true,
+    "created_at": "2024-11-15 15:44:57",
+    "updated_at": "2024-11-15 15:58:40"
+}
+[2024-11-15 17:38:59] - ALL ASSESSMENTS: [
+    {
+        "id": 1,
+        "user_id": 3,
+        "assessment_form_id": 1,
+        "assessment_response": "[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 2,
+        "user_id": 3,
+        "assessment_form_id": 2,
+        "assessment_response": "[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "assessment_form_id": 3,
+        "assessment_response": "[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    },
+    {
+        "id": 4,
+        "user_id": 3,
+        "assessment_form_id": 4,
+        "assessment_response": "[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]",
+        "created_at": "2024-11-15 16:36:06",
+        "updated_at": "2024-11-15 16:36:06",
+        "UNIQUE": null
+    }
+]
+[2024-11-15 17:38:59] - ARESPONSE: [{"id":1,"user_id":3,"assessment_form_id":1,"assessment_response":"[{\"id\":\"item_4eeedb806c929db6d60f73b2\",\"response\":false},{\"id\":\"item_cc8bc941f48a2518bd3eb074\",\"response\":false},{\"id\":\"item_a69704ce833db80bb8606cf1\",\"response\":false},{\"id\":\"item_4acda577406633cd3c475764\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}]
+[2024-11-15 17:38:59] - ARESPONSE: {"1":{"id":2,"user_id":3,"assessment_form_id":2,"assessment_response":"[{\"id\":\"item_4631212f9a829a46ac54fb35\",\"response\":false},{\"id\":\"item_d60ddd477d218e4736a66c73\",\"response\":false},{\"id\":\"item_af21b45ad17ec5067498d7ac\",\"response\":false},{\"id\":\"item_604250a4865e5858a7d95dde\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:38:59] - ARESPONSE: {"2":{"id":3,"user_id":3,"assessment_form_id":3,"assessment_response":"[{\"id\":\"item_9bdafb77e2d1b9371e59e76b\",\"response\":false},{\"id\":\"item_cc06c3a527823f49d8ac6e92\",\"response\":false},{\"id\":\"item_1fd3b5f9df84066ad2e876af\",\"response\":false},{\"id\":\"item_2b159eef79ac97881034ec48\",\"response\":false}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:38:59] - ARESPONSE: {"3":{"id":4,"user_id":3,"assessment_form_id":4,"assessment_response":"[{\"id\":\"item_e233bacadfc3e9fd50f6f584\",\"response\":false},{\"id\":\"item_79b21367d50b85187779c01c\",\"response\":false},{\"id\":\"item_edc38e1081748eb36ed7d407\",\"response\":false},{\"id\":\"item_8834fe57c3fca8dfb09c70d8\",\"response\":true}]","created_at":"2024-11-15 16:36:06","updated_at":"2024-11-15 16:36:06","UNIQUE":null}}
+[2024-11-15 17:38:59] - GET 200 - /print
+[2024-11-15 17:39:17] - GET 200 - /counseling
+[2024-11-15 17:39:29] - GET 200 - /assessment/manage
+[2024-11-15 17:39:48] - GET 200 - /counseling
+[2024-11-15 17:40:06] - GET 200 - /feedbacks
+[2024-11-15 17:40:28] - GET 200 - /print
+[2024-11-15 17:40:51] - GET 200 - /feedbacks
+[2024-11-15 17:41:02] - GET 200 - /profile/college1
+[2024-11-15 17:41:24] - GET 200 - /profile/grade8
+[2024-11-15 17:41:53] - GET 200 - /profile/college2
+[2024-11-15 17:42:10] - GET 200 - /feedbacks
+[2024-11-15 17:43:13] - GET 200 - /dashboard
+[2024-11-15 17:43:23] - GET 200 - /profile/grade7
+[2024-11-19 13:38:42] - GET 200 - /login
+[2024-11-19 13:38:57] - GET 200 - /dashboard
+[2024-11-19 13:39:06] - GET 200 - /login
+[2024-11-19 14:43:33] - GET 200 - /dashboard
+[2024-11-20 15:17:38] - GET 200 - /login
+[2024-11-20 15:17:58] - GET 200 - /dashboard
+[2024-11-20 15:18:06] - GET 200 - /profile/college4
+[2024-11-20 15:43:35] - GET 200 - /print
+[2024-11-21 15:09:13] - GET 200 - /login
+[2024-11-21 15:09:22] - GET 200 - /dashboard
+[2024-11-21 15:09:33] - GET 200 - /profile/college4
+[2024-11-21 15:29:26] - GET 200 - /profile/college4
+[2024-11-21 15:30:54] - GET 200 - /profile/college4
+[2024-11-26 14:38:08] - GET 200 - /login
+[2024-11-26 14:38:20] - GET 200 - /dashboard
+[2024-11-26 14:38:25] - GET 500 - /api/get/dashboard
+[2024-11-26 14:39:10] - GET 200 - /login
+[2024-11-26 14:39:20] - GET 200 - /login
+[2024-11-26 14:39:26] - GET 200 - /home
+[2024-11-26 14:39:33] - GET 200 - /profile
+[2024-11-26 14:39:40] - GET 200 - /assess
+[2024-11-26 14:39:57] - GET 200 - /dashboard
+[2024-11-26 14:40:11] - GET 500 - /api/get/dashboard
+[2024-11-26 14:40:31] - GET 200 - /profile/college4
+[2024-11-26 14:40:42] - GET 200 - /print
+[2024-11-26 14:40:46] - data: {
+    "profile": {
+        "level": 4,
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:40:46] - data: {
+    "profile": {
+        "level": 4,
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "called_slip": [
+        {
+            "schedule": "2024-11-15T16:37:00+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "agreement_forms": [
+        {
+            "schedule": "2024-11-15T16:26:32+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:43:35] - GET 200 - /print
+[2024-11-26 14:43:40] - data: {
+    "profile": {
+        "level": "Year 4",
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:43:40] - data: {
+    "profile": {
+        "level": "Year 4",
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "called_slip": [
+        {
+            "schedule": "2024-11-15T16:37:00+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "agreement_forms": [
+        {
+            "schedule": "2024-11-15T16:26:32+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:44:45] - GET 200 - /print
+[2024-11-26 14:44:49] - data: {
+    "profile": {
+        "level": "4 year",
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:44:49] - data: {
+    "profile": {
+        "level": "4 year",
+        "program": "Bachelor of Science in Information Technology",
+        "department": "College of Computing and Information Sciences",
+        "name": "MICHI NOWA S. BATALUNA",
+        "photo": "\/images\/profile\/8b9b8dbf632897741a26912a32623f9e.jpg"
+    },
+    "case_notes": [
+        {
+            "interaction_type": "Walked-in",
+            "schedule": "2024-11-15T15:59:55+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "called_slip": [
+        {
+            "schedule": "2024-11-15T16:37:00+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ],
+    "agreement_forms": [
+        {
+            "schedule": "2024-11-15T16:26:32+08:00",
+            "guidance_name": "Marlon Timogan"
+        }
+    ]
+}
+[2024-11-26 14:45:20] - GET 200 - /dashboard
+[2024-11-26 14:45:25] - GET 500 - /api/get/dashboard
+[2024-11-26 14:48:20] - GET 200 - /dashboard
+[2024-11-26 14:48:27] - GET 500 - /api/get/dashboard
+[2024-11-26 14:49:04] - GET 200 - /dashboard
+[2024-11-26 14:49:11] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":1},"7":{"0":0,"25":0,"50":0,"75":0},"8":{"0":0,"25":0,"50":0,"75":0},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":0,"25":0,"50":0,"75":0},"12":{"0":0,"25":0,"50":0,"75":0}}
+[2024-11-26 14:52:04] - GET 200 - /profile/no-profiles
+[2024-11-26 14:53:15] - GET 200 - /profile/college4
+[2024-11-26 14:53:39] - GET 200 - /profile/college4
+[2024-11-26 15:05:14] - GET 200 - /dashboard
+[2024-11-26 15:05:21] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":0,"25":0,"50":0,"75":0},"8":{"0":0,"25":0,"50":0,"75":0},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":0,"25":0,"50":0,"75":0},"12":{"0":0,"25":0,"50":0,"75":0}}
+[2024-11-26 15:48:14] - GET 500 - /
+[2024-11-26 15:48:14] - GET 500 - /css/tailwind.css
+[2024-11-26 15:48:14] - GET 500 - /vendor/bootstrap/css/bootstrap.min.css
+[2024-11-26 15:48:14] - GET 500 - /vendor/bootstrap/icons/bootstrap-icons.css
+[2024-11-26 15:48:15] - GET 500 - /vendor/sweetalert2/sweetalert2.min.css
+[2024-11-26 15:48:15] - GET 500 - /css/custom.css
+[2024-11-26 15:48:15] - GET 500 - /vendor/sweetalert2/sweetalert2.min.js
+[2024-11-26 15:48:15] - GET 500 - /images/guidance-logo-loader.png
+[2024-11-26 15:48:16] - GET 500 - /vendor/jquery/jquery-3.7.1.min.js
+[2024-11-26 15:48:16] - GET 500 - /vendor/bootstrap/js/bootstrap.bundle.min.js
+[2024-11-26 15:48:24] - GET 500 - /
+[2024-11-26 15:48:24] - GET 500 - /css/tailwind.css
+[2024-11-26 15:48:25] - GET 500 - /vendor/bootstrap/css/bootstrap.min.css
+[2024-11-26 15:48:25] - GET 500 - /vendor/sweetalert2/sweetalert2.min.css
+[2024-11-26 15:48:25] - GET 500 - /css/custom.css
+[2024-11-26 15:48:25] - GET 500 - /vendor/sweetalert2/sweetalert2.min.js
+[2024-11-26 15:48:26] - GET 500 - /vendor/bootstrap/icons/bootstrap-icons.css
+[2024-11-26 15:48:26] - GET 500 - /images/guidance-logo-loader.png
+[2024-11-26 15:48:26] - GET 500 - /vendor/jquery/jquery-3.7.1.min.js
+[2024-11-26 15:48:27] - GET 500 - /vendor/bootstrap/js/bootstrap.bundle.min.js
+[2024-11-26 15:48:27] - GET 500 - /images/logo.jpg
+[2024-11-26 15:48:53] - GET 200 - /login
+[2024-11-26 15:49:31] - GET 200 - /login
+[2024-11-26 15:56:18] - GET 200 - /schoolyear
+[2024-11-26 15:57:20] - GET 200 - /accounts/admin
+[2024-11-26 15:57:38] - GET 200 - /login
+[2024-11-26 15:58:13] - GET 200 - /login
+[2024-11-26 15:58:21] - GET 200 - /dashboard
+[2024-11-26 15:58:28] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 15:58:37] - GET 200 - /profile/college4
+[2024-11-26 15:58:46] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:58:46] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:58:47] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:58:47] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:58:48] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:58:54] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:58:55] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:58:56] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:58:57] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:58:59] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:00] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:59:00] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:59:00] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:59:01] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:01] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:59:04] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:59:04] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:59:04] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:59:05] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:59:05] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:59:06] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:59:06] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:59:06] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:59:08] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:08] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:59:09] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 15:59:09] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:59:09] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:59:10] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:21] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:59:21] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:23] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:25] - GET 404 - /images/profile/050b7a8f5db1bf0c8cf79de01f9a771e.jpg
+[2024-11-26 15:59:25] - GET 404 - /images/profile/25496598a7cc33e042d7b87443e71aa9.jpg
+[2024-11-26 15:59:26] - GET 404 - /images/profile/87c35121bce48ae561a0ed25d3a15106.jpg
+[2024-11-26 15:59:26] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-26 15:59:27] - GET 404 - /images/profile/ce53e9aaad17dacefc4ec8d6b9ef91c6.jpg
+[2024-11-26 16:00:01] - GET 200 - /dashboard
+[2024-11-26 16:00:08] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:01:02] - GET 200 - /dashboard
+[2024-11-26 16:01:09] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:01:36] - GET 200 - /dashboard
+[2024-11-26 16:01:43] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:06:04] - GET 200 - /dashboard
+[2024-11-26 16:06:11] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:09:40] - GET 200 - /dashboard
+[2024-11-26 16:09:47] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:11:52] - GET 200 - /dashboard
+[2024-11-26 16:11:59] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:12:56] - GET 200 - /dashboard
+[2024-11-26 16:13:03] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-26 16:15:23] - GET 200 - /dashboard
+[2024-11-26 16:15:29] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":0,"25":0,"50":0,"75":0},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-27 08:32:51] - GET 200 - /login
+[2024-11-27 08:33:04] - GET 200 - /dashboard
+[2024-11-27 08:33:11] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":1,"25":1,"50":2,"75":1},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-27 08:33:23] - GET 200 - /counseling
+[2024-11-27 08:33:52] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:06] - upload_count: 1 name: case_note_img_0
+[2024-11-27 08:34:06] - image {
+    "UPLOADED": "\/images\/documents\/44b0c6a93ee6f5725bb374d476d260d6.jpg",
+    "error": "Uploaded file successfully."
+}
+[2024-11-27 08:34:09] - GET 200 - /counseling
+[2024-11-27 08:34:18] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:21] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:29] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:35] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:41] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:46] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:34:48] - GET 200 - /print
+[2024-11-27 08:34:54] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:35:01] - GET 200 - /print
+[2024-11-27 08:35:05] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:35:11] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:35:11] - GET 200 - /print
+[2024-11-27 08:35:16] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:35:22] - GET 200 - /print
+[2024-11-27 08:35:26] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:35:32] - GET 200 - /counseling
+[2024-11-27 08:35:39] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:35:43] - GET 200 - /print
+[2024-11-27 08:35:47] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:36:23] - GET 404 - /images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:36:31] - GET 200 - /counseling
+[2024-11-27 08:36:38] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:36:39] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:37:11] - GET 200 - /counseling
+[2024-11-27 08:37:18] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:37:18] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:37:23] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:37:24] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:37:25] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:37:26] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:37:31] - GET 200 - /print
+[2024-11-27 08:37:35] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:37:35] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:37:43] - GET 200 - /print
+[2024-11-27 08:37:48] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:37:48] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:38:25] - GET 200 - /counseling
+[2024-11-27 08:38:32] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:38:32] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:38:36] - GET 200 - /print
+[2024-11-27 08:38:41] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:38:41] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:38:47] - GET 200 - /print
+[2024-11-27 08:38:51] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:38:51] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:38:56] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:38:58] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:38:59] - GET 200 - /print
+[2024-11-27 08:39:04] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:39:04] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:39:12] - GET 200 - /print
+[2024-11-27 08:39:17] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:39:17] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:54:53] - GET 200 - /login
+[2024-11-27 08:55:05] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:55:13] - GET 200 - /counseling
+[2024-11-27 08:55:23] - GET 200 - /home
+[2024-11-27 08:55:25] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:55:25] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:55:29] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:55:30] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:55:30] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:55:35] - GET 200 - /print
+[2024-11-27 08:55:41] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:55:41] - student {
+    "id": 3,
+    "user_id": 4,
+    "schoolyear_id": 1,
+    "student_profile_id": 13,
+    "semester": "1st Semester",
+    "department": "College of Computing and Information Sciences",
+    "yearlevel": 4,
+    "course": "Bachelor of Science in Computer Science",
+    "dean": "Daisa O. Gupit, MIT",
+    "created_at": "2024-11-26 18:59:58",
+    "updated_at": "2024-11-26 18:59:58"
+}
+[2024-11-27 08:55:41] - student {
+    "id": 2,
+    "user_id": 14,
+    "schoolyear_id": 1,
+    "student_profile_id": 2,
+    "gradelevel": 7,
+    "section": "St. Catherine",
+    "adviser": "Ms Catherine",
+    "created_at": "2024-11-22 18:50:56",
+    "updated_at": "2024-11-22 18:50:56"
+}
+[2024-11-27 08:55:56] - GET 200 - /appointments
+[2024-11-27 08:56:01] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:56:07] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 08:56:12] - GET 200 - /appointments
+[2024-11-27 08:56:17] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:56:21] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 08:56:23] - GET 200 - /assess
+[2024-11-27 08:56:27] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:56:34] - GET 200 - /appointments
+[2024-11-27 08:56:39] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:56:42] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 08:56:43] - GET 200 - /profile/grade7
+[2024-11-27 08:56:51] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:56:52] - GET 404 - /images/profile/713d73ed2850e2fb7cfbfb2e96df8909.jpg
+[2024-11-27 08:56:52] - GET 404 - /images/profile/65b693100bc423aed31538d3fe184f73.jpg
+[2024-11-27 08:57:03] - GET 200 - /counseling
+[2024-11-27 08:57:05] - GET 200 - /profile
+[2024-11-27 08:57:14] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:57:18] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:57:19] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:57:24] - GET 200 - /appointments
+[2024-11-27 08:57:29] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:57:33] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 08:57:35] - GET 200 - /profile/grade7
+[2024-11-27 08:57:44] - GET 404 - /images/profile/65b693100bc423aed31538d3fe184f73.jpg
+[2024-11-27 08:57:44] - GET 404 - /images/profile/713d73ed2850e2fb7cfbfb2e96df8909.jpg
+[2024-11-27 08:57:44] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:57:47] - GET 200 - /assessment/make/calledslip
+[2024-11-27 08:58:04] - ID: 14
+[2024-11-27 08:58:07] - SEND NOTIFICATION RESULT: {"status":true,"msg":"Notification sent successfully."}
+[2024-11-27 08:58:10] - GET 200 - /assessment/make/calledslip
+[2024-11-27 08:58:19] - GET 200 - /counseling
+[2024-11-27 08:58:24] - GET 200 - /appointments
+[2024-11-27 08:58:32] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 08:58:33] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:58:33] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 08:58:37] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 08:59:15] - GET 200 - /notifications
+[2024-11-27 08:59:20] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:04:25] - GET 200 - /profile
+[2024-11-27 09:04:30] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:04:33] - GET 200 - /print
+[2024-11-27 09:04:37] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:04:51] - GET 200 - /appointments
+[2024-11-27 09:04:56] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:05:00] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 09:05:16] - GET 200 - /appointments
+[2024-11-27 09:05:21] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:05:26] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 09:06:22] - GET 200 - /counseling
+[2024-11-27 09:06:32] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 09:06:32] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:06:35] - GET 200 - /appointments
+[2024-11-27 09:06:40] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:06:45] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 09:07:45] - GET 200 - /login
+[2024-11-27 09:07:56] - GET 200 - /home
+[2024-11-27 09:08:01] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:08:06] - GET 200 - /appointments
+[2024-11-27 09:08:11] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 09:08:14] - ERROR: User is invalid
+#0 D:\Program Files\Xampp\htdocs\gcms\assets\api\student.php(172): getMyAppointmentSchedules('undefined', 'undefined')
+#1 D:\Program Files\Xampp\htdocs\gcms\assets\php\functions.php(89): require('D:\\Program File...')
+#2 D:\Program Files\Xampp\htdocs\gcms\index.php(132): showAPI('student')
+#3 {main}
+[2024-11-27 09:08:31] - GET 200 - /assess
+[2024-11-27 09:08:36] - GET 404 - /images/profile/969ed13339825877809af632a6158276.jpg
+[2024-11-27 12:17:56] - GET 200 - /login
+[2024-11-27 12:18:07] - GET 200 - /dashboard
+[2024-11-27 12:18:14] - {"1":{"0":0,"25":0,"50":0,"75":0},"2":{"0":0,"25":0,"50":0,"75":0},"3":{"0":0,"25":0,"50":0,"75":0},"4":{"0":1,"25":1,"50":2,"75":1},"7":{"0":2,"25":1,"50":0,"75":0},"8":{"0":0,"25":0,"50":1,"75":1},"9":{"0":0,"25":0,"50":0,"75":0},"10":{"0":0,"25":0,"50":0,"75":0},"11":{"0":1,"25":1,"50":0,"75":0},"12":{"0":0,"25":0,"50":1,"75":2}}
+[2024-11-27 12:18:22] - GET 200 - /counseling
+[2024-11-27 12:18:31] - GET 404 - //images/profile/6ee0a7479d495bef62d5103be1787a53.jpg
+[2024-11-27 12:18:32] - GET 404 - //images/profile/969ed13339825877809af632a6158276.jpg

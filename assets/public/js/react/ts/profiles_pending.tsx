@@ -251,18 +251,18 @@ function broadcastNotification(sy: string|number, syid: string|number, onSuccess
 
 function AllAdminPage() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const { school_years, all_not_submitted } = usePageData(setIsLoading);
+  const { school_years, all_data } = usePageData(setIsLoading);
   const [selectedSchoolYear, setSelectedSchoolYear] = React.useState<string>((new Date()).getFullYear().toString());
   const { notsubmitted, sy, syid } = React.useMemo(() => {
     const selSy = Array.isArray(school_years) ? school_years.find((yr: any) => yr?.year?.toString() === selectedSchoolYear.toString()) : undefined;
-    let notsub = Array.isArray(all_not_submitted) ? all_not_submitted.find((nots: any) => nots.sy.toString() === selSy?.year?.toString()) : undefined;
+    let notsub = Array.isArray(all_data) ? all_data.find((nots: any) => nots.sy.toString() === selSy?.year?.toString()) : undefined;
     notsub = !!notsub?.notsubmitted ? [...(notsub.notsubmitted)] : [];
     return {
       notsubmitted: notsub,
       sy: selSy?.year,
       syid: selSy?.id,
     }
-  }, [school_years, all_not_submitted, selectedSchoolYear]);
+  }, [school_years, all_data, selectedSchoolYear]);
 
   const data = React.useMemo<DataValueType>(() => notsubmitted as DataValueType, [notsubmitted]);
 
@@ -337,7 +337,7 @@ function AllAdminPage() {
     middle_initial: item.middle_initial ? item.middle_initial + ". " : "",
     last_name: item.last_name,
     gender: item.gender,
-    email: item.gender,
+    email: item.email,
     action: <button type="button" className="tw-px-3 tw-py-2 tw-rounded-full tw-shadow tw-bg-blue-400 hover:tw-bg-blue-200" onClick={() => onSendReminder(item)}>Send Reminder</button>
   })) || [], [data]);
 

@@ -10,13 +10,14 @@ if ($user->role !== 'admin') {
 <?= getModalDisplay(
   'view-student-summary-modal',
   "View Summary",
-  function() {
-?>
+  function () {
+    ?>
   <div class="tw-p-3">
     <div class="tw-shadow tw-rounded tw-border">
       <div class="tw-min-h-[150px] tw-p-2">
         <div class="tw-flex tw-flex-start tw-items-center tw-gap-4">
-          <img src="" alt="" class="tw-rounded-2xl tw-w-[120px] tw-h-[120px] tw-object-contain tw-border" id="view-photo" />
+          <img src="" alt="" class="tw-rounded-2xl tw-w-[120px] tw-h-[120px] tw-object-contain tw-border"
+            id="view-photo" />
           <div class="">
             <div class="tw-font-bold" id="view-full-name"></div>
             <div class="tw-text-sm" id="view-department-gradelevel"></div>
@@ -25,39 +26,51 @@ if ($user->role !== 'admin') {
         </div>
       </div>
       <div class="tw-grid tw-grid-cols-4 tw-border-collapse">
-        <div class="tw-bg-[plum] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2">Counseling Forms</div>
-        <div class="tw-bg-[plum] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2">Count/Status</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Student Profile</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2 tw-capitalize" id="view-student-profile"></div>
+        <div class="tw-bg-[plum] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2">
+          Counseling Forms</div>
+        <div class="tw-bg-[plum] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2">
+          Count/Status</div>
+        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Student Profile
+        </div>
+        <div
+          class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2 tw-capitalize"
+          id="view-student-profile"></div>
         <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Case Notes</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2" id="view-case-notes"></div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Called Slip</div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2" id="view-called-slip"></div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Self - Assessment</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2 tw-capitalize" id="view-self-assessment"></div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Referral Forms</div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2" id="view-referral-forms"></div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Agreement Forms</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2" id="view-agreement-forms"></div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Feedback Forms</div>
-        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2" id="view-feedback-forms"></div>
-        <div class="tw-bg-[plum] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-italic">REMARKS:</div>
-        <div class="tw-bg-white tw-border-y tw-border-black tw-text-right tw-px-4 tw-py-2 tw-col-span-3" id="view-remarks"></div>
+        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2"
+          id="view-case-notes"></div>
+        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Called Slip
+        </div>
+        <div class="tw-bg-[#f9f6fd] tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2"
+          id="view-called-slip"></div>
+        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Self - Assessment
+        </div>
+        <div
+          class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2 tw-capitalize"
+          id="view-self-assessment"></div>
+        <div class="tw-bg-white tw-border-y tw-border-black tw-text-left tw-px-4 tw-py-2 tw-col-span-2">Agreement Forms
+        </div>
+        <div class="tw-bg-white tw-border-y tw-border-black tw-text-center tw-font-bold tw-px-4 tw-py-2 tw-col-span-2"
+          id="view-agreement-forms"></div>
       </div>
     </div>
-    <div class="tw-mt-4">
-      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="view-close-btn">Close</button>
+    <div class="container tw-container">
+      <div class="tw-mt-4 tw-float-start">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="view-close-btn">Close</button>
+      </div>
+      <div class="tw-mt-4 tw-float-end">
+        <button type="button" class="btn btn-primary" id="view-records">Print Records</button>
+      </div>
     </div>
   </div>
-<?php
+  <?php
   }
 ) ?>
 
 <?= getModalDisplay(
   'view-student-profile-submission',
   "View Profile Submitted",
-  function() {
-?>
+  function () {
+    ?>
   <div class="tw-p-3">
     <div class="tw-relative tw-border">
       <div class="tw-absolute tw-left-2 tw-top-2 tw-shadow tw-bg-white">
@@ -72,7 +85,7 @@ if ($user->role !== 'admin') {
       <div id="view-profile-button-container" class="tw-flex tw-gap-x-2"></div>
     </div>
   </div>
-<?php
+  <?php
   }
 ) ?>
 
@@ -81,11 +94,11 @@ if ($user->role !== 'admin') {
 <?= getModalDisplay(
   'view-assessment-submission',
   "View Submitted Self-Assessment",
-  function() {
-?>
+  function () {
+    ?>
   <div class="tw-p-3 tw-w-full tw-block">
     <div id="assessment-submission-root" class="tw-block tw-w-full tw-relative"></div>
   </div>
-<?php
+  <?php
   }
 ) ?>

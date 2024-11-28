@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
   const schedules = {
     called_in: []
@@ -99,7 +99,7 @@ $(function() {
 
   // Event listener for date click events
   const dayElements = $('.tw-cursor-pointer');
-  dayElements.each(function() {
+  dayElements.each(function () {
     const dayElement = $(this);
     dayElement.on('click', () => {
       if (lastSelectedDayElement) {
@@ -126,65 +126,70 @@ $(function() {
   const $srLegends = $('#senior-legends');
   const $collegeBarChart = $('#college-bar-chart');
   const $collegeLegends = $('#college-legends');
-  const generatedLegendColors = {};
-
-  function generateRandomTWColors() {
-    const colors = [
-      'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond',
-      'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue',
-      'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkkhaki',
-      'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue',
-      'darkslategray', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dodgerblue', 'firebrick',
-      'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green',
-      'greenyellow', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush',
-      'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray',
-      'lightgreen', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightsteelblue',
-      'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue',
-      'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise',
-      'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace',
-      'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise',
-      'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'rebeccapurple',
-      'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna',
-      'silver', 'skyblue', 'slateblue', 'slategray', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle',
-      'tomato', 'turquoise', 'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'
-    ];
-    // Select a random color from the list
-    let randomColor;
-    do {
-      randomColor = colors[Math.floor(Math.random() * colors.length)];
-    } while(Object.values(generatedLegendColors).includes(randomColor));
-    // Return the random Tailwind color class with the 400 shade
-    return randomColor;
-  }
+  const legendColors = {
+    "0": "green",
+    "25": "yellow",
+    "50": "orange",
+    "75": "red",
+  };
+  // function generateRandomTWColors() {
+  //   const colors = [
+  //     'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue',
+  //     'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkkhaki',
+  //     'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue',
+  //     'darkslategray', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dodgerblue', 'firebrick',
+  //     'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green',
+  //     'greenyellow', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush',
+  //     'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightgoldenrodyellow',
+  //     'lightgreen', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightsteelblue',
+  //     'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue',
+  //     'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise',
+  //     'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace',
+  //     'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise',
+  //     'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'rebeccapurple',
+  //     'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna',
+  //     'silver', 'skyblue', 'slateblue', 'slategray', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle',
+  //     'tomato', 'turquoise', 'violet', 'yellow', 'yellowgreen'
+  //   ];
+  //   // Select a random color from the list
+  //   let randomColor;
+  //   do {
+  //     randomColor = colors[Math.floor(Math.random() * colors.length)];
+  //   } while (Object.values(generatedLegendColors).includes(randomColor));
+  //   // Return the random Tailwind color class with the 400 shade
+  //   return randomColor;
+  // }
 
   function getNominal(n = 0) {
     return n.toString().endsWith('1')
-    ? n.toString() + "st"
-    : n.toString().endsWith('2')
-    ? n.toString() + "nd"
-    : n.toString().endsWith('3')
-    ? n.toString() + "rd"
-    : n.toString() + "th";
+      ? n.toString() + "st"
+      : n.toString().endsWith('2')
+        ? n.toString() + "nd"
+        : n.toString().endsWith('3')
+          ? n.toString() + "rd"
+          : n.toString() + "th";
   }
 
-  function generateLegend(items = {}) {
+  function generateLegend() {
     $collegeLegends.empty();
     $jrLegends.empty();
     $srLegends.empty();
-    Object.keys(items).forEach((item) => {
-      const gradeyear = Number.parseInt(item);
-      const level = gradeyear > 0 && gradeyear < 5 ? "college" : (gradeyear > 6 && gradeyear < 11 ? "junior" : (gradeyear > 10 && gradeyear < 13 ? "senior" : ""));
-      if (items[item].length > 0) {
-        const $container = $("<div>").addClass("tw-flex tw-items-center tw-ml");
+    ["junior", "senior", "college"].forEach((level) => {
+      const $container = $("<div>").addClass("tw-flex tw-items-center tw-ml");
+      ["0", "25", "50", "75"].forEach((colorKey) => {
         const $legendColor = $("<span>").addClass("tw-block tw-w-4 tw-h-4");
-        const $legendName = $("<span>").addClass("tw-ml-1 tw-text-xs tw-font-medium").text(items[item]?.[0]);
-        if (!generatedLegendColors[items[item][0]]) {
-          let twcolor = generatedLegendColors[items[item][0]] = generateRandomTWColors();
-          $legendColor.css('background-color', twcolor);
-        } else {
-          let twcolor = generatedLegendColors[items[item][0]];
-          $legendColor.css('background-color', twcolor);
-        }
+        const $legendName = $("<span>")
+          .addClass("tw-mx-1 tw-text-xs tw-font-medium")
+          .text(
+            colorKey === "0"
+            ? "Positive"
+            : colorKey === "25"
+            ? "Neutral"
+            : colorKey === "50"
+            ? "Negative"
+            : "Urgent"
+          );
+        $legendColor.css('background-color', legendColors[colorKey]);
         $container.append($legendColor).append($legendName);
         if (level === "college") {
           // college
@@ -196,7 +201,7 @@ $(function() {
           // sr
           $srLegends.append($container);
         }
-      }
+      });
     });
   }
 
@@ -204,37 +209,48 @@ $(function() {
     $collegeBarChart.empty();
     $jrBarChart.empty();
     $srBarChart.empty();
-    const maxFrequency = Math.max(...Object.values(items).map((item) => item.length > 0 ? Number.parseInt(item[1]) : 0));
+    console.log(items);
+    const maxFrequency = Math.max(...Object.keys(items).map((item) => Math.max(items[item]["0"], items[item]["25"], items[item]["50"], items[item]["75"])));
     const maxLength = maxFrequency <= 10 ? 10 : maxFrequency <= 20 ? 20 : maxFrequency <= 50 ? 50 : maxFrequency <= 70 ? 70 : maxFrequency <= 100 ? 100 : maxFrequency <= 200 ? 200 : maxFrequency <= 300 ? 300 : maxFrequency <= 400 ? 400 : maxFrequency <= 500 ? 500 : 1000;
-    Object.keys(items).forEach((item) => {
-      const gradeyear = Number.parseInt(item);
-      const level = gradeyear > 0 && gradeyear < 5 ? "college" : (gradeyear > 6 && gradeyear < 11 ? "junior" : (gradeyear > 10 && gradeyear < 13 ? "senior" : ""));
-      const $container = $("<div>").addClass("tw-relative tw-flex tw-flex-col tw-items-center tw-flex-grow tw-pb-5");
-      const $bar = $("<div>").addClass("tw-relative tw-flex tw-justify-center tw-w-[50%] tw-cursor-pointer tw-group");
-      const $frequency = $("<span>").addClass("tw-absolute tw-bottom-full tw-hidden tw-mb-full tw-font-bold tw-text-black group-hover:tw-block");
-      if (items[item].length > 0) {
-        let twcolor = generatedLegendColors[items[item][0]];
-        let hPercent = Math.floor(Number.parseInt(items[item][1]) / maxLength * 250);
-        $frequency.text(items[item][1]);
-        $bar.css('height', `${hPercent}px`).css('background-color', twcolor).append($frequency);
-        $container.append($bar);
-      } else {
-        $frequency.text("0");
-        $bar.addClass("tw-border-b tw-border-black tw-h-1").append($frequency);
-        $container.append($bar);
-      }
-      const $level = $("<div>").addClass("tw-bottom-0 tw-text-xs tw-font-bold").text(level === "college" ? getNominal(gradeyear) + " Yr" : "Grade " + gradeyear);
-      $container.append($level);
-      if (level === "college") {
-        // college
-        $collegeBarChart.append($container);
-      } else if (level === "junior") {
-        // jr
-        $jrBarChart.append($container);
-      } else if (level === "senior") {
-        // sr
-        $srBarChart.append($container);
-      }
+    ["junior", "senior", "college"].forEach((level) => {
+      const studentAssessmentCategory = level === "junior"
+        ? Object.keys(items).reduce((acc, item) => Number.parseInt(item) > 6 && Number.parseInt(item) < 11 ? {...acc, [item.toString()]: items[item]} : acc, {})
+        : level === "senior"
+        ? Object.keys(items).reduce((acc, item) => Number.parseInt(item) > 10 && Number.parseInt(item) < 13? {...acc, [item.toString()]: items[item]} : acc, {})
+        : Object.keys(items).reduce((acc, item) => Number.parseInt(item) > 0 && Number.parseInt(item) < 5? {...acc, [item.toString()]: items[item]} : acc, {})
+      Object.keys(studentAssessmentCategory).forEach((gradelevel) => {
+        const $container = $("<div>").addClass("tw-relative tw-flex tw-flex-col tw-items-center tw-flex-grow tw-pb-5");
+        Object.keys(studentAssessmentCategory[gradelevel]).forEach((colorKey) => {
+          const $bar = $("<div>").addClass("tw-relative tw-flex tw-justify-center tw-w-[50%] tw-cursor-pointer tw-group");
+          const $frequency = $("<span>").addClass("tw-absolute tw-bottom-full tw-hidden tw-mb-full tw-font-bold tw-text-black group-hover:tw-block");
+          $frequency.text(studentAssessmentCategory[gradelevel][colorKey]);
+          let twcolor = legendColors[colorKey];
+          let hPercent = (studentAssessmentCategory[gradelevel][colorKey] / maxLength) * 100;
+          $bar.css({
+            height: `${hPercent > 0 ? hPercent : 0.5}px`,
+            'background-color': twcolor,
+          }).append($frequency.css({
+            'background-color': twcolor,
+            width: "100%",
+            'text-align': 'center',
+            'background-opacity': 0.5,
+            'border-radius': "10px 0 0 0",
+          }));
+          $container.append($bar);
+        });
+        const $level = $("<div>").addClass("tw-bottom-0 tw-text-xs tw-font-bold").text(level === "college" ? getNominal(Number.parseInt(gradelevel)) + " Yr" : "Grade " + Number.parseInt(gradelevel));
+        $container.append($level);
+        if (level === "college") {
+          // college
+          $collegeBarChart.append($container);
+        } else if (level === "junior") {
+          // jr
+          $jrBarChart.append($container);
+        } else if (level === "senior") {
+          // sr
+          $srBarChart.append($container);
+        }
+      });
     });
   }
 
@@ -243,13 +259,13 @@ $(function() {
     const dashboardURL = new URL(pathname('/api/get/dashboard'), window.location.origin);
     return new Promise((resolve, reject) => {
       $.get(dashboardURL.toString())
-        .done(function({ data, error }) {
+        .done(function ({ data, error }) {
           if (error || data.error) {
             throw new Error(error || data.error);
           }
           resolve(data);
         })
-        .fail((_,__,error) => { console.log(error); reject(error) });
+        .fail((_, __, error) => { console.log(error); reject(error) });
     })
   }
   fetchDashboardData()
@@ -271,7 +287,7 @@ $(function() {
       // Generate school year div
       $schoolYearDiv.text(`S.Y. ${dashboardData.sy?.year}-${Number.parseInt(dashboardData.sy?.year) + 1}`);
       // Generate legend
-      generateLegend(dashboardData.assessment_frequencies);
+      generateLegend();
       // Generate bar chart
       generateBarChart(dashboardData.assessment_frequencies);
       // Display current date and schedule card data

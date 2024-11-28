@@ -51,11 +51,17 @@ function FeedbackPage() {
     return <div className="tw-text-center tw-mt-5 tw-p-4 tw-shadow">Loading...</div>
   }
 
-
   return (
     <div>
       <h1>Counseling Feedbacks</h1>
       <p>Counseling Records of A.Y. {sy} - {Number.parseInt(sy) + 1}</p>
+      <div className="tw-max-w-64">
+        <select className="tw-w-full tw-border tw-border-gray-300 tw-py-2 tw-px-4 tw-rounded-md tw-text-gray-700 tw-bg-white tw-text-sm" value={selectedSchoolYear} onChange={(e) => setSelectedSchoolYear(e.target.value)}>
+          {school_years?.map((yr: any) => (
+            <option key={yr.year} value={yr.year}>A.Y {yr.year} - {Number.parseInt(yr.year) + 1}</option>
+          ))}
+        </select>
+      </div>
       <Table columns={columns} items={data} />
     </div>
   )

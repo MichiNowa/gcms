@@ -1,9 +1,25 @@
 // @ts-ignore
 import { clsx, pathname, React, ReactDOM, ReactDOMServer, Swal, usePageData } from "./imports.mjs";
 // @ts-ignore
-import { CellAlign, Table, TableCellType, TableColumn } from "./table.mjs";
+import { CellAlign, SortOrder, Table, TableCellType, TableColumn } from "./table.mjs";
 
 const $pageRoot = $("#page-root");
+
+const abb:any = {
+  'College of Arts and Sciences': 'CAS',
+
+  'College of Business Management and Accountancy': 'CBMA',
+
+  'College of Computing and Information Sciences': 'CCIS',
+
+  'College of Criminal Justice Education': 'CCJE',
+
+  'College of Teacher Education': 'CTE',
+
+  'College of Tourism and Hospitality Management': 'CTHM',
+
+  'Basic Education': 'BasicEd',
+}
 
 enum Gender {
   Male = "Male",
@@ -64,7 +80,7 @@ interface AssessmentForm {
   id: number
   schoolyear_id: number
   category_name: string
-  items: string|AssessmentFormItem[]
+  items: string | AssessmentFormItem[]
   created_at: string
   updated_at: string
 }
@@ -78,10 +94,20 @@ interface Assessment {
   id: number
   user_id: number
   assessment_form_id: number
-  assessment_response: string|AssessmentResponse[]
+  assessment_response: string | AssessmentResponse[]
+}
+
+enum InteractionType {
+  Individual = 'Individual',
+  Group = 'Group',
+  CalledIn = 'Called-in',
+  WalkedIn = 'Walked-in',
+  Referred = 'Referred',
+  FollowUp = 'Follow-up',
 }
 
 const columns: TableColumn[] = [
+  { label: "Schedule", key: "schedule", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
   { label: "Student ID", key: "student_id", sortable: true, cellType: TableCellType.String, align: CellAlign.Center },
   { label: "Photo", key: "profile_pic", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
   { label: "First Name", key: "first_name", sortable: true, cellType: TableCellType.String, align: CellAlign.Left },
@@ -91,32 +117,47 @@ const columns: TableColumn[] = [
   { label: "Level/Department", key: "department", sortable: true, cellType: TableCellType.String, align: CellAlign.Center },
   { label: "Grade/Year", key: "level", sortable: true, cellType: TableCellType.String, align: CellAlign.Center },
   { label: "Section/Course", key: "sectioncourse", sortable: true, cellType: TableCellType.String, align: CellAlign.Center },
-  { label: "View Assessment", key: "assessment", sortable: false, cellType: TableCellType.Custom, align: CellAlign.Center },
-  { label: "Schedule", key: "schedule", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
+  { label: "Type of Counseling", key: "interaction_type", sortable: false, cellType: TableCellType.String, align: CellAlign.Center },
   { label: "Case Note", key: "case_note", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
   { label: "Agreement Form", key: "agreement_form", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
   { label: "Counselor", key: "counselor", sortable: true, cellType: TableCellType.String, align: CellAlign.Center },
   { label: "Documentation", key: "referral_form", sortable: true, cellType: TableCellType.Custom, align: CellAlign.Center },
 ];
 
+const monthList = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+
 function getNominal(n: number) {
   return n.toString().endsWith("1")
-  ? `${n}st`
-  : n.toString().endsWith("2")
-  ? `${n}nd`
-  : n.toString().endsWith("3")
-  ? `${n}rd`
-  : `${n}th`;
+    ? n + 'st'
+    : n.toString().endsWith("2")
+      ? n + 'nd'
+      : n.toString().endsWith("3")
+        ? n + 'rd'
+        : n + 'th';
 }
 
-function displayLevel(level: number) {
-  return level < 5 ? getNominal(level) + " Year" : "Grade " + level;
+function displayLevel(level?: number) {
+  if (!level) return "";
+  return level < 5 ? getNominal(level) + " Year" : "Grade " + (level?.toString() || "");
 }
 
-function displayDateTime(dateTime: string|undefined|null, defaultString?: string) {
+function displayDateTime(dateTime: string | undefined | null, defaultString?: string) {
   if (!dateTime) return defaultString;
   const scheduleDate = new Date(dateTime);
-  return `${scheduleDate.toLocaleDateString('en-PH', { month: "long", year: "numeric", day: "numeric" })} @ ${scheduleDate.toLocaleTimeString('en-PH', { hour12: true})}`;
+  return scheduleDate.toLocaleDateString('en-PH', { month: "long", year: "numeric", day: "numeric" }) + ' @ ' + scheduleDate.toLocaleTimeString('en-PH', { hour12: true });
 }
 
 function dateIsBeforeNow(dateTime: string) {
@@ -210,45 +251,45 @@ function UploadDragAndDropImage({
   return (<div className="tw-block">
     <div className="tw-flex items-center tw-justify-center tw-w-full">
       {file.length < filesToUpload && (
-      <label
-        ref={dropzoneRef}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        htmlFor="form-dropzone-file"
-        className={`tw-flex tw-flex-col tw-items-center tw-justify-center tw-w-full tw-h-64 tw-border-2 tw-border-gray-300 tw-border-dashed tw-rounded-lg tw-cursor-pointer tw-bg-gray-50 ${dragging ? 'tw-bg-gray-100' : 'hover:tw-bg-gray-100'}`}
-      >
-        <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-pt-5 tw-pb-6">
-          <svg
-            className="tw-w-8 tw-h-8 tw-mb-4 tw-text-gray-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 16"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-            />
-          </svg>
-          <p className="tw-mb-2 tw-text-sm tw-text-gray-500">
-            <span className="tw-font-semibold">Click to upload</span> or drag and drop
-          </p>
-          <p className="tw-text-xs tw-text-gray-500">PNG or JPG: MAX 5MB</p>
-        </div>
-        <input
-          id="form-dropzone-file"
-          type="file"
-          className="tw-hidden"
-          accept=".png,.jpg,.jpeg"
-          aria-describedby="file-help"
-          multiple={filesToUpload > 1}
-          onChange={handleFileInputChange}
-        />
-      </label>
+        <label
+          ref={dropzoneRef}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          htmlFor="form-dropzone-file"
+          className={`tw-flex tw-flex-col tw-items-center tw-justify-center tw-w-full tw-h-64 tw-border-2 tw-border-gray-300 tw-border-dashed tw-rounded-lg tw-cursor-pointer tw-bg-gray-50 ${dragging ? 'tw-bg-gray-100' : 'hover:tw-bg-gray-100'}`}
+        >
+          <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-pt-5 tw-pb-6">
+            <svg
+              className="tw-w-8 tw-h-8 tw-mb-4 tw-text-gray-500"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p className="tw-mb-2 tw-text-sm tw-text-gray-500">
+              <span className="tw-font-semibold">Click to upload</span> or drag and drop
+            </p>
+            <p className="tw-text-xs tw-text-gray-500">PNG or JPG: MAX 5MB</p>
+          </div>
+          <input
+            id="form-dropzone-file"
+            type="file"
+            className="tw-hidden"
+            accept=".png,.jpg,.jpeg"
+            aria-describedby="file-help"
+            multiple={filesToUpload > 1}
+            onChange={handleFileInputChange}
+          />
+        </label>
       )}
     </div>
     {file.length > 0 && (
@@ -272,8 +313,8 @@ function UploadDragAndDropImage({
 
 interface FeedbackItem {
   item: string;
-  type: "number"|"boolean";
-  rating: "1"|"2"|"3"|"4"|boolean|undefined;
+  type: "number" | "boolean";
+  rating: "1" | "2" | "3" | "4" | boolean | undefined;
 }
 
 interface FeedbackFormCategory {
@@ -282,7 +323,7 @@ interface FeedbackFormCategory {
 }
 
 
-function sendReminderNotification(syid: string|number, student_id: string|number, schedule: string, onSuccess: any, onError: any) {
+function sendReminderNotification(syid: string | number, student_id: string | number, schedule: string, onSuccess: any, onError: any) {
   try {
     const broadcastUrl = new URL(
       pathname("/api/post/send/notification"),
@@ -375,7 +416,7 @@ function sendReminderNotification(syid: string|number, student_id: string|number
           onError && onError(error);
         }
       })
-      .fail(function(_: any, statusText: any) {
+      .fail(function (_: any, statusText: any) {
         console.log("Something went wrong", statusText);
         onError && onError(statusText);
       })
@@ -445,7 +486,7 @@ function ViewAssessmentComponent({
     student_id: number;
     name: string;
     course?: string;
-    level: number|string;
+    level: number | string;
     education: Education;
   }
 }) {
@@ -454,44 +495,44 @@ function ViewAssessmentComponent({
       (init: boolean, val: Assessment) => !!init || !!(val.assessment_response as AssessmentResponse[]).reduce(
         (res: boolean, ar: AssessmentResponse) => res || (item.id.toString() === ar.id.toString() && !!ar.response), false), false), [])
   return (<>
-  <div className="tw-flex tw-gap-x-4">
-    <div>Name: {student.name}</div>
-    <div>{student.education === Education.Basic ? "Grade Level: " + student.level : "Year Level: " + student.level}</div>
-    <div>{student.education === Education.College ? "Course: " + student.course : ""}</div>
-  </div>
-  <h3 className={clsx(assessmentScore < 25 ? "tw-text-green-600" : (assessmentScore < 50 ? "tw-text-yellow-600" : (assessmentScore < 75 ? "tw-text-orange-600" : "tw-text-red-600")))}>
-    Assessment Result: {assessmentScore < 25 ? "Strongly Positive" : (assessmentScore < 50 ? "Somewhat Negative" : (assessmentScore < 75 ? "Strongly Negative" : "Urgent Attention Needed"))}
-  </h3>
-  <div className="tw-flex tw-gap-3 tw-items-start tw-flex-wrap tw-justify-center">
-    {assessmentForms?.map((forms) => (
-      <div className="tw-flex tw-flex-col tw-flex-nowrap tw-gap-x-2 tw-p-2 tw-text-sm tw-text-gray-600 tw-items-start">
-        <div className="tw-flex tw-flex-grow tw-items-center tw-border-b-2 tw-border-gray-200">
-          <div className="tw-text-lg tw-font-bold tw-px-2 tw-py-1 focus:tw-italic tw-uppercase">
-            {forms?.category_name}
+    <div className="tw-flex tw-gap-x-4">
+      <div>Name: {student.name}</div>
+      <div>{student.education === Education.Basic ? "Grade Level: " + student.level : "Year Level: " + student.level}</div>
+      <div>{student.education === Education.College ? "Course: " + student.course : ""}</div>
+    </div>
+    <h3 className={clsx(assessmentScore < 25 ? "tw-text-green-600" : (assessmentScore < 50 ? "tw-text-yellow-600" : (assessmentScore < 75 ? "tw-text-orange-600" : "tw-text-red-600")))}>
+      Assessment Result: {assessmentScore < 25 ? "Strongly Positive" : (assessmentScore < 50 ? "Somewhat Negative" : (assessmentScore < 75 ? "Strongly Negative" : "Urgent Attention Needed"))}
+    </h3>
+    <div className="tw-flex tw-gap-3 tw-items-start tw-flex-wrap tw-justify-center">
+      {assessmentForms?.map((forms) => (
+        <div className="tw-flex tw-flex-col tw-flex-nowrap tw-gap-x-2 tw-p-2 tw-text-sm tw-text-gray-600 tw-items-start">
+          <div className="tw-flex tw-flex-grow tw-items-center tw-border-b-2 tw-border-gray-200">
+            <div className="tw-text-lg tw-font-bold tw-px-2 tw-py-1 focus:tw-italic tw-uppercase">
+              {forms?.category_name}
+            </div>
           </div>
-        </div>
-        <div className="tw-flex tw-flex-col tw-flex-shrink tw-items-center tw-text-right">
-          {(forms?.items as AssessmentFormItem[])?.map((item: AssessmentFormItem) => (
-            <div className={clsx("tw-flex tw-flex-row tw-gap-x-2 tw-border-b-2 tw-border-gray-200 tw-p-2 tw-text-sm", !!item.alarming ? "tw-text-red-600" : "tw-text-gray-600")}>
-              <div className="tw-flex tw-flex-shrink tw-items-center tw-text-right tw-text-[40pt]">
-                <SelectedCheckbox checked={getAssessmentResponseCheck(item)} id={item.id} title={item.item} />
-              </div>
-              <div className="tw-flex tw-flex-grow tw-items-start">
-                <div className="tw-px-2 tw-py-1 focus:tw-italic tw-w-[300px] tw-text-left">
-                  {item.item}
+          <div className="tw-flex tw-flex-col tw-flex-shrink tw-items-center tw-text-right">
+            {(forms?.items as AssessmentFormItem[])?.map((item: AssessmentFormItem) => (
+              <div className={clsx("tw-flex tw-flex-row tw-gap-x-2 tw-border-b-2 tw-border-gray-200 tw-p-2 tw-text-sm", !!item.alarming ? "tw-text-red-600" : "tw-text-gray-600")}>
+                <div className="tw-flex tw-flex-shrink tw-items-center tw-text-right tw-text-[40pt]">
+                  <SelectedCheckbox checked={getAssessmentResponseCheck(item)} id={item.id} title={item.item} />
+                </div>
+                <div className="tw-flex tw-flex-grow tw-items-start">
+                  <div className="tw-px-2 tw-py-1 focus:tw-italic tw-w-[300px] tw-text-left">
+                    {item.item}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-  <div className="tw-flex tw-justify-between tw-items-start">
-    <button type="button" className="btn btn-primary" onClick={() => window.open((new URL(pathname(`/print?form=student_assessment&id=${student.student_id}&assessments=${assessmentForms.map((v: AssessmentForm) => v.id).join("-")}`), window.location.origin)))}>
-      <i className="bx bxs-printer"></i> Print
-    </button>
-  </div>
+      ))}
+    </div>
+    <div className="tw-flex tw-justify-between tw-items-start">
+      <button type="button" className="btn btn-primary" onClick={() => window.open((new URL(pathname(`/print?form=student_assessment&id=${student.student_id}&assessments=${assessmentForms.map((v: AssessmentForm) => v.id).join("-")}`), window.location.origin)))}>
+        <i className="bx bxs-printer"></i> Print
+      </button>
+    </div>
   </>)
 }
 
@@ -518,51 +559,57 @@ function CounselingRecords() {
       syid: selSy?.id
     }
   }, [school_years, all_data, selectedSchoolYear]);
+  
 
   const education = React.useMemo(() => !!selectedDepartment ? Education.College : (!!selectedProgramSection ? Education.Basic : Education.None), [selectedDepartment, selectedProgramSection]);
-  const departmentOptions = React.useMemo<{label: string, value: string}[]>(() => {
-    const result: {label: string, value: string}[] = [];
-    const departments = all_data?.map((ad: any) => [...(ad.students?.map((st: any) => st.student?.education === Education.College ? (st.student as CollegeStudentInfo)?.department : null)?.filter((v: string|null) => !!v) || [])])?.flat() || [];
+  const departmentOptions = React.useMemo<{ label: string, value: string }[]>(() => {
+    const result: { label: string, value: string }[] = [];
+    const currentData = all_data?.find((d: any) => d.sy.toString() === selectedSchoolYear.toString());
+    const departments = currentData?.students?.map((st: any) => st.education === Education.College ? (st.student as CollegeStudentInfo)?.department : null)?.filter((v: any) => !!v) || [];
     departments.forEach((department: string) => {
       if (!!department) {
         if (!result.some(d => d.label === department)) {
-          result.push({label: department, value: department});
+          result.push({ label: department, value: department });
         }
       }
     })
     return result;
-  }, [all_data]);
+  }, [all_data, selectedSchoolYear]);
 
-  const programSectionOptions = React.useMemo<{label: string, value: string}[]>(() => {
-    const result: {label: string, value: string}[] = [];
+  const programSectionOptions = React.useMemo<{ label: string, value: string }[]>(() => {
+    const result: { label: string, value: string }[] = [];
     if (education === "basic") {
-      const sections = all_data?.map((d: any) => [...(d.students?.map((st: any) => st.education === Education.Basic ? (st?.student as BasicStudentInfo)?.section : null)?.filter((v: string|null) => !!v) || [])])?.flat() || [];
+      const currentData = all_data?.find((d: any) => d.sy.toString() === selectedSchoolYear.toString());
+      const sections = currentData?.students?.map((st: any) => st.education === Education.Basic ? (st.student as BasicStudentInfo)?.section : null)?.filter((v: any) => !!v) || [];
       sections.forEach((section: string) => {
         if (!!section) {
           if (!result.some(d => d.label === section)) {
-            result.push({label: section, value: section});
+            result.push({ label: section, value: section });
           }
         }
       })
     } else if (education === "college") {
-      const courses = all_data?.map(
-        (d: any) =>
-          d.students?.filter((st: any) => (st?.student as CollegeStudentInfo)?.department?.toString() === selectedDepartment)
-            ?.map((d: any) => [...(d.students?.map((st: any) => st.education === Education.College ? (st?.student as CollegeStudentInfo)?.course : null)
-              ?.filter((v: string|null) => !!v) || [])]))?.flat() || [];
+      const currentData = all_data?.find((d: any) => d.sy.toString() === selectedSchoolYear.toString());
+      const courses = currentData?.students
+        ?.filter((st: any) => (st?.student as CollegeStudentInfo)?.department?.toString() === selectedDepartment)
+        ?.map((st: any) => st.education === Education.College ? (st?.student as CollegeStudentInfo)?.course : null)
+        ?.filter((v: any) => !!v) || [];
       courses.forEach((course: string) => {
         if (!!course) {
           if (!result.some(d => d.label === course)) {
-            result.push({label: course, value: course});
+            result.push({ label: course, value: course });
           }
         }
       })
     }
     return result;
-  }, [selectedDepartment, education, all_data]);
+  }, [selectedDepartment, education, all_data, selectedSchoolYear]);
 
   const data = React.useMemo(() => [...(called_in || []), ...(walked_in || [])], [called_in, walked_in]);
 
+  const [filterByMonth, setFilterByMonth] = React.useState<number|"">("")
+  const [filterByInteractionType, setFilterByInteractionType] = React.useState<InteractionType|"">("")
+  
   const onPrintCalledSlip = (item: any) => {
     const printUrl = new URL(pathname("/print"), window.location.origin)
     printUrl.searchParams.append('form', 'called_slip');
@@ -617,7 +664,7 @@ function CounselingRecords() {
 
   React.useEffect(() => {
     if (itemSchedule) {
-      const item = itemSchedule;
+      const item = { ...itemSchedule };
       if (!item?.id) {
         $("button#print-appointment").prop("disabled", true);
       }
@@ -634,7 +681,7 @@ function CounselingRecords() {
           cancelButtonColor: "#d33",
         }).then(({ isConfirmed }: any) => {
           if (isConfirmed) {
-            const url = new URL(pathname(`/assessment/make/calledslip?id=${item.user?.id}&educ=${item.education}`), window.location.origin);
+            const url = new URL(pathname(`/assessment/make/calledslip?id=${item.id}&educ=${item.education}`), window.location.origin);
             window.open(url.toString(), '_blank', 'toolbar=no,menubar=no,location=no,status=no,referrer=no');
           } else {
             onReScheduleOrPrint(item);
@@ -679,11 +726,61 @@ function CounselingRecords() {
 
   const onWalkedIn = React.useCallback(() => {
     const $vmodal = $("#create-case-note-walkin-modal");
-    const $studentSelection = $("<select>").attr("name", "student_id").prop("required", true);
-    const $studentOptions = [null, ...students].map((student: { user: UserInfo }|null) => !student ? $("<option>").attr("value", "").text("Select Student ID") : $("<option>").attr("value", student.user?.id).text(student.user?.username));
-    $studentSelection.append($studentOptions);
-    $vmodal.find("#create-student-id").empty().append($studentSelection);
-    $studentSelection.on("change", function() {
+    `
+      <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+      <datalist id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+      </datalist>
+    `
+    const mappedStudents = [...students].map((s: { user: UserInfo }) => s.user?.username.toLowerCase());
+    const $studentSelection = $("<input>")
+      .addClass("form-control")
+      .attr({
+        type: "text",
+        id: "studentIdSelection",
+        list: "datalistOptions",
+        maxLength: Math.max(...mappedStudents.map((s: string) => s.length)),
+        minLength: Math.min(...mappedStudents.map((s: string) => s.length)),
+        placeholder: "Enter Student ID",
+        pattern: "^\\d{4}\\d{5}$",
+      })
+      .css({
+        'background-color': '#fbfae3',
+        'display': 'inline-block'
+      })
+      .prop("required", true);
+    const $studentOptions = [...students].map(
+      (student: { user: UserInfo }) => $("<option>").attr("value", student.user?.username).text(student.user?.first_name + " " + (student.user?.middle_initial ? student.user.middle_initial + ". " : "") + student.user?.last_name));
+    const $datalistOption = $('<datalist>').attr("id", "datalistOptions");
+    $datalistOption.append($studentOptions);
+    const $studentIdHiddenValue = $('<input>').attr({
+      type: "hidden",
+      id: "studentIdHiddenValue",
+      name: "student_id",
+      value: "",
+    }).prop('required', true);
+
+    $studentSelection.on('change', function (e) {
+      const currentValue = $(this).val() as string;
+      if (!mappedStudents.includes(currentValue?.toLowerCase())) {
+        $(this).css('background-color', '#f5a4a4');
+      } else {
+        if (currentValue.length < 9) {
+          $(this).css('background-color', '#fbfae3');
+        } else {
+          $(this).css('background-color', 'white');
+          const stdid = students.find((st: { user: UserInfo }) => st.user?.username?.toLowerCase() === currentValue.toLowerCase())?.user?.id;
+          $studentIdHiddenValue.val(stdid).trigger("change");
+        }
+      }
+    })
+    $vmodal.find("#create-student-id").empty().append($studentSelection).append($datalistOption).append($studentIdHiddenValue);
+    $studentIdHiddenValue.on("change", function () {
+      if (!$(this).val()) return;
       const selectedStudentId = $(this).val() as string;
       if (!selectedStudentId) {
         $vmodal.find("#create-photo").attr("src", (new URL(pathname('/images/default-user.png'), window.location.origin)).toString());
@@ -694,14 +791,14 @@ function CounselingRecords() {
         $vmodal.find("#create-guidance-name").text("");
         return;
       }
-      const student = students.find(({ user: stud }: {user: UserInfo}) => stud?.id === parseInt(selectedStudentId));
+      const student = students.find(({ user: stud }: { user: UserInfo }) => stud?.id === parseInt(selectedStudentId));
       if (student) {
         $vmodal.find("#create-photo").attr("src", (new URL(pathname(student.student_profile?.profile_pic || student.user?.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
-        $vmodal.find("#create-full-name").text((`${student.user?.last_name}, ${student.user?.first_name} ${student.user?.middle_initial ? student.user.middle_initial + ". " : ""}` + student.student_profile?.suffix_name).trim());
+        $vmodal.find("#create-full-name").text((student.user?.last_name + ', ' + student.user?.first_name + ' ' + (student.user?.middle_initial ? student.user.middle_initial + ". " : "") + (student.student_profile?.suffix_name || "")).trim());
         $vmodal.find("#create-department-level").text(!student.student ? "[No Profile]" : student.student?.yearlevel ? student.student?.department : (student.student?.gradelevel ? (student.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
         $vmodal.find("#create-year-grade-level").text(displayLevel(student.student?.gradelevel || student.student?.yearlevel || ""));
         $vmodal.find("#create-course-section").text(student.student?.section || student.student?.course || "");
-        $vmodal.find("#create-guidance-name").text(guidance?.first_name + " " + (guidance?.middle_initial ? guidance.middle_initial + ". " : "") + guidance?.last_name);
+        $vmodal.find("#create-guidance-name").text(guidance?.first_name + " " + (guidance?.middle_initial ? (guidance.middle_initial + ". ").replace("..", ".") : "") + guidance?.last_name);
       } else {
         $vmodal.find("#create-photo").attr("src", (new URL(pathname('/images/default-user.png'), window.location.origin)).toString());
         $vmodal.find("#create-full-name").text("");
@@ -712,11 +809,19 @@ function CounselingRecords() {
       }
     });
 
-    $vmodal.find("form#form-create-case-note").on("submit", function(e) {
+    const $agfroot = $vmodal.find("#case-upload-photo-root");
+    const afroot = ReactDOM.createRoot($agfroot.get(0));
+    var selectedFiles: File[] = [];
+    const onSelectedFile = (selfile: File[]) => {
+      selectedFiles = selfile;
+    }
+    afroot.render(<UploadDragAndDropImage onSelectedFile={onSelectedFile} filesToUpload={1} />);
+
+    $vmodal.find("form#form-create-case-note").on("submit", function (e) {
       e.preventDefault();
       const formData: any = {};
 
-      $(this).find('input, select, textarea').each(function() {
+      $(this).find('input, select, textarea').each(function () {
         const name = $(this).attr('name');
         const value = $(this).val();
         if (name) {
@@ -731,17 +836,65 @@ function CounselingRecords() {
       });
 
       const url = new URL(pathname("/api/post/casenote/create"), window.location.origin);
-      const postData = {
-        ...formData,
-        guidance_id: guidance?.id,
-        sy,
-        called_in_slip: null,
-        agreement_form_id: null,
-        referral_form_id: null,
-      };
+      // const postData = {
+      //   ...formData,
+      //   guidance_id: guidance?.id,
+      //   sy,
+      //   called_in_slip: null,
+      //   agreement_form_id: null,
+      //   referral_form_id: null,
+      // };
 
-      $.post(url.toString(), postData)
-        .done(function({ success, error }: any) {
+      // $.post(url.toString(), postData)
+      //   .done(function ({ success, error }: any) {
+      //     Swal.fire({
+      //       icon: success ? "success" : "error",
+      //       title: success ? "Success!" : "Error",
+      //       text: success ? success : error,
+      //       timer: 3000,
+      //       showConfirmButton: false,
+      //     }).then(() => {
+      //       if (success) {
+      //         window.location.reload();
+      //       }
+      //     })
+      //   })
+      //   .fail(function (_: any, statusText: string) {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Error',
+      //       text: statusText,
+      //       timer: 3000,
+      //       showConfirmButton: false,
+      //     })
+      //   })
+      const postData = new FormData();
+      // Append the file to the form data
+      Object.keys(formData).forEach((key) => {
+        postData.append(key, formData[key]);
+      });
+      //   sy,
+      //   called_in_slip: null,
+      //   agreement_form_id: null,
+      //   referral_form_id: null,
+      postData.append('guidance_id', guidance.id);
+      postData.append('sy', sy);
+      postData.append('upload_count', selectedFiles.length.toString());
+      if (selectedFiles.length>0){
+        selectedFiles.forEach((selected, ind: number)=>{
+          postData.append('case_note_img_' + ind, selected, selected.name);
+          // console.log(ind, selected, selected.name);
+        })
+      }
+      
+      // Send the file using jQuery $.post() or $.ajax()
+      $.ajax({
+        url: url.toString(),
+        type: 'POST',
+        data: postData,
+        processData: false, // Important for file upload
+        contentType: false, // Important for file upload
+        success: ({ success, error }) => {
           Swal.fire({
             icon: success ? "success" : "error",
             title: success ? "Success!" : "Error",
@@ -753,8 +906,8 @@ function CounselingRecords() {
               window.location.reload();
             }
           })
-        })
-        .fail(function(_: any, statusText: string) {
+        },
+        error: (_, statusText) => {
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -762,7 +915,9 @@ function CounselingRecords() {
             timer: 3000,
             showConfirmButton: false,
           })
-        })
+        }
+      });
+
     });
 
     // @ts-ignore
@@ -789,18 +944,26 @@ function CounselingRecords() {
       const $vmodal = $("#create-case-note-modal");
       $vmodal.find("#create-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
       $vmodal.find("#create-student-id").text(item.user?.username || "");
-      $vmodal.find("#create-full-name").text((`${item.user?.last_name}, ${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}` + item.student_profile?.suffix_name).trim());
+      $vmodal.find("#create-full-name").text((item.user?.last_name + ', ' + item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + (item.student_profile?.suffix_name || "")).trim());
       $vmodal.find("#create-department-level").text(item.student?.yearlevel ? item.student?.department : (item.student?.gradelevel ? (item.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
       $vmodal.find("#create-year-grade-level").text(displayLevel(item.student?.gradelevel || item.student?.yearlevel));
       $vmodal.find("#create-course-section").text(item.student?.section || item.student?.course);
-      $vmodal.find("#create-guidance-name").text(`${item.guidance?.first_name} ${item.guidance?.middle_initial ? item.guidance.middle_initial + "." : ""}${item.guidance?.last_name}`);
+      $vmodal.find("#create-guidance-name").text(item.guidance?.first_name + ' ' + (item.guidance?.middle_initial ? (item.guidance.middle_initial + ". ").replace("..", ".") : "") + item.guidance?.last_name);
       $vmodal.find(!item.schedule ? "input#it-3" : "input#it-2").prop("checked", true);
 
-      $vmodal.find("form#form-create-case-note").on("submit", function(e) {
+      const $agfroot = $vmodal.find("#case-upload-photo-root");
+      const afroot = ReactDOM.createRoot($agfroot.get(0));
+      var selectedFiles: File[] = [];
+      const onSelectedFile = (selfile: File[]) => {
+        selectedFiles = selfile;
+      }
+      afroot.render(<UploadDragAndDropImage onSelectedFile={onSelectedFile} filesToUpload={1} />);
+
+      $vmodal.find("form#form-create-case-note").on("submit", function (e) {
         e.preventDefault();
         const formData: any = {};
 
-        $(this).find('input, select, textarea').each(function() {
+        $(this).find('input, select, textarea').each(function () {
           const name = $(this).attr('name');
           const value = $(this).val();
           if (name) {
@@ -815,18 +978,57 @@ function CounselingRecords() {
         });
 
         const url = new URL(pathname("/api/post/casenote/create"), window.location.origin);
-        const postData = {
-          ...formData,
-          student_id: item.user?.id,
-          guidance_id: item.guidance?.id,
-          sy,
-          called_in_slip: item?.id || null,
-          agreement_form_id: item.agreement_form?.id || null,
-          referral_form_id: item.referral_form?.id,
-        };
-
-        $.post(url.toString(), postData)
-          .done(function({ success, error }: any) {
+        // const postData = {
+        //   ...formData,
+        //   student_id: item.user?.id,
+        //   guidance_id: item.guidance?.id,
+        //   sy,
+        //   called_in_slip: item?.id || null,
+        //   agreement_form_id: item.agreement_form?.id || null,
+        //   referral_form_id: item.referral_form?.id,
+        // };
+        const postData = new FormData();
+        // // Append the file to the form data
+        Object.keys(formData).forEach((key) => {
+          postData.append(key, formData[key]);
+        });
+        if (item.user?.id) {
+          postData.append('student_id', item.user.id);
+        }
+        if (item.guidance?.id) {
+          postData.append('guidance_id', item.guidance.id);
+        }
+        if (item.aggreement_form?.id) {
+          postData.append('agreement_form_id', item.agreement_form.id);
+        }
+        if (item?.id) {
+          postData.append('called_in_slip', item.id || null);
+        }
+        if (item.id) {
+          postData.append('referral_form_id', item.referral_form?.id);
+        }
+        postData.append('upload_count', selectedFiles.length.toString());
+        postData.append('sy', sy);
+        if (selectedFiles.length>0){
+          selectedFiles.forEach((selected, ind: number)=>{
+            postData.append('case_note_img_' + ind, selected, selected.name);
+            // console.log(ind, selected, selected.name);
+          })
+        }
+        // if (selectedFiles.length>0){
+        //   selectedFiles.forEach((selected)=>{
+        //     postData.append('case_note_img[]', selected, selected.name);
+        //   })
+        // }
+       
+        // Send the file using jQuery $.post() or $.ajax()
+        $.ajax({
+          url: url.toString(),
+          type: 'POST',
+          data: postData,
+          processData: false, // Important for file upload
+          contentType: false, // Important for file upload
+          success: ({ success, error }) => {
             Swal.fire({
               icon: success ? "success" : "error",
               title: success ? "Success!" : "Error",
@@ -838,8 +1040,8 @@ function CounselingRecords() {
                 window.location.reload();
               }
             })
-          })
-          .fail(function(_: any, statusText: string) {
+          },
+          error: (_, statusText) => {
             Swal.fire({
               icon: 'error',
               title: 'Error',
@@ -847,7 +1049,32 @@ function CounselingRecords() {
               timer: 3000,
               showConfirmButton: false,
             })
-          })
+          }
+        });
+
+        // $.post(url.toString(), postData)
+        //   .done(function ({ success, error }: any) {
+        //     Swal.fire({
+        //       icon: success ? "success" : "error",
+        //       title: success ? "Success!" : "Error",
+        //       text: success ? success : error,
+        //       timer: 3000,
+        //       showConfirmButton: false,
+        //     }).then(() => {
+        //       if (success) {
+        //         window.location.reload();
+        //       }
+        //     })
+        //   })
+        //   .fail(function (_: any, statusText: string) {
+        //     Swal.fire({
+        //       icon: 'error',
+        //       title: 'Error',
+        //       text: statusText,
+        //       timer: 3000,
+        //       showConfirmButton: false,
+        //     })
+        //   })
       });
 
       // @ts-ignore
@@ -860,18 +1087,21 @@ function CounselingRecords() {
       const $vmodal = $("#view-case-note-modal");
       $vmodal.find("#view-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
       $vmodal.find("#view-student-id").text(item.user?.username || "");
-      $vmodal.find("#view-full-name").text((`${item.user?.last_name}, ${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}` + item.student_profile?.suffix_name).trim());
+      $vmodal.find("#view-full-name").text((item.user?.last_name + ', ' + item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + (item.student_profile?.suffix_name || "")).trim());
       $vmodal.find("#view-department-level").text(item.student?.yearlevel ? item.student?.department : (item.student?.gradelevel ? (item.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
       $vmodal.find("#view-year-grade-level").text(displayLevel(item.student?.gradelevel || item.student?.yearlevel));
       $vmodal.find("#view-course-section").text(item.student?.section || item.student?.course);
-      $vmodal.find("#view-guidance-name").text(`${item.guidance?.first_name} ${item.guidance?.middle_initial ? item.guidance.middle_initial + ". " : ""}${item.guidance?.last_name}`);
+      $vmodal.find("#view-guidance-name").text(item.guidance?.first_name + ' ' + (item.guidance?.middle_initial ? (item.guidance.middle_initial + ". ").replace("..", ".") : "") + item.guidance?.last_name);
       $vmodal.find("#view-interaction-type").text(`${item.case_note?.interaction_type || ""}`);
       $vmodal.find("#view-details").text(`${item.case_note?.details || ""}`);
       $vmodal.find("#view-information").text(`${item.case_note?.information_by_counselor || ""}`);
       $vmodal.find("#view-decision").text(`${item.case_note?.client_decision || ""}`);
       $vmodal.find("#view-observation").text(`${item.case_note?.behavioral_observation || ""}`);
       $vmodal.find("#view-date").text(`${displayDate(item.case_note?.created_at)}`);
-      $vmodal.find("button#view-case-note-print").on("click", function() {
+      //diri add picture
+      $vmodal.find("#view-img").attr("src", (new URL(pathname(item.case_note?.case_note_img), window.location.origin)).toString());
+      // $vmodal.find("#view-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString()); 
+      $vmodal.find("button#view-case-note-print").on("click", function () {
         const printUrl = new URL(pathname("/print"), window.location.origin)
         printUrl.searchParams.append('form', 'case_notes');
         printUrl.searchParams.append('id', item.case_note?.id || "");
@@ -910,16 +1140,16 @@ function CounselingRecords() {
       const $vmodal = $("#create-agreement-form-modal");
       $vmodal.find("#create-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
       $vmodal.find("#create-student-id").text(item.user?.username || "");
-      $vmodal.find("#create-full-name").text((`${item.user?.last_name}, ${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}` + item.student_profile?.suffix_name).trim());
+      $vmodal.find("#create-full-name").text((item.user?.last_name + ', ' + item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + (item.student_profile?.suffix_name || "")).trim());
       $vmodal.find("#create-department-level").text(item.student?.yearlevel ? item.student?.department : (item.student?.gradelevel ? (item.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
       $vmodal.find("#create-year-grade-level").text(displayLevel(item.student?.gradelevel || item.student?.yearlevel));
       $vmodal.find("#create-course-section").text(item.student?.section || item.student?.course);
-      $vmodal.find(".create-guidance-name").text(`${item.guidance?.first_name} ${item.guidance?.middle_initial ? item.guidance.middle_initial + ". " : ""}${item.guidance?.last_name}`);
-      $vmodal.find("#create-full-name-2").text((`${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}${item.user.last_name} `.toLowerCase() + item.student_profile?.suffix_name?.toLowerCase()).trim());
+      $vmodal.find(".create-guidance-name").text(item.guidance?.first_name + ' ' + (item.guidance?.middle_initial ? (item.guidance.middle_initial + ". ").replace("..", ".") : "") + item.guidance?.last_name);
+      $vmodal.find("#create-full-name-2").text((item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + item.user.last_name + ' ' + (item.student_profile?.suffix_name || '')).toLowerCase().trim());
 
       const $agfroot = $vmodal.find("#agreement-upload-photo-root");
       const afroot = ReactDOM.createRoot($agfroot.get(0));
-      var selectedFile: File|null = null;
+      var selectedFile: File | null = null;
       const onSelectedFile = (selfile: File[]) => {
         if (selfile.length > 0) {
           selectedFile = selfile[0];
@@ -929,7 +1159,7 @@ function CounselingRecords() {
       }
       afroot.render(<UploadDragAndDropImage onSelectedFile={onSelectedFile} />);
 
-      $vmodal.find("form#form-create-agreement-form").on("submit", function(e) {
+      $vmodal.find("form#form-create-agreement-form").on("submit", function (e) {
         e.preventDefault();
         const formData: any = {};
         if (!selectedFile) {
@@ -998,12 +1228,12 @@ function CounselingRecords() {
       const $vmodal = $("#view-agreement-form-modal");
       $vmodal.find("#view-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
       $vmodal.find("#view-student-id").text(item.user?.username || "");
-      $vmodal.find("#view-full-name").text((`${item.user?.last_name}, ${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}` + item.student_profile?.suffix_name).trim());
+      $vmodal.find("#view-full-name").text((item.user?.last_name + ', ' + item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + (item.student_profile?.suffix_name || "")).trim());
       $vmodal.find("#view-department-level").text(item.student?.yearlevel ? item.student?.department : (item.student?.gradelevel ? (item.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
       $vmodal.find("#view-year-grade-level").text(displayLevel(item.student?.gradelevel || item.student?.yearlevel));
       $vmodal.find("#view-course-section").text(item.student?.section || item.student?.course);
-      $vmodal.find(".view-guidance-name").text(`${item.guidance?.first_name} ${item.guidance?.middle_initial ? item.guidance.middle_initial + ". " : ""}${item.guidance?.last_name}`);
-      $vmodal.find("#view-full-name-2").text((`${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}${item.user.last_name}`.toLowerCase() + item.student_profile?.suffix_name?.toLowerCase()).trim());
+      $vmodal.find(".view-guidance-name").text(item.guidance?.first_name + ' ' + (item.guidance?.middle_initial ? (item.guidance.middle_initial + ". ").replace("..", ".") : "") + item.guidance?.last_name);
+      $vmodal.find("#view-full-name-2").text((item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + item.user.last_name + ' ' + (item.student_profile?.suffix_name || '')).toLowerCase().trim());
       $vmodal.find(".view-date").text(`${displayDate(item.agreement_form?.created_at)}`);
       $vmodal.find("img#agreement-photo").attr("src", item.agreement_form?.agreement_pic ? (new URL(pathname(item.agreement_form.agreement_pic))).toString() : "");
       // @ts-ignore
@@ -1028,11 +1258,11 @@ function CounselingRecords() {
       const $vmodal = $("#create-referral-form-modal");
       $vmodal.find("#create-photo").attr("src", (new URL(pathname(item.student_profile?.profile_pic || item.user.profile_pic || '/images/default-user.png'), window.location.origin)).toString());
       $vmodal.find("#create-student-id").text(item.user?.username || "");
-      $vmodal.find("#create-full-name").text((`${item.user?.last_name}, ${item.user?.first_name} ${item.user?.middle_initial ? item.user.middle_initial + ". " : ""}` + item.student_profile?.suffix_name).trim());
+      $vmodal.find("#create-full-name").text((item.user?.last_name + ', ' + item.user?.first_name + ' ' + (item.user?.middle_initial ? item.user.middle_initial + ". " : "") + (item.student_profile?.suffix_name || "")).trim());
       $vmodal.find("#create-department-level").text(item.student?.yearlevel ? item.student?.department : (item.student?.gradelevel ? (item.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""));
       $vmodal.find("#create-year-grade-level").text(displayLevel(item.student?.gradelevel || item.student?.yearlevel));
       $vmodal.find("#create-course-section").text(item.student?.section || item.student?.course);
-      $vmodal.find("#create-guidance-name").text(`${item.guidance?.first_name} ${item.guidance?.middle_initial ? item.guidance.middle_initial + ". " : ""}${item.guidance?.last_name}`);
+      $vmodal.find("#create-guidance-name").text(item.guidance?.first_name + ' ' + (item.guidance?.middle_initial ? (item.guidance.middle_initial + ". ").replace("..", ".") : "") + item.guidance?.last_name);
 
       const $agfroot = $vmodal.find("#referral-upload-photo-root");
       const afroot = ReactDOM.createRoot($agfroot.get(0));
@@ -1042,11 +1272,11 @@ function CounselingRecords() {
       }
       afroot.render(<UploadDragAndDropImage onSelectedFile={onSelectedFile} filesToUpload={2} />);
 
-      $vmodal.find("form#form-create-referral-form").on("submit", function(e) {
+      $vmodal.find("form#form-create-referral-form").on("submit", function (e) {
         e.preventDefault();
         const formData: any = {};
-        if (selectedFiles.length !== 2) {
-          alert("Please select two (2) photos to upload");
+        if (selectedFiles.length === 0) {
+          alert("Please select two (1) one or (2) photos to upload");
           return;
         }
 
@@ -1070,7 +1300,9 @@ function CounselingRecords() {
         }
         postData.append('sy', sy);
         postData.append('referral_a', selectedFiles[0], selectedFiles[0].name);
-        postData.append('referral_b', selectedFiles[1], selectedFiles[1].name);
+        if (!!selectedFiles[1]) {
+          postData.append('referral_b', selectedFiles[1], selectedFiles[1]?.name);
+        }
         // Send the file using jQuery $.post() or $.ajax()
         $.ajax({
           url: url.toString(),
@@ -1115,7 +1347,8 @@ function CounselingRecords() {
   const onViewReferral = React.useCallback((it: any, photo: any) => {
     const viewContainerPhoto = (
       <div className="tw-flex tw-items-center tw-justify-center">
-        <img src={photo ? (new URL(pathname(photo))).toString() : (new URL(pathname('/images/default-user.png'))).toString()} alt="Failed to Load Documentation Photo" width="100%" height="100%" />
+        {!photo && <>No Image</>}
+        {!!photo && (<img src={(new URL(pathname(photo))).toString()} alt="Failed to Load Documentation Photo" width="100%" height="100%" />)}
       </div>
     );
     Swal.fire({
@@ -1172,10 +1405,20 @@ function CounselingRecords() {
     if (!!selectedProgramSection) {
       d = d.filter((item: any) =>
         education === "basic"
-        ? (item.student as BasicStudentInfo)?.section === selectedProgramSection
-        : education === "college"
-        ? (item.student as CollegeStudentInfo)?.course === selectedProgramSection
-        : item
+          ? (item.student as BasicStudentInfo)?.section === selectedProgramSection
+          : education === "college"
+            ? (item.student as CollegeStudentInfo)?.course === selectedProgramSection
+            : item
+      );
+    }
+    if (!Number.isNaN(Number.parseInt(filterByMonth.toString()))) {
+      d = d.filter((item: any) =>
+        new Date(item.case_note?.created_at || item.schedule).getMonth().toString() === filterByMonth.toString()
+      );
+    }
+    if (!!filterByInteractionType) {
+      d = d.filter((item: any) =>
+        (item.case_note?.interaction_type || InteractionType.CalledIn) === filterByInteractionType
       );
     }
     return d.map((v: any) => ({
@@ -1188,6 +1431,7 @@ function CounselingRecords() {
       middle_initial: v.user.middle_initial ? v.user.middle_initial + ". " : "",
       last_name: v.user.last_name,
       suffix_name: v.student_profile?.suffix_name,
+      interaction_type: v.case_note?.interaction_type || InteractionType.CalledIn,
       department: v.student?.yearlevel ? v.student?.department : (v.student?.gradelevel ? (v.student?.gradelevel < 11 ? "Junior High" : "Senior High") : ""),
       level: displayLevel(v.student?.gradelevel || v.student?.yearlevel),
       sectioncourse: v.student?.section || v.student?.course,
@@ -1200,8 +1444,8 @@ function CounselingRecords() {
         ),
       },
       schedule: {
-        value: displayDateTime(v.schedule, "Walked-in"),
-        content: <button type="button" className={clsx("tw-px-3 tw-py-2 tw-rounded-full tw-shadow tw-whitespace-nowrap", !dateIsBeforeNow(v.schedule) ? "tw-bg-gray-300 hover:tw-bg-gray-100" : (!v.case_note ? "tw-bg-red-400 hover:tw-bg-red-200" : "tw-bg-green-400 hover:tw-bg-green-200"))} onClick={() => !dateIsBeforeNow(v.schedule) ? onSendReminder(v) : (!v.case_note ? onReScheduleOrPrint(v) : onPrintCalledSlip(v))} disabled={!v.schedule}>{displayDateTime(v.schedule, "Walked-in")}</button>,
+        value: displayDateTime(v.schedule, displayDateTime(v.case_note?.created_at)),
+        content: <button type="button" className={clsx("tw-px-3 tw-py-2 tw-rounded-full tw-shadow tw-whitespace-nowrap", !dateIsBeforeNow(v.schedule) ? "tw-bg-gray-300 hover:tw-bg-gray-100" : (!v.case_note ? "tw-bg-red-400 hover:tw-bg-red-200" : "tw-bg-green-400 hover:tw-bg-green-200"))} onClick={() => !dateIsBeforeNow(v.schedule) ? onSendReminder(v) : (!v.case_note ? onReScheduleOrPrint(v) : onPrintCalledSlip(v))} disabled={!v.schedule}>{displayDateTime(v.schedule, displayDateTime(v.case_note?.created_at))}</button>,
       },
       case_note: {
         value: !v.case_note ? "0" : "1",
@@ -1219,13 +1463,13 @@ function CounselingRecords() {
           </button>
         ),
       },
-      counselor: v.guidance?.first_name + " " + (v.guidance?.middle_initial ? v.guidance?.middle_initial + ". " : "") + v.guidance?.last_name,
+      counselor: v.guidance?.first_name + " " + (v.guidance?.middle_initial ? (v.guidance?.middle_initial + ". ").replace("..", ".") : "") + v.guidance?.last_name,
       referral_form: {
         value: !v.referral_form ? "0" : "1",
         content: !v.referral_form
           ? <button type="button" onClick={() => onUploadReferral(v)} className="tw-whitespace-nowrap tw-px-w tw-py-1 tw-text-blue-600 tw-w-[40px] tw-h-[40px] hover:tw-text-blue-400"><i className="bx bx-upload tw-text-[14pt]">&nbsp;</i>Upload</button>
           : (<div className="tw-flex tw-flex-nowrap tw-justify-center tw-gap-x-2">
-            {[v.referral_form.referral_a, v.referral_form.referral_b].map((item: any) => (
+            {[v.referral_form.referral_a, v.referral_form.referral_b].filter((vimg) => !!vimg).map((item: any) => (
               <button type="button" onClick={() => onViewReferral(v, item)} className="tw-w-[40px] tw-h-[40px] tw-text-[#6923D0] hover:tw-text-[#9c73d8]">
                 <i className="bx bxs-image tw-text-[14pt]"></i>
               </button>
@@ -1233,36 +1477,90 @@ function CounselingRecords() {
           </div>),
       }
     }));
-  }, [data]);
+  }, [data, selectedProgramSection, selectedDepartment, education, filterByMonth, filterByInteractionType]);
+  const handlePrint = React.useCallback(() => {
+    let pathurl = `/print?form=counseling_report`;
+    if (!!selectedDepartment) {
+      pathurl += `&department=${abb[selectedDepartment]}`;
+    }
+    if (!!selectedProgramSection) {
+      pathurl += `&section=${selectedProgramSection}`;
+    }
+    if (!!sy) {
+      pathurl += `&sy=${sy}`;
+    }
+    if (!Number.isNaN(Number.parseInt(filterByMonth))) {
+      pathurl += `&month=${filterByMonth}`;
+    }
+    if (!!filterByInteractionType) {
+      pathurl += `&interaction=${filterByInteractionType}`;
+    }
+    window.open((new URL(pathname(pathurl), window.location.origin)))
+  }, [selectedDepartment, selectedProgramSection, sy, filterByMonth, filterByInteractionType]);
 
   if (isLoading) {
     return <div className="tw-text-center tw-mt-5 tw-p-4 tw-shadow">Loading...</div>
   }
 
   return (
-    <div className="tw-container tw-mt-4">
+    <div className="tw-container tw-mt-4 tw-relative">
+      <button className="tw-absolute tw-right-0 tw-top-0 btn btn-primary" onClick={handlePrint}>Print</button>
       <h2>Counseling</h2>
-      <div>
-        <label>School Year: </label>
-        <div className="tw-max-w-[300px]">
-          <div className="select-wrapper">
-            <select className="form-select" value={selectedSchoolYear} onChange={(e) => setSelectedSchoolYear(e.target.value)}>
-              <option value="" disabled>School Year</option>
-              {school_years?.map((yr: any) => (
-                <option key={"year_" + yr.id} value={yr.year}>
-                  S.Y {yr.year} - {Number.parseInt(yr.year) + 1}
-                </option>
-              ))}
-            </select>
+      <div className="tw-flex tw-justify-between tw-w-full">
+        <div>
+          <label>School Year: </label>
+          <div className="tw-max-w-[300px]">
+            <div className="select-wrapper">
+              <select className="form-select" value={selectedSchoolYear} onChange={(e) => setSelectedSchoolYear(e.target.value)}>
+                <option value="" disabled>School Year</option>
+                {school_years?.map((yr: any) => (
+                  <option key={"year_" + yr.id} value={yr.year}>
+                    S.Y {yr.year} - {Number.parseInt(yr.year) + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <div>
+            <label>Filter By Month: </label>
+            <div className="tw-max-w-[300px]">
+              <div className="select-wrapper">
+                <select className="form-select" value={filterByMonth} onChange={(e) => setFilterByMonth(e.target.value)}>
+                  <option value="">-- Month --</option>
+                  {monthList.map((month: string, index: number) => (
+                    <option key={month} value={index}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label>Filter By Interaction Type: </label>
+            <div className="tw-max-w-[300px]">
+              <div className="select-wrapper">
+                <select className="form-select" value={filterByInteractionType} onChange={(e) => setFilterByInteractionType(e.target.value)}>
+                  <option value="">-- Interaction Type --</option>
+                  {Object.values(InteractionType).map((itype: string, index: number) => (
+                    <option key={itype + index} value={itype}>
+                      {itype}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <p>Counseling Records of A.Y. {sy} - {Number.parseInt(sy) + 1}</p>
       <br />
-      <Table columns={columns} items={finalData}>
+      <Table defaultSortOrder={SortOrder.Descending} columns={columns} items={finalData}>
         <div>
           <button type="button" className="btn btn-primary tw-max-w-[250px]" onClick={onWalkedIn}>
-            <i className="bx bx-plus"></i>&nbsp;Walked-In Counseling
+            <i className="bx bx-plus"></i>&nbsp;Case Note
           </button>
         </div>
         <div className="select-wrapper">

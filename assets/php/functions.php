@@ -368,7 +368,7 @@ function getDepartmentsAndCourses()
     'College of Arts and Sciences' => [
       'Bachelor of Arts Major in English Language',
     ],
-    'College of Business Management' => [
+    'College of Business Management and Accountancy' => [
       'Bachelor of Science in Business Administration Major in Financial Management',
       'Bachelor of Science in Business Administration Major in Human Resource Management',
       'Bachelor of Science in Business Administration Major in Marketing Management',
@@ -379,6 +379,7 @@ function getDepartmentsAndCourses()
       'Bachelor of Science in Information Technology',
       'Bachelor of Science in Computer Science',
       'Bachelor of Library and Information Science',
+      'Bachelor of Science and Information System',
       'Diploma in Information Technology',
     ],
     'College of Criminal Justice Education' => [
@@ -401,6 +402,54 @@ function getDepartmentsAndCourses()
       'Food and Beverage Services NC II',
       'Housekeeping NC II',
       "Ship's Catering Services NC II",
+    ],
+  ];
+}
+function getGradeLevelAndSections()
+{
+  return [
+    'Grade 7' => [
+      'St. Anne',
+      'St. Catherine',
+      'St. Marta',
+      'St. Mary',
+      'St. Monica',
+    ],
+    'Grade 8' => [
+      'St. Agnes',
+      'St. Cecile',
+      'St. Lucy',
+      'St. Rita',
+    ],
+    'Grade 9' => [
+      'St. Bede',
+      'St. Benedict',
+      'St. Bernard',
+      'St. Cyril',
+      'St. Thomas',
+    ],
+    'Grade 10' => [
+      'St. John',
+      'St. Luke',
+      'St. Mark',
+      'St. Matthew',
+      'St. Paul',
+    ],
+    'Grade 11' => [
+      'Acountancy and Business Management',
+      'General Academic Strand',
+      'Humanities and Social Sciences',
+      'Home Economics and TLE',
+      'Maritime',
+      'Science Technology and Engineering Mathematics',
+    ],
+    'Grade 12' => [
+      'Acountancy and Business Management',
+      'General Academic Strand',
+      'Humanities and Social Sciences',
+      'Home Economics and TLE',
+      'Maritime',
+      'Science Technology and Engineering Mathematics',
     ],
   ];
 }
@@ -481,6 +530,8 @@ enum PrintForms: string
   case STUDENT_ASSESSMENT = "student_assessment";
   case STUDENT_FEEDBACK = "student_feedback";
   case STUDENT_PROFILE = "student_profile";
+  case COUNSELING_REPORT = "counseling_report";
+  case SUMMARY_RECORDS = "summary_records";
 }
 
 function getPrintForms()
@@ -570,17 +621,17 @@ function getMyAppointmentSchedules(int|string $userId, int|string $sy)
       }
     }
     $calledInSlips = CalledInSlip::findMany('user_id', $user->getId());
-    $calledInSlips = array_filter($calledInSlips, fn(CalledInSlip $cis) => strval($cis->getSchoolyearId()) === strval($schoolYear->getId()));
+    $calledInSlips = [...array_filter($calledInSlips, fn(CalledInSlip $cis) => strval($cis->getSchoolyearId()) === strval($schoolYear->getId()))];
     $walkIns = CaseNote::findMany('user_id', $user->getId());
-    $walkIns = array_filter($walkIns, fn(CaseNote $cn) => strval($cn->getSchoolyearId()) === strval($schoolYear->getId()) && $cn->getInteractionType() === "Walked-in");
-    $walkInIds = array_map(fn(CaseNote $wid) => $wid->getCalledSlipId(), $walkIns);
-    $calledInSlips = array_filter($calledInSlips, fn(CalledInSlip $cis) => !in_array($cis->getId(), $walkInIds));
+    $walkIns = [...array_filter($walkIns, fn(CaseNote $cn) => strval($cn->getSchoolyearId()) === strval($schoolYear->getId()) && !$cn->getCalledSlipId())];
+    // $walkInIds = array_map(fn(CaseNote $wid) => $wid->getCalledSlipId(), $walkIns);
+    // $calledInSlips = [...array_filter($calledInSlips, fn(CalledInSlip $cis) => !in_array($cis->getId(), $walkInIds))];
     $total = count($calledInSlips) + count($walkIns);
     $calledInResults = [];
     $walkedInResults = [];
     for ($i = 0; $i < $total; $i++) {
       $result = [];
-      if ($i < count(value: $calledInSlips)) {
+      if ($i < count($calledInSlips)) {
         // called in slips
         $cn = $calledInSlips[$i];
         $result['id'] = $cn->getId();
@@ -605,7 +656,7 @@ function getMyAppointmentSchedules(int|string $userId, int|string $sy)
         $calledInResults[] = $result;
       } else {
         // walked in case notes
-        $index = count($calledInSlips) - $i;
+        $index = count($calledInSlips) > 0 ? count($calledInSlips) - $i : $i;
         $cn = $walkIns[$index];
         $gd = Users::findOne('id', $cn->getGuidanceId());
         $result['guidance'] = $gd->toArray();
@@ -622,8 +673,7 @@ function getMyAppointmentSchedules(int|string $userId, int|string $sy)
     $results["called_in"] = $calledInResults;
     $results["walked_in"] = $walkedInResults;
     $response["data"] = $results;
-  } catch (Exception $e) {
-    http_response_code(400);
+  } catch (\Throwable $e) {
     $response["error"] = $e->getMessage();
     debug_write("ERROR: " . $e->getMessage() . PHP_EOL . $e->getTraceAsString());
   }
@@ -642,7 +692,7 @@ function getNotifications()
     $notifications = Notification::findMany('user_id', $user->getId());
     $notifications = array_map(fn(Notification $n) => $n->toArray(), $notifications);
     $response['data'] = $notifications;
-  } catch (Exception $e) {
+  } catch (\Throwable $e) {
     $response['error'] = $e->getMessage();
     debug_write("ERROR: " . $e->getMessage() . PHP_EOL . $e->getTraceAsString());
   }
@@ -682,17 +732,71 @@ function getDashboardData()
   $submittedAssessmentForms = [];
   $assessments = [
     // college
-    '1' => [],
-    '2' => [],
-    '3' => [],
-    '4' => [],
+    '1' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '2' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '3' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '4' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
     // high school
-    '7' => [],
-    '8' => [],
-    '9' => [],
-    '10' => [],
-    '11' => [],
-    '12' => [],
+    '7' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '8' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '9' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '10' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '11' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+    '12' => [
+      '0' => 0,
+      '25' => 0,
+      '50' => 0,
+      '75' => 0,
+    ],
+  ];
+  $students = [
+    "high" => [],
+    "college" => []
   ];
   foreach ($assessmentForms as $af) {
     $assesses = Assessment::findMany('assessment_form_id', $af->getId());
@@ -703,14 +807,19 @@ function getDashboardData()
       $stud = array_filter($stud, fn(StudentBasic $s) => strval($s->getSchoolyearId()) === strval($sy->getId()));
       if (count($stud) > 0) {
         $stud = end($stud);
-        // high school
-        $aresponses = $a->getAssessmentResponse();
-        foreach ($aresponses as $item) {
-          if ($item['response'] === true) {
-            if (!isset($assessments[strval($stud->getGradeLevel())][strval($item['id'])]) || !is_int($assessments[strval($stud->getGradeLevel())][strval($item['id'])])) {
-              $assessments[strval($stud->getGradeLevel())][strval($item['id'])] = 0;
-            }
-            $assessments[strval($stud->getGradeLevel())][strval($item['id'])] += 1;
+        if (!in_array(strval($stud->getId()), array_keys($students["high"]))) {
+          $score = getAssessmentScore(strval($sy->getId()), strval($u->getId()));
+          $sid = strval($stud->getId());
+          $students["high"][$sid] = $score;
+          // high school
+          if ($score < 25) {
+            $assessments[$stud->getGradeLevel()]["0"] += 1;
+          } else if ($score < 50) {
+            $assessments[$stud->getGradeLevel()]["25"] += 1;
+          } else if ($score < 75) {
+            $assessments[$stud->getGradeLevel()]["50"] += 1;
+          } else {
+            $assessments[$stud->getGradeLevel()]["75"] += 1;
           }
         }
       } else {
@@ -718,14 +827,19 @@ function getDashboardData()
         $stud = array_filter($stud, fn(StudentCollege $s) => strval($s->getSchoolyearId()) === strval($sy->getId()));
         if (count($stud) > 0) {
           $stud = end($stud);
-          // college
-          $responses = $a->getAssessmentResponse();
-          foreach ($responses as $item) {
-            if ($item['response'] === true) {
-              if (!isset($assessments[strval($stud->getYearLevel())][strval($item['id'])]) || !is_int($assessments[strval($stud->getYearLevel())][strval($item['id'])])) {
-                $assessments[strval($stud->getYearLevel())][strval($item['id'])] = 0;
-              }
-              $assessments[strval($stud->getYearLevel())][strval($item['id'])] += 1;
+          if (!in_array($stud->getId(), array_keys($students["college"]))) {
+            $score = getAssessmentScore(strval($sy->getId()), strval($u->getId()));
+            $sid = strval($stud->getId());
+            $students["college"][$sid] = $score;
+            // college
+            if ($score < 25) {
+              $assessments[$stud->getYearLevel()]["0"] += 1;
+            } else if ($score < 50) {
+              $assessments[$stud->getYearLevel()]["25"] += 1;
+            } else if ($score < 75) {
+              $assessments[$stud->getYearLevel()]["50"] += 1;
+            } else {
+              $assessments[$stud->getYearLevel()]["75"] += 1;
             }
           }
         }
@@ -733,40 +847,6 @@ function getDashboardData()
     }
   }
   $submittedAssessmentForms = max($submittedAssessmentForms);
-  $frequencies = [
-    // college
-    '1' => [],
-    '2' => [],
-    '3' => [],
-    '4' => [],
-    // high school
-    '7' => [],
-    '8' => [],
-    '9' => [],
-    '10' => [],
-    '11' => [],
-    '12' => [],
-  ];
-  foreach ($assessments as $key => $val) {
-    $ids = array_keys($val);
-    $maxFrequencies = array_reduce($ids, function ($init, $id) use ($val, $assessmentFormsItems) {
-      if (count($init) === 0 || $val[$id] > $init[1]) {
-        $afItem = array_reduce($assessmentFormsItems, function ($ini, $afarray) use ($id) {
-          foreach ($afarray as $afi) {
-            if (strval($afi['id']) === strval($id)) {
-              return $afi['item'];
-            }
-          }
-          return $ini;
-        }, null);
-        if (!$afItem)
-          return $init;
-        return [$afItem, $val[$id]];
-      }
-      return $init;
-    }, []);
-    $frequencies[$key] = $maxFrequencies;
-  }
   $calledin = CalledInSlip::findAll();
   $calledin = array_map(function (CalledInSlip $ci) {
     $ust = Users::findOne('id', $ci->getUserId());
@@ -784,7 +864,8 @@ function getDashboardData()
   $response['assessment_form_items'] = count($assessmentFormsItems);
   $response['assessment_form_alarming'] = count(array_filter($assessmentFormsItems, fn($af) => $af['alarming'] === true));
   $response['submitted_assessment_forms'] = $submittedAssessmentForms;
-  $response['assessment_frequencies'] = $frequencies;
+  $response['assessment_frequencies'] = $assessments;
+  debug_write(json_encode($response['assessment_frequencies']));
   return $response;
 }
 
@@ -867,7 +948,7 @@ function openSchoolYear($form_data)
       } else {
         throw new Exception("School year already exists");
       }
-    } catch (Exception $e) {
+    } catch (\Throwable $e) {
       $response['msg'] = "Internal Server Error: " . $e->getMessage();
       $response['status'] = false;
       Database::getInstance()->getPDO()->rollBack();
@@ -897,7 +978,7 @@ function addAdminAccount($form_data)
       $account->role = $form_data['role'];
       $account->gender = $form_data['gender'];
       $account->status = true;
-      $account->profile_pic = "images/default-user.png";
+      $account->profile_pic = "/images/default-user.png";
       $account->setPassword(strtolower(substr($form_data['last_name'], 0, 1) . substr($form_data['first_name'], 0, 1)) . $form_data['username']);
       $created = $account->save();
       if (!$created) {
@@ -1152,6 +1233,9 @@ function uploadPhoto(string $photoFileFieldName): array
  */
 function uploadDocumentPhoto(string $photoFileFieldName): array
 {
+  if (!$_FILES[$photoFileFieldName]) {
+    return [null, "No file uploaded."];
+  }
   // Define the directory to store uploaded files
   $targetDir = import("assets/public/images/documents");
   // Create the directory if it doesn't exist
@@ -1663,6 +1747,8 @@ function createCaseNote(array $form_data)
     $behavob = $form_data["behavioral_observation"] ?? "";
     $aggrementFormId = $form_data["agreement_form_id"] ?? null;
     $referralFormId = $form_data["referral_form_id"] ?? null;
+    $upload_count = $form_data["upload_count"] ?? 0;
+    $upload_count = intval($upload_count);
     if (
       !$gid || !$stid || !$syid || !$itype || !$details ||
       !$infoby || !$clidec
@@ -1691,6 +1777,19 @@ function createCaseNote(array $form_data)
     $casenote->information_by_counselor = $infoby;
     $casenote->client_decision = $clidec;
     $casenote->behavioral_observation = $behavob;
+    $imageLinks = [];
+    if ($upload_count > 0) {
+      for ($i = 0; $i < $upload_count; $i++) {
+        debug_write("upload_count: " . $upload_count . " name: " . "case_note_img_{$i}");
+        [$imgUploadedA, $msgA] = uploadDocumentPhoto("case_note_img_{$i}");
+        debug_write("image " . json_encode(["UPLOADED" => $imgUploadedA, "error" => $msgA], JSON_PRETTY_PRINT));
+        if ($imgUploadedA) {
+          $imageLinks[] = $imgUploadedA;
+        }
+      }
+    }
+
+    $casenote->setCaseNoteImg($imageLinks);
     $cnid = $casenote->save();
     if (!$cnid) {
       throw new Exception("Failed to create case note");
@@ -1806,8 +1905,11 @@ function createDocumentation(array $form_data)
     }
     [$imgUploadedA, $msgA] = uploadDocumentPhoto("referral_a");
     [$imgUploadedB, $msgB] = uploadDocumentPhoto("referral_b");
-    if (!$imgUploadedA || !$imgUploadedB) {
-      throw new Exception($msgA ?? $msgB);
+    if (!$imgUploadedA) {
+      throw new Exception($msgA);
+    }
+    if (!$imgUploadedB) {
+      debug_write($msgB);
     }
     $referralForm = new ReferralForm();
     $referralForm->user_id = $student->getId();
@@ -2136,7 +2238,7 @@ function forgotPassword(array $form_data)
     $response['otp_id'] = $otp->getId();
     $response['otp'] = $otp->getOTP();
     $response['otp_expiry'] = $otp->getOTPExpiry()->format("c");
-  } catch (\Exception $e) {
+  } catch (\Throwable $e) {
     Database::getInstance()->getPDO()->rollBack();
     $response['msg'] = $e->getMessage();
     $response['status'] = false;
@@ -2168,7 +2270,7 @@ function verifyOTP(array $form_data)
     Database::getInstance()->getPDO()->commit();
     $response['msg'] = "OTP Code has been verified successfully.";
     $response['user_id'] = $otp->getUserId();
-  } catch (\Exception $e) {
+  } catch (\Throwable $e) {
     Database::getInstance()->getPDO()->rollBack();
     $response['msg'] = $e->getMessage();
     $response['status'] = false;
@@ -2638,12 +2740,15 @@ function getStudentProfilesData(int $gradeyear): array
             }),
             "assessment_score" => getAssessmentScore($sy['id'], $pfs->getUserId()),
           ],
-          'case_notes' => 0,
-          'called_slip' => 0,
-          'referral_forms' => 0,
-          'agreement_forms' => 0,
-          'feedback_forms' => 0,
-          'remarks' => '',
+          'case_notes' => count(array_filter(CaseNote::findMany('schoolyear_id', $sy['id']), function ($cnt) use ($pfs) {
+            return strval($cnt->getUserId()) === strval($pfs->getUserId());
+          })),
+          'called_slip' => count(array_filter(CalledInSlip::findMany('schoolyear_id', $sy['id']), function ($cnt) use ($pfs) {
+            return strval($cnt->getUserId()) === strval($pfs->getUserId());
+          })),
+          'agreement_forms' => count(array_filter(AgreementForm::findMany('schoolyear_id', $sy['id']), function ($cnt) use ($pfs) {
+            return strval($cnt->getUserId()) === strval($pfs->getUserId());
+          })),
         ];
       }, $profiles);
       $stprofiles = array_filter($studentProfiles, fn($pfs) => intval($pfs["student_info"]["profile"]["yearlevel"] === $gradeyear));
@@ -2653,44 +2758,6 @@ function getStudentProfilesData(int $gradeyear): array
         'profiles' => [...$stprofiles],
       ];
     }, $AllSY);
-    // $profiles = StudentCollege::findMany('schoolyear_id', $sy['id']);
-    // $studentProfiles = array_map(function($pfs) use ($sy) {
-    //   return [
-    //     'student_info' => [
-    //       'profile' => $pfs->toArray(),
-    //       'user' => [...(Users::findOne('id', $pfs->getUserId())?->toArray() ?? []), "password" => null],
-    //     ],
-    //     'student_profile' => StudentProfile::findOne('id', $pfs->getStudentProfileId())?->toArray(),
-    //     'profile_status' => array_reduce(
-    //       CollegeStatus::findMany('college_id', intval($pfs->getId())),
-    //       function($carry, $item) {
-    //         if ($carry === null || $item->getId() > $carry->getId()) {
-    //           return $item->toArray();
-    //         }
-    //         return $carry;
-    //       }, null),
-    //     'assessment' => [
-    //       "assessment_forms" => AssessmentForm::findMany('schoolyear_id', $sy['id']),
-    //       "assessment_responses" => array_filter(Assessment::findMany('user_id', $pfs->getUserId()), function(Assessment $assm) use ($sy) {
-    //         $asstForms = AssessmentForm::findMany('schoolyear_id', $sy['id']);
-    //         foreach ($asstForms as $aform) {
-    //           if (strval($aform->getId()) === strval($assm->getAssessmentFormId())) {
-    //             return true;
-    //           }
-    //         }
-    //         return false;
-    //       }),
-    //       "assessment_score" => getAssessmentScore($sy['id'], $pfs->getUserId()),
-    //     ],
-    //     'case_notes' => 0,
-    //     'called_slip' => 0,
-    //     'referral_forms' => 0,
-    //     'agreement_forms' => 0,
-    //     'feedback_forms' => 0,
-    //   'remarks' => '',
-    //   ];
-    // }, $profiles);
-    // $results = array_filter($studentProfiles, fn($pfs) => intval($pfs["student_info"]["profile"]["yearlevel"] === $gradeyear));
   } else if ($gradeyear > 6 && $gradeyear < 13) // basic education
   {
     $results = array_map(function ($sy) use ($gradeyear) {
@@ -2724,12 +2791,15 @@ function getStudentProfilesData(int $gradeyear): array
           }),
           "assessment_score" => getAssessmentScore($sy['id'], $pfs->getUserId()),
         ],
-        'case_notes' => 0,
-        'called_slip' => 0,
-        'referral_forms' => 0,
-        'agreement_forms' => 0,
-        'feedback_forms' => 0,
-        'remarks' => '',
+        'case_notes' => count(array_filter(CaseNote::findMany('schoolyear_id', value: $sy['id']), function ($cnt) use ($pfs) {
+          return strval($cnt->getUserId()) === strval($pfs->getUserId());
+        })),
+        'called_slip' => count(array_filter(CalledInSlip::findMany('schoolyear_id', $sy['id']), function ($cnt) use ($pfs) {
+          return strval($cnt->getUserId()) === strval($pfs->getUserId());
+        })),
+        'agreement_forms' => count(array_filter(AgreementForm::findMany('schoolyear_id', $sy['id']), function ($cnt) use ($pfs) {
+          return strval($cnt->getUserId()) === strval($pfs->getUserId());
+        })),
       ], $profiles);
       $stprofiles = array_filter($studentProfiles, fn($pfs) => intval($pfs["student_info"]["profile"]["gradelevel"] === $gradeyear));
       return [
@@ -2737,45 +2807,8 @@ function getStudentProfilesData(int $gradeyear): array
         'profiles' => [...$stprofiles],
       ];
     }, $AllSY);
-    // $profiles = StudentBasic::findMany('schoolyear_id', $sy['id']);
-    // $studentProfiles = array_map(fn($pfs) => [
-    //   'student_info' => [
-    //     'profile' => $pfs->toArray(),
-    //     'user' => [...(Users::findOne('id', $pfs->getUserId())?->toArray() ?? []), "password" => null],
-    //   ],
-    //   'student_profile' => StudentProfile::findOne('id', $pfs->getStudentProfileId())?->toArray(),
-    //   'profile_status' => array_reduce(
-    //     BasicStatus::findMany('basic_id', $pfs->getId()),
-    //     function($carry, BasicStatus $bs): mixed {
-    //       if (!$carry || ($carry && ($bs->getId() > $carry["id"]))) {
-    //         return $bs->toArray();
-    //       }
-    //       return $carry;
-    //   }, null),
-    //   'assessment' => [
-    //     "assessment_forms" => AssessmentForm::findMany('schoolyear_id', $sy['id']),
-    //     "assessment_responses" => array_filter(Assessment::findMany('user_id', $pfs->getUserId()), function(Assessment $assm) use ($sy) {
-    //         $asstForms = AssessmentForm::findMany('schoolyear_id', $sy['id']);
-    //         foreach ($asstForms as $aform) {
-    //           if (strval($aform->getId()) === strval($assm->getAssessmentFormId())) {
-    //             return true;
-    //           }
-    //         }
-    //         return false;
-    //       }),
-    //     "assessment_score" => getAssessmentScore($sy['id'], $pfs->getUserId()),
-    //   ],
-    //   'case_notes' => 0,
-    //   'called_slip' => 0,
-    //   'referral_forms' => 0,
-    //   'agreement_forms' => 0,
-    //   'feedback_forms' => 0,
-    //   'remarks' => '',
-    // ], $profiles);
-    // $results = array_filter($studentProfiles, fn($pfs) => intval($pfs["student_info"]["profile"]["gradelevel"] === $gradeyear));
   }
   return ["all_profiles" => [...$results], "gradeyear" => $gradeyear, "school_years" => $AllSY];
-  // return ["profiles" => [...$results], "gradeyear" => $gradeyear, "sy" => intval($sy["year"]), "syid" => $sy['id'], 'assessment_open' => !$sy['editable']];
 }
 
 function getNoProfilesSubmittedData(): array
@@ -2825,7 +2858,8 @@ function getCounselingRecordsData(): array
   $allData = array_map(function ($sy) {
     $calledIn = CalledInSlip::findMany('schoolyear_id', $sy['id']);
     $caseNotes = CaseNote::findMany('schoolyear_id', $sy['id']);
-    $walkedInOnlyCaseNotes = array_filter($caseNotes, fn(CaseNote $cn) => $cn->getInteractionType() === 'Walked-in');
+    $walkedInOnlyCaseNotes = [...array_filter($caseNotes, fn(CaseNote $cn) => $cn->getInteractionType() !== 'Called-in')];
+    // debug_write(json_encode($walkedInOnlyCaseNotes, JSON_PRETTY_PRINT));
     $walkedInIds = array_map(fn($wid) => $wid->getCalledSlipId(), $walkedInOnlyCaseNotes);
     $calledIn = array_filter($calledIn, callback: fn(CalledInSlip $cn) => !in_array($cn->getId(), $walkedInIds));
     $total = count($calledIn) + count($walkedInOnlyCaseNotes);
@@ -2917,8 +2951,11 @@ function getCounselingRecordsData(): array
         }
       } else {
         // walked in case notes
-        $index = count($calledIn) - $i;
+        $index = ($total - count($calledIn)) - ($total - $i);
+        // debug_write(json_encode([$index], JSON_PRETTY_PRINT));
         $cn = $walkedInOnlyCaseNotes[$index];
+        // debug_write(json_encode($walkedInOnlyCaseNotes, JSON_PRETTY_PRINT));
+        // debug_write("cn:".json_encode([$cn], JSON_PRETTY_PRINT));
         $st = Users::findOne('id', $cn->getUserId());
         $result['user'] = $st->toArray();
         $gd = Users::findOne('id', $cn->getGuidanceId());
@@ -3127,7 +3164,7 @@ function createUser($data)
   $user->last_name = $data['last_name'];
   $user->email = $data['email'];
   $user->gender = $data['gender'];
-  $user->profile_pic = "images/default-user.png";
+  $user->profile_pic = "/images/default-user.png";
   $user->status = true;
   $user->setPassword($data['password']);
   $created = $user->save();
@@ -3278,6 +3315,156 @@ function updateProfile($data, $imagedata)
   return mysqli_query($db, $query);
 }
 
+function getCaseNoteListData()
+{
+  $response = [];
+  $sy = $_GET['sy'] ?? null;
+  try {
+    $caseNoteData = CaseNote::findAll();
+    if ($sy) {
+      $school_year = Schoolyear::findOne('year', $sy);
+      $caseNoteData = [
+        ...array_filter($caseNoteData, function (CaseNote $cn) use ($school_year) {
+          return strval($cn->getSchoolyearId()) == strval($school_year->getId());
+        })
+      ];
+    }
+    $response = array_map(function (CaseNote $cn) {
+      $user = Users::findOne('id', $cn->getUserId());
+      $prof = StudentBasic::findOne('user_id', $user->getId());
+      $educ = "";
+      if (!$prof) {
+        $prof = StudentCollege::findOne('user_id', $user->getId());
+        if ($prof) {
+          $educ = "college";
+        }
+      } else {
+        $educ = "basic";
+      }
+      $call = "";
+      $called = CalledInSlip::findOne('id', $cn->getCalledSlipId());
+      if (!$called) {
+        $call = "case";
+      }
+      $profile = StudentProfile::findOne('id', $prof?->getStudentProfileId());
+      debug_write("student " . json_encode($prof, JSON_PRETTY_PRINT));
+      return [
+        "student" => [
+          "username" => $user->getUsername(),
+          "name" => $user->getFirstName() . " " . $user->getMiddleInitial() . ". " . $user->getLastName() . " " . $profile->getSuffixName(),
+        ],
+        "case_note" => [
+          "interaction_type" => $cn->getInteractionType(),
+          // "sched" => $cn->getCreatedAt()->format("c"),
+          "schedule" => match ($call) {
+            "case" => $cn->getCreatedAt()->format("c"),
+            default => $called->getSchedule()->format("c"),
+          },
+        ],
+        "profile" => [
+          "level" => match ($educ) {
+            "basic" => $prof->getGradeLevel(),
+            "college" => $prof->getYearLevel(),
+            default => null
+          },
+          "program" => match ($educ) {
+            "basic" => $prof->getSection(),
+            "college" => $prof->getCourse(),
+            default => null
+          },
+          "department" => match ($educ) {
+            "basic" => "Basic Education",
+            "college" => $prof->getDepartment(),
+            default => null
+          }
+        ],
+      ];
+    }, $caseNoteData);
+    // Users::findOne('id', );
+  } catch (\Throwable $e) {
+
+  }
+  return $response;
+}
+
+function getSummaryRecords(array $request)
+{
+  $sy = $request['sy'] ?? null;
+  $userId = $request['uid'] ?? null;
+  $response = [];
+  try {
+    $educ = "basic";
+    $user = Users::findOne('id', $userId);
+    $pfs = StudentBasic::findMany('schoolyear_id', $sy);
+    $pfs = array_filter($pfs, fn($p) => strval($p->getUserId()) === $userId);
+    $pfs = count($pfs) > 0 ? end($pfs) : null;
+    if (!$pfs) {
+      $educ = "college";
+      $pfs = StudentCollege::findMany('schoolyear_id', $sy);
+      $pfs = array_filter($pfs, fn($p) => strval($p->getUserId()) === $userId);
+      $pfs = count($pfs) > 0 ? end($pfs) : null;
+    }
+    $response["profile"] = [
+      "level" => match ($educ) {
+        "basic" => 'Grade ' . $pfs->getGradeLevel(),
+        "college" => $pfs->getYearLevel() . ' year',
+        default => null
+      },
+      "program" => match ($educ) {
+        "basic" => $pfs->getSection(),
+        "college" => $pfs->getCourse(),
+        default => null
+      },
+      "department" => match ($educ) {
+        "basic" => "Basic Education",
+        "college" => $pfs->getDepartment(),
+        default => null
+      },
+      "name" => $user->getFullName(),
+      "photo" => $user->getProfilePic()
+    ];
+    $response['case_notes'] = array_map(function (CaseNote $cn) {
+      $guidance = Users::findOne('id', $cn->getGuidanceId());
+      return [
+        "interaction_type" => $cn->getInteractionType(),
+        "schedule" => $cn->getCreatedAt()->format("c"),
+        "guidance_name" => $guidance?->getFullName()
+      ];
+    }, [
+      ...array_filter(CaseNote::findMany('schoolyear_id', $sy), function ($cnt) use ($pfs) {
+        return strval($cnt->getUserId()) === strval($pfs->getUserId());
+      })
+    ]);
+    debug_write("data: " . json_encode($response, JSON_PRETTY_PRINT));
+    $response['called_slip'] = array_map(function (CalledInSlip $cis) {
+      $guidance = Users::findOne('id', $cis->getGuidanceId());
+      return [
+        "schedule" => $cis->getSchedule()->format("c"),
+        "guidance_name" => $guidance?->getFullName()
+      ];
+    }, [
+      ...array_filter(CalledInSlip::findMany('schoolyear_id', $sy), function ($cnt) use ($pfs) {
+        return strval($cnt->getUserId()) === strval($pfs->getUserId());
+      })
+    ]);
+    $response['agreement_forms'] = array_map(function (AgreementForm $agf) {
+      $guidance = Users::findOne('id', $agf->getGuidanceId());
+      return [
+        "schedule" => $agf->getCreatedAt()->format("c"),
+        "guidance_name" => $guidance?->getFullName()
+      ];
+    }, [
+      ...array_filter(AgreementForm::findMany('schoolyear_id', $sy), function ($cnt) use ($pfs) {
+        return strval($cnt->getUserId()) === strval($pfs->getUserId());
+      })
+    ]);
+    debug_write("data: " . json_encode($response, JSON_PRETTY_PRINT));
+  } catch (\Throwable $e) {
+    debug_write("ERROR: " . $e->getMessage());
+  }
+  return $response;
+}
+
 function sendEmail($to, $subject, $body)
 {
   $mail = new PHPMailer();
@@ -3309,4 +3496,4 @@ function sendEmail($to, $subject, $body)
   debug_write("Mailer Error: {$mail->ErrorInfo}");
   return false;
 }
-?>
+

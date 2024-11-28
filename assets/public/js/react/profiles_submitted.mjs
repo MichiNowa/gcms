@@ -57,19 +57,19 @@ function ViewAssessmentComponent({ assessmentForms, assessmentResponses, assessm
             React.createElement("div", null, student.education === Education.College
                 ? "Course: " + student.course
                 : "")),
-        React.createElement("h3", { className: clsx(assessmentScore < 25
-                ? "tw-text-green-600"
-                : assessmentScore < 50
-                    ? "tw-text-yellow-600"
-                    : assessmentScore < 75
-                        ? "tw-text-orange-600"
-                        : "tw-text-red-600") },
+        React.createElement("h3", { className: clsx(assessmentScore > 75
+                ? "tw-text-red-600"
+                : assessmentScore > 50
+                    ? "tw-text-orange-600"
+                    : assessmentScore > 25
+                        ? "tw-text-yellow-600"
+                        : "tw-text-green-600") },
             "Assessment Result:",
             " ",
             assessmentScore < 25
                 ? "Strongly Positive"
                 : assessmentScore < 50
-                    ? "Somewhat Negative"
+                    ? "Somewhat Neutral"
                     : assessmentScore < 75
                         ? "Strongly Negative"
                         : "Urgent Attention Needed"),
@@ -180,6 +180,7 @@ function ProfilesSubmitted() {
     const [selectedSchoolYear, setSelectedSchoolYear] = React.useState((new Date()).getFullYear().toString());
     const [selectedDepartment, setSelectedDepartment] = React.useState("");
     const [selectedProgramSection, setSelectedProgramSection] = React.useState("");
+    const [selectedAssessScore, setSelectedAssessScore] = React.useState("");
     const { profiles, sy, syid, assessment_open } = React.useMemo(() => {
         const selSy = Array.isArray(school_years) ? school_years.find((yr) => yr?.year?.toString() === selectedSchoolYear.toString()) : undefined;
         let profiles = Array.isArray(all_profiles) ? all_profiles.find((prof) => prof.sy.toString() === selSy?.year?.toString()) : undefined;
@@ -211,6 +212,18 @@ function ProfilesSubmitted() {
         }
         return result;
     }, [education, data]);
+    const assessmentScoreOptions = React.useMemo(() => {
+        const result = [];
+        [null, 75, 50, 25, 0].forEach(d => result.push({
+            label: d === null ? 'No Assessment'
+                : d === 75 ? 'Urgent assessment (Red)'
+                    : d === 50 ? 'Strongly Negative (Orange)'
+                        : d === 25 ? 'Somewhat Neutral (Yellow)'
+                            : 'Strongly Positive (Green)',
+            value: d?.toString() || '-1',
+        }));
+        return result;
+    }, []);
     const programSectionOptions = React.useMemo(() => {
         const result = [];
         if (education === "basic") {
@@ -479,13 +492,6 @@ function ProfilesSubmitted() {
                 }, assessmentForms: assessmentForms, assessmentResponses: assessmentResponses, assessmentScore: assessmentScore }));
         }
     }, [education, syid, assessment_open]);
-    React.useEffect(() => {
-        $("button#view-profile-close-btn").on("click", function () {
-            $("#iframe-container").empty();
-            $("#view-profile-button-container").empty();
-            $("#view-profile-status").empty();
-        });
-    }, []);
     const onViewProfile = React.useCallback((item) => {
         const $vmodal = $("#view-student-profile-submission");
         $vmodal
@@ -655,6 +661,9 @@ function ProfilesSubmitted() {
     }, [education]);
     const resetSummary = React.useCallback(() => {
         const $summaryModal = $("#view-student-summary-modal");
+        $summaryModal
+            .find("#view-records")
+            .off("click");
         $summaryModal.find("#view-photo").attr("src", "");
         $summaryModal.find("#view-full-name").text("");
         $summaryModal.find("#view-department-gradelevel").text("");
@@ -662,6 +671,16 @@ function ProfilesSubmitted() {
     }, []);
     const onViewSummary = React.useCallback((item) => {
         const $summaryModal = $("#view-student-summary-modal");
+        $summaryModal
+            .find("#view-records")
+            .on("click", function () {
+            const url = new URL(pathname('/print'), window.location.origin);
+            url.searchParams.append('form', "summary_records");
+            url.searchParams.append('sy', syid);
+            url.searchParams.append('year', sy);
+            url.searchParams.append('uid', item?.student_info?.user?.id?.toString() || "");
+            window.open(url.toString(), "_blank");
+        });
         $summaryModal
             .find("#view-photo")
             .attr("src", pathname(item.student_profile.profile_pic || "/images/default-user.png"));
@@ -695,27 +714,28 @@ function ProfilesSubmitted() {
         $summaryModal
             .find("#view-self-assessment")
             .text(item.assessment.assessment_score === false ? "Pending" : "Completed");
-        $summaryModal
-            .find("#view-referral-forms")
-            .text(item.referral_forms?.toString() || "0");
+        // $summaryModal
+        //   .find("#view-referral-forms")
+        //   .text(item.referral_forms?.toString() || "0");
         $summaryModal
             .find("#view-agreement-forms")
             .text(item.agreement_forms?.toString() || "0");
-        $summaryModal
-            .find("#view-feedback-forms")
-            .text(item.feedback_forms?.toString() || "0");
-        $summaryModal.find("#view-remarks").text(item.remarks || "");
-    }, []);
+    }, [syid, sy]);
     const items = React.useMemo(() => {
         let d = !data ? [] : [...data];
         if (!!selectedDepartment && education === "college") {
             d = d.filter((item) => item.student_info.profile?.department?.toString() === selectedDepartment.toString());
+        }
+        if (!!selectedAssessScore) {
+            console.log(selectedAssessScore, d);
+            d = d.filter((item) => (selectedAssessScore === "-1" && item.assessment.assessment_score === false) || (selectedAssessScore === "75" && item.assessment.assessment_score >= 75) || (selectedAssessScore === "50" && item.assessment.assessment_score >= 50 && item.assessment.assessment_score < 75) || (selectedAssessScore === "25" && item.assessment.assessment_score >= 25 && item.assessment.assessment_score < 50) || (selectedAssessScore === "0" && item.assessment.assessment_score !== false && item.assessment.assessment_score >= 0 && item.assessment.assessment_score < 25));
         }
         if (!!selectedProgramSection) {
             d = d.filter((item) => education === "basic"
                 ? item.student_info.profile?.section === selectedProgramSection
                 : item.student_info.profile?.course === selectedProgramSection);
         }
+        console.log('score:', d);
         return d?.map((item) => ({
             id: item.profile_status?.id,
             profile_pic: {
@@ -741,13 +761,13 @@ function ProfilesSubmitted() {
                 content: (React.createElement("div", null,
                     React.createElement("button", { type: "button", onClick: () => onViewAssessment(item), className: clsx("tw-border-2 tw-rounded-full tw-w-[25px] tw-h-[25px]", item.assessment.assessment_score === false
                             ? "tw-bg-gray-500"
-                            : item.assessment.assessment_score < 25
-                                ? "tw-bg-green-500"
-                                : item.assessment.assessment_score < 50
-                                    ? "tw-bg-yellow-500"
-                                    : item.assessment.assessment_score < 75
-                                        ? "tw-bg-orange-500"
-                                        : "tw-bg-red-500") }, "\u00A0"))),
+                            : item.assessment.assessment_score > 75
+                                ? "tw-bg-red-500"
+                                : item.assessment.assessment_score > 50
+                                    ? "tw-bg-orange-500"
+                                    : item.assessment.assessment_score > 25
+                                        ? "tw-bg-yellow-500"
+                                        : "tw-bg-green-500") }, "\u00A0"))),
             },
             profile: {
                 value: item.profile_status?.status,
@@ -773,7 +793,7 @@ function ProfilesSubmitted() {
                 ? displayDate(item.profile_status.created_at)
                 : displayDate(item.student_info.profile.created_at),
         })) || [];
-    }, [data, selectedDepartment, selectedProgramSection]);
+    }, [data, selectedDepartment, selectedProgramSection, selectedAssessScore]);
     const displayTitle = React.useCallback(() => education === Education.College
         ? gradeyear == 1
             ? "1st Year Student Profiles"
@@ -788,6 +808,11 @@ function ProfilesSubmitted() {
             .find("#view-close-btn")
             .click(function () {
             resetSummary();
+        });
+        $("button#view-profile-close-btn").on("click", function () {
+            $("#iframe-container").empty();
+            $("#view-profile-button-container").empty();
+            $("#view-profile-status").empty();
         });
     }, []);
     if (isLoading) {
@@ -815,7 +840,11 @@ function ProfilesSubmitted() {
             (React.createElement("div", { className: "select-wrapper" },
                 React.createElement("select", { className: "form-select", value: selectedProgramSection, onChange: (e) => setSelectedProgramSection(e.target.value) },
                     React.createElement("option", { value: "" }, education === "college" ? "Program/Course" : "Section"),
-                    programSectionOptions.map((opt) => (React.createElement("option", { key: opt.value, value: opt.value }, opt.label)))))))));
+                    programSectionOptions.map((opt) => (React.createElement("option", { key: opt.value, value: opt.value }, opt.label)))))),
+            (React.createElement("div", { className: "select-wrapper" },
+                React.createElement("select", { className: "form-select", value: selectedAssessScore, onChange: (e) => setSelectedAssessScore(e.target.value) },
+                    React.createElement("option", { value: "" }, "Assessment Score"),
+                    assessmentScoreOptions.map((opt) => (React.createElement("option", { key: opt.value, value: opt.value }, opt.label)))))))));
 }
 const root = ReactDOM.createRoot($pageRoot.get(0));
 root.render(React.createElement(ProfilesSubmitted));

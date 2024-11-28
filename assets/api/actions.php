@@ -134,7 +134,6 @@ if (is_current_path('/api/post/forgot_password')) {
                       <div style="margin-bottom: 1rem;">
                         <p>'.$response['otp'].'<br />This is your One Time Pin to reset your password for your SMCC Guidance Center account. Please do not share your pin with others. Valid only for 15 minutes.</p>
                       </div>
-                      <div style="margin-bottom: 2rem;">Respectfully Yours,</div>
                     </td>
                   </tr>
                   <tr>
